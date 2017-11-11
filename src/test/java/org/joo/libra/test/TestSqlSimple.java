@@ -26,10 +26,11 @@ public class TestSqlSimple {
 	@Test()
 	public void testSimple() throws PredicateExecutionException {
 		SqlPredicate predicate = new SqlPredicate(value);
-		if (predicate.hasError())
+		if (predicate.hasError()) {
 			Assert.assertEquals(expected, null);
-		else
+		} else {
 			Assert.assertEquals(expected, predicate.satisfiedBy(null));
+		}
 	}
 
 	@Parameters
