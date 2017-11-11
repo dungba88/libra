@@ -1,4 +1,4 @@
-package libra;
+package org.joo.libra.test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +12,13 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
-public class TestSql {
+public class TestSqlSimple {
 	
 	private String value;
 	
 	private Boolean expected;
 	
-	public TestSql(String value, Boolean expected) {
+	public TestSqlSimple(String value, Boolean expected) {
 		this.value = value;
 		this.expected = expected;
 	}
