@@ -33,7 +33,10 @@ public class SqlPredicate extends CompositionPredicate {
 			SqlParser parser = new SqlParser(tokens);
 			SqlVisitor visitor = new SqlVisitor();
 			ExpressionNode node = visitor.visit(parser.predicate());
-			if (node == null) return null;
+			if (node == null) {
+				error = true;
+				return null;
+			}
 			return node.buildPredicate();
 		} catch(MalformedSyntaxException ex) {
 			error = true;
