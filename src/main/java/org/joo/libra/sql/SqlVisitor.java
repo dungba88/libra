@@ -66,19 +66,12 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 		return node;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public ExpressionNode visitContainsExpr(SqlParser.ContainsExprContext ctx) {
-		LexicalCompareExpressionNode node = new LexicalCompareExpressionNode();
-		node.setLeft((HasValue<String>) visit(ctx.left));
-		node.setRight((HasValue<String>) visit(ctx.right));
+		ContainsCompareExpressionNode node = new ContainsCompareExpressionNode();
+		node.setLeft((HasValue<?>) visit(ctx.left));
+		node.setRight((HasValue<?>) visit(ctx.right));
 		node.setOp(ctx.op.getType());
-
-		if (!isStringNode(node.getLeft())
-				|| !isStringNode(node.getRight())) {
-			throw new MalformedSyntaxException("Malformed syntax at contains node, string node expected");
-		}
-
 		return node;
 	}
 
