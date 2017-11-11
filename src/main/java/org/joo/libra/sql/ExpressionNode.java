@@ -122,7 +122,7 @@ class EmptyExpressionNode implements ExpressionNode {
 	}
 }
 
-class VariableExpressionNode implements ExpressionNode, HasValue<Number> {
+class VariableExpressionNode implements ExpressionNode, HasValue<Object> {
 	
 	private String variableName;
 
@@ -135,7 +135,7 @@ class VariableExpressionNode implements ExpressionNode, HasValue<Number> {
 	}
 
 	@Override
-	public Number getValue(PredicateContext context) {
+	public Object getValue(PredicateContext context) {
 		return null;
 	}
 
@@ -233,6 +233,7 @@ class GenericCompareExpressionNode extends AbstractBinaryOpExpressionNode<HasVal
 		case SqlLexer.DBL_EQUALS:
 			return new EqualsPredicate(getLeft(), getRight());
 		case SqlLexer.NOT_EQUALS:
+		case SqlLexer.IS_EQUALS_NOT:
 			return new NotPredicate(new EqualsPredicate(getLeft(), getRight()));
 		}
 		return null;

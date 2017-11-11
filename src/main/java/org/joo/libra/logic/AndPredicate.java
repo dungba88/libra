@@ -3,6 +3,7 @@ package org.joo.libra.logic;
 import org.joo.libra.Predicate;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.common.CompositionPredicate;
+import org.joo.libra.support.PredicateExecutionException;
 
 public class AndPredicate extends CompositionPredicate {
 
@@ -14,7 +15,7 @@ public class AndPredicate extends CompositionPredicate {
 	}
 
 	@Override
-	public boolean satisfiedBy(PredicateContext context) {
+	public boolean satisfiedBy(PredicateContext context) throws PredicateExecutionException {
 		if (predicates == null) return true;
 		for(Predicate predicate : predicates) {
 			if (!predicate.satisfiedBy(context))

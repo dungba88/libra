@@ -6,6 +6,7 @@ import java.text.ParseException;
 import org.joo.libra.common.HasValue;
 import org.joo.libra.sql.antlr.SqlParser;
 import org.joo.libra.sql.antlr.SqlParserBaseVisitor;
+import org.joo.libra.support.MalformedSyntaxException;
 
 public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 
@@ -39,9 +40,15 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 		node.setLeft((HasValue<Number>) visit(ctx.left));
 		node.setRight((HasValue<Number>) visit(ctx.right));
 		node.setOp(ctx.op.getType());
+		
+		if (!isNumberNode(node.getLeft())
+				|| !isNumberNode(node.getRight())) {
+			throw new MalformedSyntaxException("Malformed syntax at compare node (" + ctx.op.getText() + "), number node expected");
+		}
+		
 		return node;
 	}
-
+	
 	public ExpressionNode visitEqualExpr(SqlParser.EqualExprContext ctx) {
 		GenericCompareExpressionNode node = new GenericCompareExpressionNode();
 		node.setLeft((HasValue<?>) visit(ctx.left));
@@ -66,12 +73,29 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 		node.setLeft((HasValue<String>) visit(ctx.left));
 		node.setRight((HasValue<String>) visit(ctx.right));
 		node.setOp(ctx.op.getType());
+
+		if (!isStringNode(node.getLeft())
+				|| !isStringNode(node.getRight())) {
+			throw new MalformedSyntaxException("Malformed syntax at contains node, string node expected");
+		}
+
 		return node;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public ExpressionNode visitMatchesExpr(SqlParser.MatchesExprContext ctx) {
-		return visitChildren(ctx);
+		LexicalCompareExpressionNode node = new LexicalCompareExpressionNode();
+		node.setLeft((HasValue<String>) visit(ctx.left));
+		node.setRight((HasValue<String>) visit(ctx.right));
+		node.setOp(ctx.op.getType());
+
+		if (!isStringNode(node.getLeft())
+				|| !isStringNode(node.getRight())) {
+			throw new MalformedSyntaxException("Malformed syntax at visit node, string node expected");
+		}
+
+		return node;
 	}
 
 	@Override
@@ -126,6 +150,23 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 		node.setLeft((HasValue<Number>) visit(ctx.left));
 		node.setRight((HasValue<Number>) visit(ctx.right));
 		node.setOp(ctx.op.getType());
+
+		if (!isNumberNode(node.getLeft())
+				|| !isNumberNode(node.getRight())) {
+			throw new MalformedSyntaxException("Malformed syntax at math node (" + ctx.op.getText() + "), number node expected");
+		}
+
 		return node;
+	}
+
+	private boolean isStringNode(Object node) {
+		return node instanceof StringExpressionNode
+				|| node instanceof VariableExpressionNode;
+	}
+	
+	private boolean isNumberNode(Object node) {
+		return node instanceof NumberExpressionNode 
+				|| node instanceof MathExpressionNode
+				|| node instanceof VariableExpressionNode;
 	}
 }

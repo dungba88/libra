@@ -9,6 +9,7 @@ OR:						('OR' | 'or') ;
 NOT:					('NOT' | 'not') ;
 
 IS_EQUALS:				('IS' | 'is') ;
+IS_EQUALS_NOT:			('IS NOT' | 'is not') ;
 CONTAINS:				('CONTAINS' | 'contains') ;
 MATCHES:				('MATCHES' | 'matches') ;
 TRUE:					('TRUE' | 'true') ;

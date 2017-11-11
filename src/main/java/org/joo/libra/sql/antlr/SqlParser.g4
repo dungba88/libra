@@ -22,7 +22,7 @@ term : left=factor op=GREATER_THAN right=factor				#compareExpr
        | left=factor op=EQUALS right=factor					#equalExpr
        | left=factor op=DBL_EQUALS right=factor				#equalExpr
        | left=factor op=NOT_EQUALS right=factor				#notEqualExpr
-       | left=factor op=IS_EQUALS NOT right=factor			#notEqualExpr
+       | left=factor op=IS_EQUALS_NOT right=factor			#notEqualExpr
        | left=factor op=IS_EQUALS right=factor				#equalExpr
        | left=factor op=CONTAINS right=factor				#containsExpr
        | left=factor op=MATCHES right=factor				#matchesExpr
