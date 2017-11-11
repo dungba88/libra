@@ -3,9 +3,9 @@ package org.joo.libra.text;
 import org.joo.libra.common.BinaryPredicate;
 import org.joo.libra.common.HasValue;
 
-public class NotMatch extends BinaryPredicate<String, String> {
+public class NotMatchPredicate extends BinaryPredicate<String, String> {
 
-	public NotMatch(HasValue<String> one, HasValue<String> other) {
+	public NotMatchPredicate(HasValue<String> one, HasValue<String> other) {
 		super(one, other);
 	}
 
