@@ -1,16 +1,26 @@
 package org.joo.libra.text;
 
+import java.util.Arrays;
+import java.util.Collection;
+
 import org.joo.libra.common.BinaryPredicate;
 import org.joo.libra.common.HasValue;
 
-public class ContainPredicate extends BinaryPredicate<String, String> {
+public class ContainPredicate extends BinaryPredicate {
 
-	public ContainPredicate(HasValue<String> one, HasValue<String> other) {
+	public ContainPredicate(HasValue<?> one, HasValue<?> other) {
 		super(one, other);
 	}
 
 	@Override
-	protected boolean doSatisifiedBy(String one, String other) {
-		return one.contains(other);
+	protected boolean doSatisifiedBy(Object one, Object other) {
+		if (one instanceof String && other instanceof String)
+			return one.toString().contains(other.toString());
+		if (one instanceof Collection<?>)
+			return ((Collection<?>)one).contains(other);
+		if (one instanceof Object[]) {
+			return Arrays.asList((Object[])one).contains(other);
+		}
+		return false;
 	}
 }
