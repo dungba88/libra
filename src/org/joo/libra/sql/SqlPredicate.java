@@ -34,30 +34,4 @@ public class SqlPredicate extends CompositionPredicate {
 	public boolean satisfiedBy(PredicateContext context) {
 		return predicate != null ? predicate.satisfiedBy(context) : false;
 	}
-	
-	public static void main(String[] args) {
-		Predicate predicate = new SqlPredicate("'John' is 'John'");
-		System.out.println(predicate.satisfiedBy(null));
-		
-		predicate = new SqlPredicate("'John' contains 'oh'");
-		System.out.println(predicate.satisfiedBy(null));
-		
-		predicate = new SqlPredicate("4 < 3");
-		System.out.println(predicate.satisfiedBy(null));
-		
-		predicate = new SqlPredicate("3 >= 2");
-		System.out.println(predicate.satisfiedBy(null));
-		
-		predicate = new SqlPredicate("2 = 1");
-		System.out.println(predicate.satisfiedBy(null));
-		
-		predicate = new SqlPredicate("1 + 1 = 2");
-		System.out.println(predicate.satisfiedBy(null));
-		
-		predicate = new SqlPredicate("1 + 2 * 3 = 7");
-		System.out.println(predicate.satisfiedBy(null));
-		
-		predicate = new SqlPredicate("4 is 'John'");
-		System.out.println(predicate.satisfiedBy(null));
-	}
 }
