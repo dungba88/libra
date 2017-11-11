@@ -35,4 +35,4 @@ INTEGER:				'0'..'9'+ ;
 DOUBLE:					'0'..'9'+'.''0'..'9'+ ;
 STRING:					'\'' ~('\r' | '\n' | '\'')* '\'' ;
 WS: 					(' ' | '\t')+ -> channel(HIDDEN) ;
-VARIABLE:				[a-zA-Z_]+ ;
+VARIABLE:				[a-zA-Z_\.]+ ;
