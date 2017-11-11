@@ -31,12 +31,6 @@ public class SqlPredicate extends CompositionPredicate {
 			
 			CommonTokenStream tokens = new CommonTokenStream(lexer);
 			
-//			Token token = lexer.nextToken();
-//			while(token.getType() != -1) {
-//				System.out.println(lexer.getVocabulary().getDisplayName(token.getType()) + " -- " + token.getText());
-//				token = lexer.nextToken();
-//			}
-			
 			SqlParser parser = new SqlParser(tokens);
 			SqlVisitor visitor = new SqlVisitor();
 			ExpressionNode node = visitor.visit(parser.predicate());

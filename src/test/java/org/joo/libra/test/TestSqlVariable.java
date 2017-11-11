@@ -31,12 +31,18 @@ public class TestSqlVariable {
 	}
 	
 	@Test()
-	public void testSimple() throws PredicateExecutionException {
+	public void testSimple() {
 		SqlPredicate predicate = new SqlPredicate(value);
-		if (predicate.hasError())
+		if (predicate.hasError()) {
 			Assert.assertEquals(expected, null);
-		else
-			Assert.assertEquals(expected, predicate.satisfiedBy(new PredicateContext(context)));
+		} else {
+			try {
+				Assert.assertEquals(expected, predicate.satisfiedBy(new PredicateContext(context)));
+			} catch (PredicateExecutionException e) {
+				e.printStackTrace();
+				Assert.assertEquals(expected, null);
+			}
+		}
 	}
 
 	@Parameters
@@ -58,20 +64,20 @@ public class TestSqlVariable {
 		List<Object[]> list = new ArrayList<Object[]>();
 		
 		list.add(new Object[] { "name is 'John'", true, context });
-//		list.add(new Object[] { "name is not 'John'", false, context });
-//		list.add(new Object[] { "age > 27", false, context });
-//		list.add(new Object[] { "age < 27", false, context });
-//		list.add(new Object[] { "age <= 27", true, context });
-//		list.add(new Object[] { "age >= 27", true, context });
-//		list.add(new Object[] { "age = 27", true, context });
-//		list.add(new Object[] { "age + 2 = 27", false, context });
-//		list.add(new Object[] { "age + 2 > 27", true, context });
-//		list.add(new Object[] { "age + 2 > age", true, context });
-//		list.add(new Object[] { "demographic.gender is 'female'", false, context });
-//		list.add(new Object[] { "demographic.gender is 'male'", true, context });
-//		list.add(new Object[] { "jobs.0 is 'Oracle'", true, context });
-//		list.add(new Object[] { "jobs contains 'Oracle'", true, context });
-//		list.add(new Object[] { "jobs contains 'Paypal'", false, context });
+		list.add(new Object[] { "name is not 'John'", false, context });
+		list.add(new Object[] { "age > 27", false, context });
+		list.add(new Object[] { "age < 27", false, context });
+		list.add(new Object[] { "age <= 27", true, context });
+		list.add(new Object[] { "age >= 27", true, context });
+		list.add(new Object[] { "age = 27", true, context });
+		list.add(new Object[] { "age + 2 = 27", false, context });
+		list.add(new Object[] { "age + 2 > 27", true, context });
+		list.add(new Object[] { "age + 2 > age", true, context });
+		list.add(new Object[] { "demographic.gender is 'female'", false, context });
+		list.add(new Object[] { "demographic.gender is 'male'", true, context });
+		list.add(new Object[] { "jobs[0] is 'Oracle'", context instanceof Map ? null : true, context });
+		list.add(new Object[] { "jobs contains 'Oracle'", true, context });
+		list.add(new Object[] { "jobs contains 'Paypal'", false, context });
 
 		return list;
 	}

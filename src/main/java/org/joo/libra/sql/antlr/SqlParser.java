@@ -22,8 +22,8 @@ public class SqlParser extends Parser {
 		AND=1, OR=2, NOT=3, IS_EQUALS=4, IS_EQUALS_NOT=5, CONTAINS=6, MATCHES=7, 
 		TRUE=8, FALSE=9, UNDEFINED=10, NULL=11, EMPTY=12, GREATER_THAN=13, GREATER_THAN_EQUALS=14, 
 		LESS_THAN=15, LESS_THAN_EQUALS=16, EQUALS=17, NOT_EQUALS=18, DBL_EQUALS=19, 
-		PLUS=20, MINUS=21, TIMES=22, DIVIDE=23, LPAREN=24, RPAREN=25, INTEGER=26, 
-		DOUBLE=27, STRING=28, WS=29, VARIABLE=30;
+		PLUS=20, MINUS=21, TIMES=22, DIVIDE=23, LPAREN=24, RPAREN=25, STRING=26, 
+		INTEGER=27, DOUBLE=28, VARIABLE=29, WS=30;
 	public static final int
 		RULE_predicate = 0, RULE_expression = 1, RULE_term = 2, RULE_factor = 3;
 	public static final String[] ruleNames = {
@@ -36,8 +36,8 @@ public class SqlParser extends Parser {
 		null, "AND", "OR", "NOT", "IS_EQUALS", "IS_EQUALS_NOT", "CONTAINS", "MATCHES", 
 		"TRUE", "FALSE", "UNDEFINED", "NULL", "EMPTY", "GREATER_THAN", "GREATER_THAN_EQUALS", 
 		"LESS_THAN", "LESS_THAN_EQUALS", "EQUALS", "NOT_EQUALS", "DBL_EQUALS", 
-		"PLUS", "MINUS", "TIMES", "DIVIDE", "LPAREN", "RPAREN", "INTEGER", "DOUBLE", 
-		"STRING", "WS", "VARIABLE"
+		"PLUS", "MINUS", "TIMES", "DIVIDE", "LPAREN", "RPAREN", "STRING", "INTEGER", 
+		"DOUBLE", "VARIABLE", "WS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -279,9 +279,9 @@ public class SqlParser extends Parser {
 			case NULL:
 			case EMPTY:
 			case LPAREN:
+			case STRING:
 			case INTEGER:
 			case DOUBLE:
-			case STRING:
 			case VARIABLE:
 				{
 				_localctx = new TermExprContext(_localctx);
@@ -1101,13 +1101,13 @@ public class SqlParser extends Parser {
 		"\2\2\2EF\5\b\5\2FG\7\t\2\2GH\5\b\5\2HK\3\2\2\2IK\5\b\5\2J\35\3\2\2\2J"+
 		"!\3\2\2\2J%\3\2\2\2J)\3\2\2\2J-\3\2\2\2J\61\3\2\2\2J\65\3\2\2\2J9\3\2"+
 		"\2\2J=\3\2\2\2JA\3\2\2\2JE\3\2\2\2JI\3\2\2\2K\7\3\2\2\2LM\b\5\1\2M[\7"+
-		"\35\2\2N[\7\34\2\2O[\7\36\2\2P[\7\n\2\2Q[\7\13\2\2R[\7\f\2\2S[\7\r\2\2"+
-		"T[\7\16\2\2U[\7 \2\2VW\7\32\2\2WX\5\4\3\2XY\7\33\2\2Y[\3\2\2\2ZL\3\2\2"+
-		"\2ZN\3\2\2\2ZO\3\2\2\2ZP\3\2\2\2ZQ\3\2\2\2ZR\3\2\2\2ZS\3\2\2\2ZT\3\2\2"+
-		"\2ZU\3\2\2\2ZV\3\2\2\2[j\3\2\2\2\\]\f\6\2\2]^\7\30\2\2^i\5\b\5\7_`\f\5"+
-		"\2\2`a\7\31\2\2ai\5\b\5\6bc\f\4\2\2cd\7\26\2\2di\5\b\5\5ef\f\3\2\2fg\7"+
-		"\27\2\2gi\5\b\5\4h\\\3\2\2\2h_\3\2\2\2hb\3\2\2\2he\3\2\2\2il\3\2\2\2j"+
-		"h\3\2\2\2jk\3\2\2\2k\t\3\2\2\2lj\3\2\2\2\t\20\30\32JZhj";
+		"\36\2\2N[\7\35\2\2O[\7\34\2\2P[\7\n\2\2Q[\7\13\2\2R[\7\f\2\2S[\7\r\2\2"+
+		"T[\7\16\2\2U[\7\37\2\2VW\7\32\2\2WX\5\4\3\2XY\7\33\2\2Y[\3\2\2\2ZL\3\2"+
+		"\2\2ZN\3\2\2\2ZO\3\2\2\2ZP\3\2\2\2ZQ\3\2\2\2ZR\3\2\2\2ZS\3\2\2\2ZT\3\2"+
+		"\2\2ZU\3\2\2\2ZV\3\2\2\2[j\3\2\2\2\\]\f\6\2\2]^\7\30\2\2^i\5\b\5\7_`\f"+
+		"\5\2\2`a\7\31\2\2ai\5\b\5\6bc\f\4\2\2cd\7\26\2\2di\5\b\5\5ef\f\3\2\2f"+
+		"g\7\27\2\2gi\5\b\5\4h\\\3\2\2\2h_\3\2\2\2hb\3\2\2\2he\3\2\2\2il\3\2\2"+
+		"\2jh\3\2\2\2jk\3\2\2\2k\t\3\2\2\2lj\3\2\2\2\t\20\30\32JZhj";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

@@ -4,6 +4,9 @@ lexer grammar SqlLexer;
 package org.joo.libra.sql.antlr;
 }
 
+fragment Digit: 		'0'..'9' ;
+fragment Alpha: 		'[' | ']' | '.' | '_' | 'A'..'Z' | 'a'..'z' ;
+
 AND:					('AND' | 'and') ;
 OR:						('OR' | 'or') ;
 NOT:					('NOT' | 'not') ;
@@ -32,8 +35,6 @@ DIVIDE:					'/' ;
 LPAREN:					'(' ;
 RPAREN:					')' ;
 STRING:					'\'' ~('\r' | '\n' | '\'')* '\'' ;
-fragment Digit: 		'0'..'9' ;
-fragment Alpha: 		'.' | '_' | 'A'..'Z' | 'a'..'z' ;
 INTEGER:				Digit+ ;
 DOUBLE:					Digit+'.'Digit+ ;
 VARIABLE:				Alpha+ (Alpha | Digit)* ;
