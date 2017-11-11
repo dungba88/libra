@@ -136,7 +136,8 @@ class VariableExpressionNode implements ExpressionNode, HasValue<Object> {
 
 	@Override
 	public Object getValue(PredicateContext context) {
-		return null;
+		if (context == null) return null;
+		return ObjectUtils.getValue(context.getContext(), variableName);
 	}
 
 	@Override
@@ -245,11 +246,17 @@ class LexicalCompareExpressionNode extends AbstractBinaryOpExpressionNode<HasVal
 	@Override
 	public Predicate buildPredicate() {
 		switch(getOp()) {
-		case SqlLexer.CONTAINS:
-			return new ContainPredicate(getLeft(), getRight());
 		case SqlLexer.MATCHES:
 			return new MatchPredicate(getLeft(), getRight());
 		}
 		return null;
+	}
+}
+
+class ContainsCompareExpressionNode extends AbstractBinaryOpExpressionNode<HasValue<?>> {
+
+	@Override
+	public Predicate buildPredicate() {
+		return new ContainPredicate(getLeft(), getRight());
 	}
 }
