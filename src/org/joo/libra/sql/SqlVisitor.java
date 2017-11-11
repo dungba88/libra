@@ -32,6 +32,7 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 		return node;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public ExpressionNode visitCompareExpr(SqlParser.CompareExprContext ctx) {
 		NumericCompareExpressionNode node = new NumericCompareExpressionNode();
@@ -58,6 +59,7 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 		return node;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public ExpressionNode visitContainsExpr(SqlParser.ContainsExprContext ctx) {
 		LexicalCompareExpressionNode node = new LexicalCompareExpressionNode();
@@ -117,6 +119,7 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 		return node;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public ExpressionNode visitMathExpr(SqlParser.MathExprContext ctx) {
 		MathExpressionNode node = new MathExpressionNode();
