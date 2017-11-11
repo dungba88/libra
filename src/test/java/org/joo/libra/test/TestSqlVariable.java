@@ -9,6 +9,8 @@ import org.apache.commons.beanutils.BeanUtilsBean;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.sql.SqlPredicate;
 import org.joo.libra.support.PredicateExecutionException;
+import org.joo.libra.test.support.Demographic;
+import org.joo.libra.test.support.Person;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
