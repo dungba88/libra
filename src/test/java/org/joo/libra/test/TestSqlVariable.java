@@ -39,7 +39,6 @@ public class TestSqlVariable {
 			try {
 				Assert.assertEquals(expected, predicate.satisfiedBy(new PredicateContext(context)));
 			} catch (PredicateExecutionException e) {
-				e.printStackTrace();
 				Assert.assertEquals(expected, null);
 			}
 		}
