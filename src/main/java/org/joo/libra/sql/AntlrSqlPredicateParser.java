@@ -12,7 +12,7 @@ import org.joo.libra.sql.antlr.SqlLexer;
 import org.joo.libra.sql.antlr.SqlParser;
 import org.joo.libra.support.MalformedSyntaxException;
 
-public class DefaultSqlPredicateParser implements SqlPredicateParser {
+public class AntlrSqlPredicateParser implements SqlPredicateParser {
 
 	@Override
 	public Predicate parse(String predicate) {

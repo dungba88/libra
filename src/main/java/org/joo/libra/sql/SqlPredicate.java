@@ -15,7 +15,7 @@ public class SqlPredicate extends CompositionPredicate {
 	private Predicate predicate;
 
 	public SqlPredicate(String predicate) {
-		this(predicate, new DefaultSqlPredicateParser());
+		this(predicate, new AntlrSqlPredicateParser());
 	}
 	
 	public SqlPredicate(String predicate, SqlPredicateParser parser) {
