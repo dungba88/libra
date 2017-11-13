@@ -6,8 +6,10 @@ import java.util.Collection;
 import org.joo.libra.common.BinaryPredicate;
 import org.joo.libra.common.HasValue;
 
+@SuppressWarnings("rawtypes")
 public class ContainPredicate extends BinaryPredicate {
 
+	@SuppressWarnings("unchecked")
 	public ContainPredicate(HasValue<?> one, HasValue<?> other) {
 		super(one, other);
 	}
