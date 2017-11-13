@@ -29,7 +29,7 @@ experiences >= 4 or (skills contains 'Java' and projects is not empty)
 
 ## how to use
 
-A `PredicateContext` needs to be passed to the `satisfiedBy` method.
+By default, you can simply use `SqlPredicate` class for all the functionality, which supports `satisfiedBy` method to perform the evaluation. A `PredicateContext` needs to be passed to the method.
 
 ```java
 PredicateContext context = new PredicateContext(anObject);
