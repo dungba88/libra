@@ -65,6 +65,10 @@ public class SqlPredicate extends CompositionPredicate {
 		}
 	}
 	
+	public void checkForErrorAndThrow() {
+		if (error) throw cause;
+	}
+	
 	public boolean hasError() {
 		return error;
 	}
