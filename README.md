@@ -23,7 +23,7 @@ Some examples of SQL predicates:
 
 ```
 name is 'John' and age > 27
-employment contains 'LEGO assistant' and name is 'Anh Dzung Bui'
+employments contains 'LEGO assistant' and name is 'Anh Dzung Bui'
 experiences >= 4 or (skills contains 'Java' and projects is not empty)
 ```
 
