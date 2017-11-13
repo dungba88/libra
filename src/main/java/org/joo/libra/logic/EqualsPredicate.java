@@ -2,7 +2,7 @@ package org.joo.libra.logic;
 
 import org.joo.libra.common.BinaryPredicate;
 import org.joo.libra.common.HasValue;
-import org.joo.libra.numeric.NumericPredicate;
+import org.joo.libra.numeric.NumericComparator;
 
 @SuppressWarnings("rawtypes")
 public class EqualsPredicate extends BinaryPredicate {
@@ -15,7 +15,7 @@ public class EqualsPredicate extends BinaryPredicate {
 	@Override
 	protected boolean doSatisifiedBy(Object one, Object other) {
 		if (one instanceof Number && other instanceof Number) {
-			return NumericPredicate.compare((Number)one, (Number)other) == 0;
+			return NumericComparator.compare((Number)one, (Number)other) == 0;
 		}
 		return one.equals(other);
 	}

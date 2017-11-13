@@ -137,7 +137,11 @@ class VariableExpressionNode implements ExpressionNode, HasValue<Object> {
 	@Override
 	public Object getValue(PredicateContext context) {
 		if (context == null) return null;
-		return ObjectUtils.getValue(context.getContext(), variableName);
+		try {
+			return ObjectUtils.getValue(context.getContext(), variableName);
+		} catch (ReflectiveOperationException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@Override

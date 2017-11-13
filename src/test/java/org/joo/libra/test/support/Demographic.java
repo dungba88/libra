@@ -1,4 +1,4 @@
-package org.joo.libra.test;
+package org.joo.libra.test.support;
 
 public class Demographic {
 	

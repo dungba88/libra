@@ -1,7 +1,6 @@
 package org.joo.libra.test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +8,7 @@ import org.apache.commons.beanutils.BeanUtilsBean;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.sql.SqlPredicate;
 import org.joo.libra.support.PredicateExecutionException;
+import org.joo.libra.test.support.MockDataUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -48,10 +48,10 @@ public class TestSqlVariable {
 	public static List<Object[]> data() {
 		List<Object[]> list = new ArrayList<Object[]>();
 		
-		Object mapContext = createMapContext();
+		Object mapContext = MockDataUtils.mockMap();
 		list.addAll(data(mapContext));
 
-		Object objectContext = createObjectContext();
+		Object objectContext = MockDataUtils.mockPerson();
 		list.addAll(data(objectContext));
 
 		return list;
@@ -79,26 +79,5 @@ public class TestSqlVariable {
 		list.add(new Object[] { "jobs contains 'Paypal'", false, context });
 
 		return list;
-	}
-
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private static Object createMapContext() {
-		Map<String, Object> map = new HashMap<>();
-		map.put("name", "John");
-		map.put("age", 27);
-		map.put("demographic", new HashMap<>());
-		((Map)map.get("demographic")).put("gender", "male");
-		map.put("jobs", new String[] {"Oracle"});
-		return map;
-	}
-	
-	private static Object createObjectContext() {
-		Person person = new Person();
-		person.setName("John");
-		person.setAge(27);
-		person.setDemographic(new Demographic());
-		person.getDemographic().setGender("male");
-		person.setJobs(new String[] {"Oracle"});
-		return person;
 	}
 }
