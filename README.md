@@ -43,3 +43,8 @@ if (predicate.hasError()) {
     predicate.getCause().printStackTrace();
 }
 ```
+
+or throw the exception if any
+```java
+predicate.checkForErrorAndThrow();
+```
