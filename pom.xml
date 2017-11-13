@@ -19,6 +19,10 @@
 		</license>
 	</licenses>
 
+	<scm>
+		<url>https://github.com/dungba88/libra.git</url>
+	</scm>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.antlr</groupId>
