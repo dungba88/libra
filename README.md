@@ -15,7 +15,7 @@ Libra supports the following syntax for SQL predicates:
 - Numeric literals: `1`, `1.0`
 - Boolean literals: `true`, `false`
 - Other literals: `null`, `undefined`, `empty`
-- Variables: alphanumerics, `_` and `.`, must starts with alphabet characters.
+- Variables: alphanumerics, `_`, `.` (to denote nested object) and `[`, `]` (to denote array index), must starts with alphabet characters.
 
 ## example
 
@@ -23,13 +23,13 @@ Some examples of SQL predicates:
 
 ```
 name is 'John' and age > 27
-employment contains 'LEGO assistant' and name is 'Anh Dzung Bui'
+employments contains 'LEGO assistant' and name is 'Anh Dzung Bui'
 experiences >= 4 or (skills contains 'Java' and projects is not empty)
 ```
 
 ## how to use
 
-A `PredicateContext` needs to be passed to the `satisfiedBy` method.
+By default, you can simply use `SqlPredicate` class for all the functionality, which supports `satisfiedBy` method to perform the evaluation. A `PredicateContext` needs to be passed to the method.
 
 ```java
 PredicateContext context = new PredicateContext(anObject);
@@ -47,4 +47,26 @@ if (predicate.hasError()) {
 or throw the exception if any
 ```java
 predicate.checkForErrorAndThrow();
+```
+
+## extends
+
+The `SqlPredicate` class allows you to pass your own `SqlPredicateParser`:
+
+```java
+SqlPredicate predicate = new SqlPredicate(predicateString, new MyPredicateParser());
+```
+
+you can implement your own `SqlPredicateParser`, or extend the `AbstractAntlrSqlPredicateParser` to use your own grammar. For the former, the interface has only one method `public Predicate parse(String predicate) throws MalformedSyntaxException;`, so you can even use lambda expression to construct it, like:
+
+```java
+SqlPredicate predicate = new SqlPredicate(predicateString, predicate -> {
+   return something; 
+});
+```
+
+or use method reference:
+
+```java
+SqlPredicate predicate = new SqlPredicate(predicateString, this::parseSql);
 ```
