@@ -15,7 +15,7 @@ Libra supports the following syntax for SQL predicates:
 - Numeric literals: `1`, `1.0`
 - Boolean literals: `true`, `false`
 - Other literals: `null`, `undefined`, `empty`
-- Variables: alphanumerics, `_` and `.`. Must starts with alphabet characters.
+- Variables: alphanumerics, `_` and `.`, must starts with alphabet characters.
 
 ## example
 
@@ -42,4 +42,9 @@ You can optionally check for syntax errors:
 if (predicate.hasError()) {
     predicate.getCause().printStackTrace();
 }
+```
+
+or throw the exception if any
+```java
+predicate.checkForErrorAndThrow();
 ```
