@@ -26,6 +26,17 @@ name is 'John' and age > 27
 employments contains 'LEGO assistant' and name is 'Anh Dzung Bui'
 experiences >= 4 or (skills contains 'Java' and projects is not empty)
 ```
+## install
+
+Libra can be easily installed with Maven:
+
+```xml
+<dependency>
+	<groupId>org.dungba</groupId>
+	<artifactId>joo-libra</artifactId>
+	<version>1.0.0</version>
+</dependency>
+```
 
 ## how to use
 
