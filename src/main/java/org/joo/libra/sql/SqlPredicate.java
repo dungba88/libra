@@ -19,7 +19,12 @@ public class SqlPredicate extends CompositionPredicate {
 	}
 	
 	public SqlPredicate(String predicate, SqlPredicateParser parser) {
-		this.predicate = parser.parse(predicate);
+		try {
+			this.predicate = parser.parse(predicate);
+		} catch (MalformedSyntaxException ex) {
+			error = true;
+			cause = ex;
+		}
 	}
 
 	@Override
