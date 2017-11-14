@@ -21,8 +21,9 @@
 
 	<scm>
 		<url>https://github.com/dungba88/libra.git</url>
+		<developerConnection>scm:git:[fetch=]https://github.com/dungba88/libra.git</developerConnection>
 	</scm>
-
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.antlr</groupId>
@@ -64,7 +65,7 @@
 				<version>1.6.7</version>
 				<extensions>true</extensions>
 				<configuration>
-					<serverId>ossrh_snapshots</serverId>
+					<serverId>ossrh_staging</serverId>
 					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
 					<autoReleaseAfterClose>true</autoReleaseAfterClose>
 				</configuration>
@@ -108,6 +109,17 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<useReleaseProfile>false</useReleaseProfile>
+					<releaseProfiles>release</releaseProfiles>
+					<goals>deploy</goals>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
