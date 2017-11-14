@@ -1,5 +1,7 @@
 package org.joo.libra.test;
 
+import java.util.Map;
+
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.sql.SqlPredicate;
@@ -15,7 +17,11 @@ public class TestSqlPerf {
 	
 	private Person person;
 	
-	private PredicateContext context;
+	private Map<String, Object> map;
+	
+	private PredicateContext personContext;
+	
+	private PredicateContext mapContext;
 
 	public static void main(String[] args) {
 		TestSqlPerf perf = new TestSqlPerf();
@@ -30,12 +36,22 @@ public class TestSqlPerf {
 			System.out.println("Warming up...");
 			warmup();
 			
-			System.out.println("\nTesting...");
+			System.out.println("\nTesting with Java object...");
 	
 			long start = System.currentTimeMillis();
-			doTest(iterations);
+			doTest(iterations, personContext);
 			long elapsed = System.currentTimeMillis() - start;
 			long pace = iterations * 1000 / elapsed;
+			
+			System.out.println("Elapsed: " + elapsed + "ms");
+			System.out.println("Pace: " + pace + " ops/sec");
+
+			System.out.println("\nTesting with Map...");
+			
+			start = System.currentTimeMillis();
+			doTest(iterations, mapContext);
+			elapsed = System.currentTimeMillis() - start;
+			pace = iterations * 1000 / elapsed;
 			
 			System.out.println("Elapsed: " + elapsed + "ms");
 			System.out.println("Pace: " + pace + " ops/sec");
@@ -46,10 +62,13 @@ public class TestSqlPerf {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	protected void setup() {
 		predicate = new SqlPredicate("name is 'John' and age > 27");
 		person = MockDataUtils.mockPerson();
-		context = new PredicateContext(person);
+		map = MockDataUtils.mockMap();
+		personContext = new PredicateContext(person);
+		mapContext = new PredicateContext(map);
 	}
 
 	protected void warmup() {
@@ -58,7 +77,7 @@ public class TestSqlPerf {
 		SqlParser.VOCABULARY.getClass();
 	}
 
-	protected void doTest(long iterations) {
+	protected void doTest(long iterations, PredicateContext context) {
 		for(int i=0; i<iterations; i++) {
 			try {
 				predicate.satisfiedBy(context);
