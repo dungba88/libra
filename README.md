@@ -32,9 +32,9 @@ Libra can be easily installed with Maven:
 
 ```xml
 <dependency>
-	<groupId>org.dungba</groupId>
-	<artifactId>joo-libra</artifactId>
-	<version>1.0.0</version>
+    <groupId>org.dungba</groupId>
+    <artifactId>joo-libra</artifactId>
+    <version>1.0.0</version>
 </dependency>
 ```
 
