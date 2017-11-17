@@ -1,5 +1,6 @@
 # libra
 [![License](https://img.shields.io/github/license/dungba88/libra.svg?maxAge=2592000)](LICENSE)
+[![Maven Central](https://img.shields.io/maven-central/v/org.dungba/joo-libra.svg?maxAge=2592000)](http://mvnrepository.com/artifact/org.dungba/joo-libra)
 
 
 Libra is a Java package for creating and evaluating predicate. Java-based and SQL-like predicate are both supported. For SQL predicates, it is using ANTLR to parse the string against a predefined grammar. The Java-based predicates are implementation of Specification pattern and support numeric/text/collection related conditions.
