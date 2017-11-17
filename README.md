@@ -1,6 +1,8 @@
 # libra
+[![License](https://img.shields.io/github/license/dungba88/libra.svg?maxAge=2592000)](LICENSE)
 
-Libra is a Java package for creating and evaluating predicate. Java-based and SQL-like predicate are both supported. For SQL predicates, it is using ANTLR to parse the string against a predefined grammar. Thus it is of best interest to cache the parsed version and if possible, try to load them at startup.
+
+Libra is a Java package for creating and evaluating predicate. Java-based and SQL-like predicate are both supported. For SQL predicates, it is using ANTLR to parse the string against a predefined grammar. The Java-based predicates are implementation of Specification pattern and support numeric/text/collection related conditions.
 
 ## grammar
 
@@ -32,9 +34,9 @@ Libra can be easily installed with Maven:
 
 ```xml
 <dependency>
-	<groupId>org.dungba</groupId>
-	<artifactId>joo-libra</artifactId>
-	<version>1.0.0</version>
+    <groupId>org.dungba</groupId>
+    <artifactId>joo-libra</artifactId>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -81,3 +83,9 @@ or use method reference:
 ```java
 SqlPredicate predicate = new SqlPredicate(predicateString, this::parseSql);
 ```
+
+## performance considerations
+
+It is of best interest to cache the parsed version of sql and if possible, try to load all of them at startup. If you keep the `SqlPredicate` objects, they will contain the parsed predicate to be reused.
+
+The runtime evaluation is quite fast (2 millions ops/sec with Java object or 5 millions ops/sec with `Map`). You can also consider using `Map` because it's significantly faster.
