@@ -104,7 +104,7 @@
 				<configuration>
 					<autoVersionSubmodules>true</autoVersionSubmodules>
 					<useReleaseProfile>true</useReleaseProfile>
-					<releaseProfiles>release</releaseProfiles>
+					<releaseProfiles>release-sign-artifacts</releaseProfiles>
 					<goals>deploy</goals>
 				</configuration>
 			</plugin>
