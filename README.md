@@ -1,5 +1,5 @@
 # libra
-[![License](https://img.shields.io/github/license/dungba88/libra.svg?maxAge=2592000)](LICENSE.txt)
+[![License](https://img.shields.io/github/license/dungba88/libra.svg?maxAge=2592000)](LICENSE)
 
 
 Libra is a Java package for creating and evaluating predicate. Java-based and SQL-like predicate are both supported. For SQL predicates, it is using ANTLR to parse the string against a predefined grammar. The Java-based predicates are implementation of Specification pattern and support numeric/text/collection related conditions.
