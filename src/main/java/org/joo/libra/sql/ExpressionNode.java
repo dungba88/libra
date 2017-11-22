@@ -123,6 +123,8 @@ class EmptyExpressionNode implements ExpressionNode {
 
 	@Override
 	public Predicate buildPredicate() {
+		if (op == SqlLexer.IS_NOT_EMPTY)
+			return new NotPredicate(new IsEmptyPredicate(innerNode));
 		return new IsEmptyPredicate(innerNode);
 	}
 
