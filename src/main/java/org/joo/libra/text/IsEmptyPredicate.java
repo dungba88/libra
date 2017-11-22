@@ -20,7 +20,7 @@ public class IsEmptyPredicate extends CompositionPredicate {
 		Object rawValue = value.getValue(context);
 		if (rawValue == null) return true;
 		if (rawValue instanceof String) {
-			rawValue.toString().isEmpty();
+			return rawValue.toString().isEmpty();
 		}
 		if (rawValue instanceof Collection) {
 			return ((Collection)rawValue).isEmpty();
