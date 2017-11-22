@@ -6,11 +6,11 @@ import org.joo.libra.PredicateContext;
 import org.joo.libra.common.CompositionPredicate;
 import org.joo.libra.common.HasValue;
 
-public class EmptyPredicate extends CompositionPredicate {
+public class IsEmptyPredicate extends CompositionPredicate {
 
 	private HasValue<?> value;
 
-	public EmptyPredicate(HasValue<?> value) {
+	public IsEmptyPredicate(HasValue<?> value) {
 		this.value = value;
 	}
 
