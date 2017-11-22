@@ -15,7 +15,7 @@ import org.joo.libra.numeric.LessEqualPredicate;
 import org.joo.libra.numeric.LessThanPredicate;
 import org.joo.libra.sql.antlr.SqlLexer;
 import org.joo.libra.text.ContainPredicate;
-import org.joo.libra.text.EmptyPredicate;
+import org.joo.libra.text.IsEmptyPredicate;
 import org.joo.libra.text.MatchPredicate;
 
 public interface ExpressionNode {
@@ -123,7 +123,7 @@ class EmptyExpressionNode implements ExpressionNode {
 
 	@Override
 	public Predicate buildPredicate() {
-		return new EmptyPredicate(innerNode);
+		return new IsEmptyPredicate(innerNode);
 	}
 
 	public HasValue<?> getInnerNode() {
