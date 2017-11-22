@@ -114,6 +114,18 @@ public class SqlParserBaseListener implements SqlParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterEmptyExpr(SqlParser.EmptyExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEmptyExpr(SqlParser.EmptyExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterContainsExpr(SqlParser.ContainsExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -181,18 +193,6 @@ public class SqlParserBaseListener implements SqlParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitNullExpr(SqlParser.NullExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterEmptyExpr(SqlParser.EmptyExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitEmptyExpr(SqlParser.EmptyExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

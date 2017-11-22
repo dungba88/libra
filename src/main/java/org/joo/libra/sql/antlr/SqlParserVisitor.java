@@ -69,6 +69,13 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNotEqualExpr(SqlParser.NotEqualExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code emptyExpr}
+	 * labeled alternative in {@link SqlParser#term}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEmptyExpr(SqlParser.EmptyExprContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code containsExpr}
 	 * labeled alternative in {@link SqlParser#term}.
 	 * @param ctx the parse tree
@@ -110,13 +117,6 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitNullExpr(SqlParser.NullExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code emptyExpr}
-	 * labeled alternative in {@link SqlParser#factor}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitEmptyExpr(SqlParser.EmptyExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code mathExpr}
 	 * labeled alternative in {@link SqlParser#factor}.

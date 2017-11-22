@@ -106,6 +106,18 @@ public interface SqlParserListener extends ParseTreeListener {
 	 */
 	void exitNotEqualExpr(SqlParser.NotEqualExprContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code emptyExpr}
+	 * labeled alternative in {@link SqlParser#term}.
+	 * @param ctx the parse tree
+	 */
+	void enterEmptyExpr(SqlParser.EmptyExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code emptyExpr}
+	 * labeled alternative in {@link SqlParser#term}.
+	 * @param ctx the parse tree
+	 */
+	void exitEmptyExpr(SqlParser.EmptyExprContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code containsExpr}
 	 * labeled alternative in {@link SqlParser#term}.
 	 * @param ctx the parse tree
@@ -177,18 +189,6 @@ public interface SqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNullExpr(SqlParser.NullExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code emptyExpr}
-	 * labeled alternative in {@link SqlParser#factor}.
-	 * @param ctx the parse tree
-	 */
-	void enterEmptyExpr(SqlParser.EmptyExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code emptyExpr}
-	 * labeled alternative in {@link SqlParser#factor}.
-	 * @param ctx the parse tree
-	 */
-	void exitEmptyExpr(SqlParser.EmptyExprContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code mathExpr}
 	 * labeled alternative in {@link SqlParser#factor}.
