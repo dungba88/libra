@@ -115,7 +115,10 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 
 	@Override
 	public ExpressionNode visitEmptyExpr(SqlParser.EmptyExprContext ctx) {
-		return new EmptyExpressionNode();
+		EmptyExpressionNode node = new EmptyExpressionNode();
+//		node.setInnerNode((HasValue<?>)visit(ctx.left));
+//		node.setOp(ctx.op.getType());
+		return node;
 	}
 
 	@Override

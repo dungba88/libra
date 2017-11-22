@@ -14,6 +14,6 @@ public class IsNullPredicate extends CompositionPredicate {
 
 	@Override
 	public boolean satisfiedBy(PredicateContext context) {
-		return value == null;
+		return value.getValue(context) == null;
 	}
 }

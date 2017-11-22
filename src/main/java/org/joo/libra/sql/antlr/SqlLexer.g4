@@ -13,13 +13,14 @@ NOT:					('NOT' | 'not') ;
 
 IS_EQUALS:				('IS' | 'is') ;
 IS_EQUALS_NOT:			('IS NOT' | 'is not') ;
+IS_EMPTY:				('IS EMPTY' | 'is empty') ;
+IS_NOT_EMPTY:			('IS NOT EMPTY' | 'is not empty') ;
 CONTAINS:				('CONTAINS' | 'contains') ;
 MATCHES:				('MATCHES' | 'matches') ;
 TRUE:					('TRUE' | 'true') ;
 FALSE:					('FALSE' | 'false') ;
 UNDEFINED:				('UNDEFINED' | 'undefined') ;
 NULL:					('NULL' | 'null') ;
-EMPTY:					('EMPTY' | 'empty') ;
 
 GREATER_THAN:			'>' ;
 GREATER_THAN_EQUALS:	'>=' ;

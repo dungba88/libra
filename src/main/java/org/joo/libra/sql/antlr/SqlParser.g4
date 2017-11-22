@@ -24,6 +24,8 @@ term : left=factor op=GREATER_THAN right=factor				#compareExpr
        | left=factor op=NOT_EQUALS right=factor				#notEqualExpr
        | left=factor op=IS_EQUALS_NOT right=factor			#notEqualExpr
        | left=factor op=IS_EQUALS right=factor				#equalExpr
+       | left=factor op=IS_EMPTY							#emptyExpr
+       | left=factor op=IS_NOT_EMPTY						#emptyExpr
        | left=factor op=CONTAINS right=factor				#containsExpr
        | left=factor op=MATCHES right=factor				#matchesExpr
        | factor												#factorExpr
@@ -36,7 +38,6 @@ factor : DOUBLE										#numberExpr
        | FALSE										#booleanExpr
        | UNDEFINED									#nullExpr
        | NULL										#nullExpr
-       | EMPTY										#emptyExpr
        | VARIABLE									#variableExpr
        | LPAREN expression RPAREN					#parenExpr
        | left=factor op=TIMES right=factor						#mathExpr

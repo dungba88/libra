@@ -15,6 +15,7 @@ import org.joo.libra.numeric.LessEqualPredicate;
 import org.joo.libra.numeric.LessThanPredicate;
 import org.joo.libra.sql.antlr.SqlLexer;
 import org.joo.libra.text.ContainPredicate;
+import org.joo.libra.text.EmptyPredicate;
 import org.joo.libra.text.MatchPredicate;
 
 public interface ExpressionNode {
@@ -115,10 +116,30 @@ class ObjectExpressionNode extends ValueExpressionNode<Object> {
 }
 
 class EmptyExpressionNode implements ExpressionNode {
+	
+	private HasValue<?> innerNode;
+	
+	private int op;
 
 	@Override
 	public Predicate buildPredicate() {
-		return null;
+		return new EmptyPredicate(innerNode);
+	}
+
+	public HasValue<?> getInnerNode() {
+		return innerNode;
+	}
+
+	public void setInnerNode(HasValue<?> innerNode) {
+		this.innerNode = innerNode;
+	}
+
+	public int getOp() {
+		return op;
+	}
+
+	public void setOp(int op) {
+		this.op = op;
 	}
 }
 
