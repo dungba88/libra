@@ -77,6 +77,9 @@ public class TestSqlVariable {
 		list.add(new Object[] { "jobs[0] is 'Oracle'", context instanceof Map ? null : true, context });
 		list.add(new Object[] { "jobs contains 'Oracle'", true, context });
 		list.add(new Object[] { "jobs contains 'Paypal'", false, context });
+		list.add(new Object[] { "jobs is empty", false, context });
+		list.add(new Object[] { "jobs is not empty", true, context });
+		list.add(new Object[] { "not jobs is empty", true, context });
 
 		return list;
 	}
