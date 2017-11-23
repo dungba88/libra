@@ -88,6 +88,6 @@ public class TestSqlPerf {
 	}
 
 	protected void cleanup() {
-		
+		// empty implementation
 	}
 }
