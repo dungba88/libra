@@ -14,12 +14,15 @@ public class SqlPredicate extends CompositionPredicate {
 	
 	private Predicate predicate;
 
+	private SqlPredicateParser parser;
+
 	public SqlPredicate(String predicate) {
 		this(predicate, new AntlrSqlPredicateParser());
 	}
 	
 	public SqlPredicate(String predicate, SqlPredicateParser parser) {
 		try {
+			this.parser = parser;
 			this.predicate = parser.parse(predicate);
 		} catch (MalformedSyntaxException ex) {
 			error = true;
@@ -47,5 +50,9 @@ public class SqlPredicate extends CompositionPredicate {
 	
 	public MalformedSyntaxException getCause() {
 		return cause;
+	}
+
+	public SqlPredicateParser getParser() {
+		return parser;
 	}
 }
