@@ -1,7 +1,9 @@
-package org.joo.libra.sql;
+package org.joo.libra.sql.optimizers;
 
 import org.joo.libra.PredicateContext;
+import org.joo.libra.sql.AntlrSqlPredicateParser;
 import org.joo.libra.sql.antlr.SqlParser;
+import org.joo.libra.sql.node.ExpressionNode;
 
 public class OptimizedAntlrSqlPredicateParser extends AntlrSqlPredicateParser {
 

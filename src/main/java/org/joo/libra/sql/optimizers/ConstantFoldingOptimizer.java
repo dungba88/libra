@@ -1,4 +1,4 @@
-package org.joo.libra.sql;
+package org.joo.libra.sql.optimizers;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -6,6 +6,16 @@ import java.util.Set;
 import org.joo.libra.Predicate;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.common.HasValue;
+import org.joo.libra.sql.node.AbstractBinaryOpExpressionNode;
+import org.joo.libra.sql.node.AndExpressionNode;
+import org.joo.libra.sql.node.BooleanExpressionNode;
+import org.joo.libra.sql.node.ExpressionNode;
+import org.joo.libra.sql.node.InfixExpressionNode;
+import org.joo.libra.sql.node.MathExpressionNode;
+import org.joo.libra.sql.node.NumberExpressionNode;
+import org.joo.libra.sql.node.OrExpressionNode;
+import org.joo.libra.sql.node.UnaryExpressionNode;
+import org.joo.libra.sql.node.VariableExpressionNode;
 import org.joo.libra.support.MalformedSyntaxException;
 import org.joo.libra.support.PredicateExecutionException;
 

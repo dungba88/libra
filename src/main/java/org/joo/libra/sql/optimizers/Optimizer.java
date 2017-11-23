@@ -1,6 +1,7 @@
-package org.joo.libra.sql;
+package org.joo.libra.sql.optimizers;
 
 import org.joo.libra.PredicateContext;
+import org.joo.libra.sql.node.ExpressionNode;
 
 public interface Optimizer {
 

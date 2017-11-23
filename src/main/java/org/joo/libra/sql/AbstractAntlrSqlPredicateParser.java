@@ -6,6 +6,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.Parser;
 import org.joo.libra.Predicate;
+import org.joo.libra.sql.node.ExpressionNode;
 
 public abstract class AbstractAntlrSqlPredicateParser<L extends Lexer, P extends Parser> implements SqlPredicateParser {
 

@@ -6,6 +6,21 @@ import java.text.ParseException;
 import org.joo.libra.common.HasValue;
 import org.joo.libra.sql.antlr.SqlParser;
 import org.joo.libra.sql.antlr.SqlParserBaseVisitor;
+import org.joo.libra.sql.node.AndExpressionNode;
+import org.joo.libra.sql.node.BooleanExpressionNode;
+import org.joo.libra.sql.node.ContainsCompareExpressionNode;
+import org.joo.libra.sql.node.EmptyExpressionNode;
+import org.joo.libra.sql.node.ExpressionNode;
+import org.joo.libra.sql.node.GenericCompareExpressionNode;
+import org.joo.libra.sql.node.LexicalCompareExpressionNode;
+import org.joo.libra.sql.node.MathExpressionNode;
+import org.joo.libra.sql.node.NotExpressionNode;
+import org.joo.libra.sql.node.NumberExpressionNode;
+import org.joo.libra.sql.node.NumericCompareExpressionNode;
+import org.joo.libra.sql.node.ObjectExpressionNode;
+import org.joo.libra.sql.node.OrExpressionNode;
+import org.joo.libra.sql.node.StringExpressionNode;
+import org.joo.libra.sql.node.VariableExpressionNode;
 import org.joo.libra.support.MalformedSyntaxException;
 
 public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {

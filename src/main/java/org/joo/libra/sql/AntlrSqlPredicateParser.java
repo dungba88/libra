@@ -8,6 +8,7 @@ import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.joo.libra.sql.antlr.SqlLexer;
 import org.joo.libra.sql.antlr.SqlParser;
+import org.joo.libra.sql.node.ExpressionNode;
 import org.joo.libra.support.MalformedSyntaxException;
 
 public class AntlrSqlPredicateParser extends AbstractAntlrSqlPredicateParser<SqlLexer, SqlParser> {
