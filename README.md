@@ -82,7 +82,7 @@ The `SqlPredicate` class allows you to pass your own `SqlPredicateParser`:
 SqlPredicate predicate = new SqlPredicate(predicateString, new MyPredicateParser());
 ```
 
-you can implement your own `SqlPredicateParser`, or extend the `AbstractAntlrSqlPredicateParser` to use your own grammar. For the former, the interface has only one method `public Predicate parse(String predicate) throws MalformedSyntaxException;`, so you can even use lambda expression to construct it, like:
+you can implement your own `SqlPredicateParser`, or extend the `AbstractAntlrSqlPredicateParser` to use your own grammar. For the former, the interface has only one method `public Predicate parse(String predicate) throws MalformedSyntaxException`, so you can even use lambda expression to construct it, like:
 
 ```java
 SqlPredicate predicate = new SqlPredicate(predicateString, predicate -> {
