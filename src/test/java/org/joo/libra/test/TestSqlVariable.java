@@ -30,8 +30,8 @@ public class TestSqlVariable {
 		this.context = context;
 	}
 	
-	@Test()
-	public void testSimple() {
+	@Test
+	public void testVariable() {
 		SqlPredicate predicate = new SqlPredicate(value);
 		if (predicate.hasError()) {
 			Assert.assertEquals(expected, null);

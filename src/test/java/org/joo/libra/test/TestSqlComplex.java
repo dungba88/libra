@@ -24,7 +24,7 @@ public class TestSqlComplex {
 	}
 
 	@Test
-	public void testSimple() throws PredicateExecutionException {
+	public void testComplex() throws PredicateExecutionException {
 		SqlPredicate predicate = new SqlPredicate(value);
 		if (predicate.hasError())
 			Assert.assertEquals(expected, null);
