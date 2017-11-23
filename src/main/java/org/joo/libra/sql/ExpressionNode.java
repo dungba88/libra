@@ -1,10 +1,12 @@
 package org.joo.libra.sql;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 import org.joo.libra.Predicate;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.common.HasValue;
+import org.joo.libra.common.SimplePredicate;
 import org.joo.libra.logic.AndPredicate;
 import org.joo.libra.logic.EqualsPredicate;
 import org.joo.libra.logic.NotPredicate;
@@ -13,6 +15,7 @@ import org.joo.libra.numeric.GreaterEqualPredicate;
 import org.joo.libra.numeric.GreaterThanPredicate;
 import org.joo.libra.numeric.LessEqualPredicate;
 import org.joo.libra.numeric.LessThanPredicate;
+import org.joo.libra.numeric.NumericComparator;
 import org.joo.libra.sql.antlr.SqlLexer;
 import org.joo.libra.text.ContainPredicate;
 import org.joo.libra.text.IsEmptyPredicate;
@@ -21,6 +24,8 @@ import org.joo.libra.text.MatchPredicate;
 public interface ExpressionNode {
 
 	public Predicate buildPredicate();
+	
+	public ExpressionNode[] getChildren();
 }
 
 abstract class InfixExpressionNode implements ExpressionNode {
@@ -44,6 +49,11 @@ abstract class InfixExpressionNode implements ExpressionNode {
 	public void setRight(ExpressionNode right) {
 		this.right = right;
 	}
+	
+	@Override
+	public ExpressionNode[] getChildren() {
+		return new ExpressionNode[] {left, right};
+	}
 }
 
 class AndExpressionNode extends InfixExpressionNode {
@@ -62,8 +72,8 @@ class OrExpressionNode extends InfixExpressionNode {
 	}
 }
 
-class NotExpressionNode implements ExpressionNode {
-	
+abstract class UnaryExpressionNode implements ExpressionNode {
+
 	private ExpressionNode innerNode;
 
 	public ExpressionNode getInnerNode() {
@@ -75,14 +85,22 @@ class NotExpressionNode implements ExpressionNode {
 	}
 	
 	@Override
+	public ExpressionNode[] getChildren() {
+		return new ExpressionNode[] {innerNode};
+	}
+}
+
+class NotExpressionNode extends UnaryExpressionNode {
+	
+	@Override
 	public Predicate buildPredicate() {
-		return new NotPredicate(innerNode.buildPredicate());
+		return new NotPredicate(getInnerNode().buildPredicate());
 	}
 }
 
 class ValueExpressionNode<T> implements ExpressionNode, HasValue<T> {
 	
-	private T value;
+	protected T value;
 
 	@Override
 	public T getValue(PredicateContext context) {
@@ -95,45 +113,60 @@ class ValueExpressionNode<T> implements ExpressionNode, HasValue<T> {
 
 	@Override
 	public Predicate buildPredicate() {
+		return new SimplePredicate(value != null);
+	}
+	
+	@Override
+	public ExpressionNode[] getChildren() {
 		return null;
 	}
 }
 
 class StringExpressionNode extends ValueExpressionNode<String> {
 	
+	@Override
+	public Predicate buildPredicate() {
+		return new SimplePredicate(value != null && !value.isEmpty());
+	}
 }
 
 class NumberExpressionNode extends ValueExpressionNode<Number> {
 	
+	@Override
+	public Predicate buildPredicate() {
+		return new SimplePredicate(value != null && NumericComparator.compare(value, 0) != 0);
+	}
 }
 
 class BooleanExpressionNode extends ValueExpressionNode<Boolean> {
 	
+	public BooleanExpressionNode() {
+		
+	}
+	
+	public BooleanExpressionNode(boolean value) {
+		this.value = value;
+	}
+	
+	@Override
+	public Predicate buildPredicate() {
+		return new SimplePredicate(Boolean.TRUE.equals(value));
+	}
 }
 
 class ObjectExpressionNode extends ValueExpressionNode<Object> {
 	
 }
 
-class EmptyExpressionNode implements ExpressionNode {
-	
-	private HasValue<?> innerNode;
+class EmptyExpressionNode extends UnaryExpressionNode {
 	
 	private int op;
 
 	@Override
 	public Predicate buildPredicate() {
 		if (op == SqlLexer.IS_NOT_EMPTY)
-			return new NotPredicate(new IsEmptyPredicate(innerNode));
-		return new IsEmptyPredicate(innerNode);
-	}
-
-	public HasValue<?> getInnerNode() {
-		return innerNode;
-	}
-
-	public void setInnerNode(HasValue<?> innerNode) {
-		this.innerNode = innerNode;
+			return new NotPredicate(new IsEmptyPredicate((HasValue<?>) getInnerNode()));
+		return new IsEmptyPredicate((HasValue<?>) getInnerNode());
 	}
 
 	public int getOp() {
@@ -160,6 +193,16 @@ class VariableExpressionNode implements ExpressionNode, HasValue<Object> {
 	@Override
 	public Object getValue(PredicateContext context) {
 		if (context == null) return null;
+		Map<String, Object> cachedValues = context.getCachedValues();
+		Object value = cachedValues.get(variableName);
+		if (value == null) {
+			value = getValueNoCache(context);
+			cachedValues.put(variableName, value);
+		}
+		return value;
+	}
+	
+	private Object getValueNoCache(PredicateContext context) {
 		try {
 			return ObjectUtils.getValue(context.getContext(), variableName);
 		} catch (ReflectiveOperationException e) {
@@ -169,6 +212,11 @@ class VariableExpressionNode implements ExpressionNode, HasValue<Object> {
 
 	@Override
 	public Predicate buildPredicate() {
+		return null;
+	}
+	
+	@Override
+	public ExpressionNode[] getChildren() {
 		return null;
 	}
 }
@@ -204,6 +252,11 @@ abstract class AbstractBinaryOpExpressionNode<T extends HasValue<?>> implements 
 
 	public void setOp(int op) {
 		this.op = op;
+	}
+	
+	@Override
+	public ExpressionNode[] getChildren() {
+		return new ExpressionNode[] {(ExpressionNode) left, (ExpressionNode) right};
 	}
 }
 
