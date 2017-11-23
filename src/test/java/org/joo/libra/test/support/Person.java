@@ -3,54 +3,54 @@ package org.joo.libra.test.support;
 import java.util.List;
 
 public class Person {
-	
-	private String name;
-	
-	private int age;
-	
-	private Demographic demographic;
-	
-	private String[] jobs;
-	
-	private List<String> jobList;
 
-	public String getName() {
-		return name;
-	}
+    private String name;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    private int age;
 
-	public int getAge() {
-		return age;
-	}
+    private Demographic demographic;
 
-	public void setAge(int age) {
-		this.age = age;
-	}
+    private String[] jobs;
 
-	public Demographic getDemographic() {
-		return demographic;
-	}
+    private List<String> jobList;
 
-	public void setDemographic(Demographic demographic) {
-		this.demographic = demographic;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String[] getJobs() {
-		return jobs;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setJobs(String[] jobs) {
-		this.jobs = jobs;
-	}
+    public int getAge() {
+        return age;
+    }
 
-	public List<String> getJobList() {
-		return jobList;
-	}
+    public void setAge(int age) {
+        this.age = age;
+    }
 
-	public void setJobList(List<String> jobList) {
-		this.jobList = jobList;
-	}
+    public Demographic getDemographic() {
+        return demographic;
+    }
+
+    public void setDemographic(Demographic demographic) {
+        this.demographic = demographic;
+    }
+
+    public String[] getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(String[] jobs) {
+        this.jobs = jobs;
+    }
+
+    public List<String> getJobList() {
+        return jobList;
+    }
+
+    public void setJobList(List<String> jobList) {
+        this.jobList = jobList;
+    }
 }

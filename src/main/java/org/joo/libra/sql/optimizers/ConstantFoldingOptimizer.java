@@ -20,126 +20,127 @@ import org.joo.libra.support.MalformedSyntaxException;
 import org.joo.libra.support.PredicateExecutionException;
 
 public class ConstantFoldingOptimizer implements Optimizer {
-	
-	private Set<ExpressionNode> hasVariableNodes;
-	
-	private PredicateContext context;
-	
-	private int changes = 0;
-	
-	@Override
-	public OptimizeStatus optimize(ExpressionNode node) {
-		hasVariableNodes = new HashSet<>();
-		changes = 0;
-		ExpressionNode optimizedNode = optimizeConstantFolding(node);
-		return new OptimizeStatus(optimizedNode, changes);
-	}
 
-	private ExpressionNode optimizeConstantFolding(ExpressionNode node) {
-		if (checkVariableNode(node))
-			return node;
-		if (node instanceof InfixExpressionNode)
-			return optimizeInfixNode((InfixExpressionNode) node);
-		if (node instanceof AbstractBinaryOpExpressionNode)
-			return optimizeBinaryNode((AbstractBinaryOpExpressionNode<?>) node);
-		if (node instanceof UnaryExpressionNode) {
-			return optimizeUnaryNode((UnaryExpressionNode) node);
-		}
-		return node;
-	}
+    private Set<ExpressionNode> hasVariableNodes;
 
-	private boolean checkVariableNode(ExpressionNode node) {
-		if (hasVariableNodes.contains(node))
-			return true;
-		if (node instanceof VariableExpressionNode) {
-			if (context.hasCachedValue(((VariableExpressionNode) node).getVariableName()))
-				return false;
-			hasVariableNodes.add(node);
-			return true;
-		}
-		return false;
-	}
+    private PredicateContext context;
 
-	private ExpressionNode optimizeUnaryNode(UnaryExpressionNode node) {
-		ExpressionNode innerNode = optimizeConstantFolding(node.getInnerNode());
-		node.setInnerNode(innerNode);
-		if (checkVariableNode(innerNode)) {
-			hasVariableNodes.add(node);
-			return node;
-		}
-		return optimizeConstantFolding(node);
-	}
+    private int changes = 0;
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private ExpressionNode optimizeBinaryNode(AbstractBinaryOpExpressionNode node) {
-		ExpressionNode leftNode = optimizeConstantFolding((ExpressionNode) node.getLeft());
-		ExpressionNode rightNode = optimizeConstantFolding((ExpressionNode) node.getRight());
-		node.setLeft((HasValue) leftNode);
-		node.setRight((HasValue) rightNode);
-		if (checkVariableNode(leftNode) || checkVariableNode(rightNode)) {
-			hasVariableNodes.add(node);
-			return node;
-		}
-		changes++;
-		if (node instanceof MathExpressionNode)
-			return optimizeMathNode((MathExpressionNode) node);
-		return optimizeSingleNode(node);
-	}
+    @Override
+    public OptimizeStatus optimize(ExpressionNode node) {
+        hasVariableNodes = new HashSet<>();
+        changes = 0;
+        ExpressionNode optimizedNode = optimizeConstantFolding(node);
+        return new OptimizeStatus(optimizedNode, changes);
+    }
 
-	private ExpressionNode optimizeInfixNode(InfixExpressionNode node) {
-		ExpressionNode leftNode = optimizeConstantFolding(node.getLeft());
-		ExpressionNode rightNode = optimizeConstantFolding(node.getRight());
-		node.setLeft(leftNode);
-		node.setRight(rightNode);
+    private ExpressionNode optimizeConstantFolding(ExpressionNode node) {
+        if (checkVariableNode(node))
+            return node;
+        if (node instanceof InfixExpressionNode)
+            return optimizeInfixNode((InfixExpressionNode) node);
+        if (node instanceof AbstractBinaryOpExpressionNode)
+            return optimizeBinaryNode((AbstractBinaryOpExpressionNode<?>) node);
+        if (node instanceof UnaryExpressionNode) {
+            return optimizeUnaryNode((UnaryExpressionNode) node);
+        }
+        return node;
+    }
 
-		boolean leftIsVariable = checkVariableNode(leftNode);
-		boolean rightIsVariable = checkVariableNode(rightNode);
+    private boolean checkVariableNode(ExpressionNode node) {
+        if (hasVariableNodes.contains(node))
+            return true;
+        if (node instanceof VariableExpressionNode) {
+            if (context.hasCachedValue(((VariableExpressionNode) node).getVariableName()))
+                return false;
+            hasVariableNodes.add(node);
+            return true;
+        }
+        return false;
+    }
 
-		if (leftIsVariable || rightIsVariable)
-			hasVariableNodes.add(node);
-		
-		if (leftIsVariable && rightIsVariable)
-			return node;
+    private ExpressionNode optimizeUnaryNode(UnaryExpressionNode node) {
+        ExpressionNode innerNode = optimizeConstantFolding(node.getInnerNode());
+        node.setInnerNode(innerNode);
+        if (checkVariableNode(innerNode)) {
+            hasVariableNodes.add(node);
+            return node;
+        }
+        return optimizeConstantFolding(node);
+    }
 
-		Boolean leftCondition = leftIsVariable ? null : evaluateNode(leftNode);
-		Boolean rightCondition = rightIsVariable ? null : evaluateNode(rightNode);
-		
-		if (node instanceof AndExpressionNode) {
-			if (Boolean.FALSE.equals(leftCondition) || Boolean.FALSE.equals(rightCondition)) {
-				changes++;
-				return new BooleanExpressionNode(false);
-			}
-		} else if (node instanceof OrExpressionNode && (Boolean.TRUE.equals(leftCondition) || Boolean.TRUE.equals(rightCondition))) {
-			changes++;
-			return new BooleanExpressionNode(true);
-		}
-		
-		return node;
-	}
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    private ExpressionNode optimizeBinaryNode(AbstractBinaryOpExpressionNode node) {
+        ExpressionNode leftNode = optimizeConstantFolding((ExpressionNode) node.getLeft());
+        ExpressionNode rightNode = optimizeConstantFolding((ExpressionNode) node.getRight());
+        node.setLeft((HasValue) leftNode);
+        node.setRight((HasValue) rightNode);
+        if (checkVariableNode(leftNode) || checkVariableNode(rightNode)) {
+            hasVariableNodes.add(node);
+            return node;
+        }
+        changes++;
+        if (node instanceof MathExpressionNode)
+            return optimizeMathNode((MathExpressionNode) node);
+        return optimizeSingleNode(node);
+    }
 
-	private ExpressionNode optimizeSingleNode(ExpressionNode node) {
-		return new BooleanExpressionNode(evaluateNode(node));
-	}
+    private ExpressionNode optimizeInfixNode(InfixExpressionNode node) {
+        ExpressionNode leftNode = optimizeConstantFolding(node.getLeft());
+        ExpressionNode rightNode = optimizeConstantFolding(node.getRight());
+        node.setLeft(leftNode);
+        node.setRight(rightNode);
 
-	private ExpressionNode optimizeMathNode(MathExpressionNode node) {
-		return new NumberExpressionNode(node.getValue(context));
-	}
+        boolean leftIsVariable = checkVariableNode(leftNode);
+        boolean rightIsVariable = checkVariableNode(rightNode);
 
-	private boolean evaluateNode(ExpressionNode node) {
-		Predicate predicate = node.buildPredicate();
-		try {
-			return predicate.satisfiedBy(context);
-		} catch (PredicateExecutionException e) {
-			throw new MalformedSyntaxException(e);
-		}
-	}
+        if (leftIsVariable || rightIsVariable)
+            hasVariableNodes.add(node);
 
-	public PredicateContext getContext() {
-		return context;
-	}
+        if (leftIsVariable && rightIsVariable)
+            return node;
 
-	@Override
-	public void setContext(PredicateContext context) {
-		this.context = context;
-	}
+        Boolean leftCondition = leftIsVariable ? null : evaluateNode(leftNode);
+        Boolean rightCondition = rightIsVariable ? null : evaluateNode(rightNode);
+
+        if (node instanceof AndExpressionNode) {
+            if (Boolean.FALSE.equals(leftCondition) || Boolean.FALSE.equals(rightCondition)) {
+                changes++;
+                return new BooleanExpressionNode(false);
+            }
+        } else if (node instanceof OrExpressionNode
+                && (Boolean.TRUE.equals(leftCondition) || Boolean.TRUE.equals(rightCondition))) {
+            changes++;
+            return new BooleanExpressionNode(true);
+        }
+
+        return node;
+    }
+
+    private ExpressionNode optimizeSingleNode(ExpressionNode node) {
+        return new BooleanExpressionNode(evaluateNode(node));
+    }
+
+    private ExpressionNode optimizeMathNode(MathExpressionNode node) {
+        return new NumberExpressionNode(node.getValue(context));
+    }
+
+    private boolean evaluateNode(ExpressionNode node) {
+        Predicate predicate = node.buildPredicate();
+        try {
+            return predicate.satisfiedBy(context);
+        } catch (PredicateExecutionException e) {
+            throw new MalformedSyntaxException(e);
+        }
+    }
+
+    public PredicateContext getContext() {
+        return context;
+    }
+
+    @Override
+    public void setContext(PredicateContext context) {
+        this.context = context;
+    }
 }

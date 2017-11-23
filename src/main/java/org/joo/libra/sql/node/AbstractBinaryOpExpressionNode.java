@@ -4,33 +4,33 @@ import org.joo.libra.common.HasValue;
 
 public abstract class AbstractBinaryOpExpressionNode<T extends HasValue<?>> implements ExpressionNode {
 
-	private T left;
-	
-	private T right;
-	
-	private int op;
+    private T left;
 
-	public T getLeft() {
-		return left;
-	}
+    private T right;
 
-	public void setLeft(T left) {
-		this.left = left;
-	}
+    private int op;
 
-	public T getRight() {
-		return right;
-	}
+    public T getLeft() {
+        return left;
+    }
 
-	public void setRight(T right) {
-		this.right = right;
-	}
+    public void setLeft(T left) {
+        this.left = left;
+    }
 
-	public int getOp() {
-		return op;
-	}
+    public T getRight() {
+        return right;
+    }
 
-	public void setOp(int op) {
-		this.op = op;
-	}
+    public void setRight(T right) {
+        this.right = right;
+    }
+
+    public int getOp() {
+        return op;
+    }
+
+    public void setOp(int op) {
+        this.op = op;
+    }
 }

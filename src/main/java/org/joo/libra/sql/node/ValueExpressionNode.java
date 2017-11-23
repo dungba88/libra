@@ -6,20 +6,20 @@ import org.joo.libra.common.HasValue;
 import org.joo.libra.common.SimplePredicate;
 
 public class ValueExpressionNode<T> implements ExpressionNode, HasValue<T> {
-	
-	protected T value;
 
-	@Override
-	public T getValue(PredicateContext context) {
-		return value;
-	}
+    protected T value;
 
-	public void setValue(T value) {
-		this.value = value;
-	}
+    @Override
+    public T getValue(PredicateContext context) {
+        return value;
+    }
 
-	@Override
-	public Predicate buildPredicate() {
-		return new SimplePredicate(value != null);
-	}
+    public void setValue(T value) {
+        this.value = value;
+    }
+
+    @Override
+    public Predicate buildPredicate() {
+        return new SimplePredicate(value != null);
+    }
 }

@@ -7,14 +7,14 @@ import org.joo.libra.support.PredicateExecutionException;
 
 public class NotPredicate extends CompositionPredicate {
 
-	private Predicate predicate;
-	
-	public NotPredicate(Predicate predicate) {
-		this.predicate = predicate;
-	}
+    private Predicate predicate;
 
-	@Override
-	public boolean satisfiedBy(PredicateContext context) throws PredicateExecutionException {
-		return !predicate.satisfiedBy(context);
-	}
+    public NotPredicate(Predicate predicate) {
+        this.predicate = predicate;
+    }
+
+    @Override
+    public boolean satisfiedBy(PredicateContext context) throws PredicateExecutionException {
+        return !predicate.satisfiedBy(context);
+    }
 }

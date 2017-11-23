@@ -4,6 +4,5 @@ import org.joo.libra.PredicateContext;
 
 public interface HasValue<T> {
 
-	public T getValue(PredicateContext context);
+    public T getValue(PredicateContext context);
 }
-

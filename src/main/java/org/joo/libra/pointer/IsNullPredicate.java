@@ -6,14 +6,14 @@ import org.joo.libra.common.HasValue;
 
 public class IsNullPredicate extends CompositionPredicate {
 
-	private HasValue<Object> value;
+    private HasValue<Object> value;
 
-	public IsNullPredicate(HasValue<Object> value) {
-		this.value = value;
-	}
+    public IsNullPredicate(HasValue<Object> value) {
+        this.value = value;
+    }
 
-	@Override
-	public boolean satisfiedBy(PredicateContext context) {
-		return value.getValue(context) == null;
-	}
+    @Override
+    public boolean satisfiedBy(PredicateContext context) {
+        return value.getValue(context) == null;
+    }
 }
