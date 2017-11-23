@@ -9,6 +9,11 @@ import org.joo.libra.sql.antlr.SqlParserBaseVisitor;
 import org.joo.libra.support.MalformedSyntaxException;
 
 public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
+	
+	@Override 
+	public ExpressionNode visitParenExpr(SqlParser.ParenExprContext ctx) {
+		return visit(ctx.getChild(1));
+	}
 
 	@Override
 	public ExpressionNode visitNotExpr(SqlParser.NotExprContext ctx) {
@@ -116,7 +121,7 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 	@Override
 	public ExpressionNode visitEmptyExpr(SqlParser.EmptyExprContext ctx) {
 		EmptyExpressionNode node = new EmptyExpressionNode();
-		node.setInnerNode((HasValue<?>)visit(ctx.left));
+		node.setInnerNode(visit(ctx.left));
 		node.setOp(ctx.op.getType());
 		return node;
 	}
