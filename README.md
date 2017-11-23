@@ -3,7 +3,8 @@
 [![Maven Central](https://img.shields.io/maven-central/v/org.dungba/joo-libra.svg?maxAge=2592000)](http://mvnrepository.com/artifact/org.dungba/joo-libra)
 
 
-## continous integration
+**continous integration**
+
 [![Build Status](https://travis-ci.org/dungba88/libra.svg?branch=master)](https://travis-ci.org/dungba88/libra)
 [![Coverage Status](https://coveralls.io/repos/github/dungba88/libra/badge.svg?branch=master)](https://coveralls.io/github/dungba88/libra?branch=master)
 
