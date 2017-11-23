@@ -18,55 +18,73 @@ public class SqlParserBaseListener implements SqlParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpressionExpr(SqlParser.ExpressionExprContext ctx) { }
+	@Override public void enterExpressionExpr(SqlParser.ExpressionExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpressionExpr(SqlParser.ExpressionExprContext ctx) { }
+	@Override public void exitExpressionExpr(SqlParser.ExpressionExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNotExpr(SqlParser.NotExprContext ctx) { }
+	@Override public void enterNotExpr(SqlParser.NotExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNotExpr(SqlParser.NotExprContext ctx) { }
+	@Override public void exitNotExpr(SqlParser.NotExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTermExpr(SqlParser.TermExprContext ctx) { }
+	@Override public void enterTermExpr(SqlParser.TermExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitTermExpr(SqlParser.TermExprContext ctx) { }
+	@Override public void exitTermExpr(SqlParser.TermExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOrExpr(SqlParser.OrExprContext ctx) { }
+	@Override public void enterOrExpr(SqlParser.OrExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitOrExpr(SqlParser.OrExprContext ctx) { }
+	@Override public void exitOrExpr(SqlParser.OrExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAndExpr(SqlParser.AndExprContext ctx) { }
+	@Override public void enterAndExpr(SqlParser.AndExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
@@ -78,192 +96,256 @@ public class SqlParserBaseListener implements SqlParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCompareExpr(SqlParser.CompareExprContext ctx) { }
+	@Override public void enterCompareExpr(SqlParser.CompareExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCompareExpr(SqlParser.CompareExprContext ctx) { }
+	@Override public void exitCompareExpr(SqlParser.CompareExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEqualExpr(SqlParser.EqualExprContext ctx) { }
+	@Override public void enterEqualExpr(SqlParser.EqualExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitEqualExpr(SqlParser.EqualExprContext ctx) { }
+	@Override public void exitEqualExpr(SqlParser.EqualExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNotEqualExpr(SqlParser.NotEqualExprContext ctx) { }
+	@Override public void enterNotEqualExpr(SqlParser.NotEqualExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNotEqualExpr(SqlParser.NotEqualExprContext ctx) { }
+	@Override public void exitNotEqualExpr(SqlParser.NotEqualExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEmptyExpr(SqlParser.EmptyExprContext ctx) { }
+	@Override public void enterEmptyExpr(SqlParser.EmptyExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitEmptyExpr(SqlParser.EmptyExprContext ctx) { }
+	@Override public void exitEmptyExpr(SqlParser.EmptyExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterContainsExpr(SqlParser.ContainsExprContext ctx) { }
+	@Override public void enterContainsExpr(SqlParser.ContainsExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitContainsExpr(SqlParser.ContainsExprContext ctx) { }
+	@Override public void exitContainsExpr(SqlParser.ContainsExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMatchesExpr(SqlParser.MatchesExprContext ctx) { }
+	@Override public void enterMatchesExpr(SqlParser.MatchesExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMatchesExpr(SqlParser.MatchesExprContext ctx) { }
+	@Override public void exitMatchesExpr(SqlParser.MatchesExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFactorExpr(SqlParser.FactorExprContext ctx) { }
+	@Override public void enterFactorExpr(SqlParser.FactorExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFactorExpr(SqlParser.FactorExprContext ctx) { }
+	@Override public void exitFactorExpr(SqlParser.FactorExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStringExpr(SqlParser.StringExprContext ctx) { }
+	@Override public void enterStringExpr(SqlParser.StringExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStringExpr(SqlParser.StringExprContext ctx) { }
+	@Override public void exitStringExpr(SqlParser.StringExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVariableExpr(SqlParser.VariableExprContext ctx) { }
+	@Override public void enterVariableExpr(SqlParser.VariableExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVariableExpr(SqlParser.VariableExprContext ctx) { }
+	@Override public void exitVariableExpr(SqlParser.VariableExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNullExpr(SqlParser.NullExprContext ctx) { }
+	@Override public void enterNullExpr(SqlParser.NullExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNullExpr(SqlParser.NullExprContext ctx) { }
+	@Override public void exitNullExpr(SqlParser.NullExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMathExpr(SqlParser.MathExprContext ctx) { }
+	@Override public void enterMathExpr(SqlParser.MathExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMathExpr(SqlParser.MathExprContext ctx) { }
+	@Override public void exitMathExpr(SqlParser.MathExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNumberExpr(SqlParser.NumberExprContext ctx) { }
+	@Override public void enterNumberExpr(SqlParser.NumberExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNumberExpr(SqlParser.NumberExprContext ctx) { }
+	@Override public void exitNumberExpr(SqlParser.NumberExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBooleanExpr(SqlParser.BooleanExprContext ctx) { }
+	@Override public void enterBooleanExpr(SqlParser.BooleanExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBooleanExpr(SqlParser.BooleanExprContext ctx) { }
+	@Override public void exitBooleanExpr(SqlParser.BooleanExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterParenExpr(SqlParser.ParenExprContext ctx) { }
+	@Override public void enterParenExpr(SqlParser.ParenExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitParenExpr(SqlParser.ParenExprContext ctx) { }
+	@Override public void exitParenExpr(SqlParser.ParenExprContext ctx) {
+		// empty method
+	}
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEveryRule(ParserRuleContext ctx) { }
+	@Override public void enterEveryRule(ParserRuleContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitEveryRule(ParserRuleContext ctx) { }
+	@Override public void exitEveryRule(ParserRuleContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void visitTerminal(TerminalNode node) { }
+	@Override public void visitTerminal(TerminalNode node) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void visitErrorNode(ErrorNode node) { }
+	@Override public void visitErrorNode(ErrorNode node) {
+		// empty method
+	}
 }
