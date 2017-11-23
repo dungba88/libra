@@ -154,7 +154,7 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 	@Override
 	public ExpressionNode visitBooleanExpr(SqlParser.BooleanExprContext ctx) {
 		BooleanExpressionNode node = new BooleanExpressionNode();
-		boolean value = Boolean.getBoolean(ctx.getText().toLowerCase());
+		boolean value = Boolean.valueOf(ctx.getText().toLowerCase());
 		node.setValue(value);
 		return node;
 	}
