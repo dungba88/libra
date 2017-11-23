@@ -18,7 +18,8 @@ public class GenericCompareExpressionNode extends AbstractBinaryOpExpressionNode
 		case SqlLexer.NOT_EQUALS:
 		case SqlLexer.IS_EQUALS_NOT:
 			return new NotPredicate(new EqualsPredicate(getLeft(), getRight()));
+		default:
+			return null;
 		}
-		return null;
 	}
 }

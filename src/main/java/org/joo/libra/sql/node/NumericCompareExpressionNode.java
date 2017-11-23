@@ -21,7 +21,8 @@ public class NumericCompareExpressionNode extends AbstractBinaryOpExpressionNode
 			return new LessThanPredicate(getLeft(), getRight());
 		case SqlLexer.LESS_THAN_EQUALS:
 			return new LessEqualPredicate(getLeft(), getRight());
+		default:
+			return null;
 		}
-		return null;
 	}
 }

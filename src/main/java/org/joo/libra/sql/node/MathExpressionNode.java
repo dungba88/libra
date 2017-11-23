@@ -27,7 +27,8 @@ public class MathExpressionNode extends AbstractBinaryOpExpressionNode<HasValue<
 			return new BigDecimal(left).multiply(new BigDecimal(right));
 		case SqlLexer.DIVIDE:
 			return new BigDecimal(left).divide(new BigDecimal(right));
+		default:
+			return null;
 		}
-		return null;
 	}
 }

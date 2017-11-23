@@ -12,7 +12,8 @@ public class LexicalCompareExpressionNode extends AbstractBinaryOpExpressionNode
 		switch(getOp()) {
 		case SqlLexer.MATCHES:
 			return new MatchPredicate(getLeft(), getRight());
+		default:
+			return null;
 		}
-		return null;
 	}
 }
