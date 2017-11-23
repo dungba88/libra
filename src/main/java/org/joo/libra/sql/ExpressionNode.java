@@ -132,6 +132,14 @@ class StringExpressionNode extends ValueExpressionNode<String> {
 
 class NumberExpressionNode extends ValueExpressionNode<Number> {
 	
+	public NumberExpressionNode() {
+		
+	}
+	
+	public NumberExpressionNode(Number value) {
+		this.value = value;
+	}
+
 	@Override
 	public Predicate buildPredicate() {
 		return new SimplePredicate(value != null && NumericComparator.compare(value, 0) != 0);

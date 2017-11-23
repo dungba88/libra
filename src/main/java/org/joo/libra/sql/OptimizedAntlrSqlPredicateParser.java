@@ -117,10 +117,7 @@ public class OptimizedAntlrSqlPredicateParser extends AntlrSqlPredicateParser {
 	}
 
 	private ExpressionNode optimizeMathNode(MathExpressionNode node) {
-		Number value = node.getValue(null);
-		NumberExpressionNode result = new NumberExpressionNode();
-		result.setValue(value);
-		return result;
+		return new NumberExpressionNode(node.getValue(context));
 	}
 
 	public ExpressionNode getOptimizedNode() {
