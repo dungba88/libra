@@ -8,6 +8,8 @@ import org.joo.libra.Predicate;
 import org.joo.libra.collection.InPredicate;
 import org.joo.libra.common.SimpleHasValue;
 import org.joo.libra.common.SimplePredicate;
+import org.joo.libra.logic.AndPredicate;
+import org.joo.libra.logic.OrPredicate;
 import org.joo.libra.pointer.IsNullPredicate;
 import org.joo.libra.support.PredicateExecutionException;
 import org.joo.libra.text.EqualsIgnoreCase;
@@ -64,6 +66,9 @@ public class TestJavaPredicate {
         list.add(new Object[] { new SimplePredicate(true).or(new SimplePredicate(false)), true });
         list.add(new Object[] { new SimplePredicate(true).not(), false });
         list.add(new Object[] { new SimplePredicate(false).not(), true });
+        
+        list.add(new Object[] { new AndPredicate(), true });
+        list.add(new Object[] { new OrPredicate(), true });
 
         return list;
     }
