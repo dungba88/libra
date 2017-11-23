@@ -6,6 +6,7 @@ import org.joo.libra.Predicate;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.common.HasValue;
 import org.joo.libra.sql.ObjectUtils;
+import org.joo.libra.support.PredicateValueException;
 
 public class VariableExpressionNode implements ExpressionNode, HasValue<Object> {
 	
@@ -35,7 +36,7 @@ public class VariableExpressionNode implements ExpressionNode, HasValue<Object> 
 		try {
 			return ObjectUtils.getValue(context.getContext(), variableName);
 		} catch (ReflectiveOperationException e) {
-			throw new RuntimeException(e);
+			throw new PredicateValueException(e);
 		}
 	}
 
