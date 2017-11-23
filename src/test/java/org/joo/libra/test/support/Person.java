@@ -1,5 +1,7 @@
 package org.joo.libra.test.support;
 
+import java.util.List;
+
 public class Person {
 	
 	private String name;
@@ -9,6 +11,8 @@ public class Person {
 	private Demographic demographic;
 	
 	private String[] jobs;
+	
+	private List<String> jobList;
 
 	public String getName() {
 		return name;
@@ -40,5 +44,13 @@ public class Person {
 
 	public void setJobs(String[] jobs) {
 		this.jobs = jobs;
+	}
+
+	public List<String> getJobList() {
+		return jobList;
+	}
+
+	public void setJobList(List<String> jobList) {
+		this.jobList = jobList;
 	}
 }
