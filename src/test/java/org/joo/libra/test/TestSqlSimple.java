@@ -68,6 +68,9 @@ public class TestSqlSimple {
 		list.add(new Object[] { "1 == 1", true });
 		list.add(new Object[] { "1 == 2", false });
 		
+		list.add(new Object[] { "1.0 - 1", false});
+		list.add(new Object[] { "1 - 1", false});
+		list.add(new Object[] { "1 + 1", true});
 		list.add(new Object[] { "1 + 1 == 2", true});
 		list.add(new Object[] { "1 + 2 * 3 == 7", true});
 		list.add(new Object[] { "1 + 2 * 3 < 8", true });

@@ -5,13 +5,16 @@ import java.math.BigDecimal;
 import org.joo.libra.Predicate;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.common.HasValue;
+import org.joo.libra.common.SimplePredicate;
+import org.joo.libra.numeric.NumericComparator;
 import org.joo.libra.sql.antlr.SqlLexer;
 
 public class MathExpressionNode extends AbstractBinaryOpExpressionNode<HasValue<Number>> implements HasValue<Number> {
 
 	@Override
 	public Predicate buildPredicate() {
-		return null;
+		Number value = getValue(null);
+		return new SimplePredicate(NumericComparator.compare(value, 0) != 0);
 	}
 
 	@Override
