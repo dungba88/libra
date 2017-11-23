@@ -1,14 +1,11 @@
 # libra
 [![License](https://img.shields.io/github/license/dungba88/libra.svg?maxAge=2592000)](LICENSE)
 [![Maven Central](https://img.shields.io/maven-central/v/org.dungba/joo-libra.svg?maxAge=2592000)](http://mvnrepository.com/artifact/org.dungba/joo-libra)
-
-Libra is a Java package for creating and evaluating predicate. Java-based and SQL-like predicate are both supported. For SQL predicates, it is using ANTLR to parse the string against a predefined grammar. The Java-based predicates are implementation of Specification pattern and support numeric/text/collection related conditions.
-
-**continous integration**
-
 [![Build Status](https://travis-ci.org/dungba88/libra.svg?branch=master)](https://travis-ci.org/dungba88/libra)
 [![Coverage Status](https://coveralls.io/repos/github/dungba88/libra/badge.svg?branch=master)](https://coveralls.io/github/dungba88/libra?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b5162a68d84944299bd36ebdfd56987b)](https://www.codacy.com/app/dungba88/libra?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dungba88/libra&amp;utm_campaign=Badge_Grade)
+
+Libra is a Java package for creating and evaluating predicate. Java-based and SQL-like predicate are both supported. For SQL predicates, it is using ANTLR to parse the string against a predefined grammar. The Java-based predicates are implementation of Specification pattern and support numeric/text/collection related conditions.
 
 ## grammar
 
