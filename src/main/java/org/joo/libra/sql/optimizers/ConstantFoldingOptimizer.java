@@ -109,11 +109,9 @@ public class ConstantFoldingOptimizer implements Optimizer {
 				changes++;
 				return new BooleanExpressionNode(false);
 			}
-		} else if (node instanceof OrExpressionNode) {
-			if (Boolean.TRUE.equals(leftCondition) || Boolean.TRUE.equals(rightCondition)) {
-				changes++;
-				return new BooleanExpressionNode(true);
-			}
+		} else if (node instanceof OrExpressionNode && (Boolean.TRUE.equals(leftCondition) || Boolean.TRUE.equals(rightCondition))) {
+			changes++;
+			return new BooleanExpressionNode(true);
 		}
 		
 		return node;
