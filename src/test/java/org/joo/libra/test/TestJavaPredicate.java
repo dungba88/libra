@@ -48,6 +48,8 @@ public class TestJavaPredicate {
 		list.add(new Object[] { new EqualsIgnoreCase(new SimpleHasValue<String>("abc"), new SimpleHasValue<String>("abc")), true });
 		list.add(new Object[] { new EqualsIgnoreCase(new SimpleHasValue<String>("abc"), new SimpleHasValue<String>("AbC")), true });
 		list.add(new Object[] { new EqualsIgnoreCase(new SimpleHasValue<String>("abc"), new SimpleHasValue<String>("123")), false });
+		list.add(new Object[] { new EqualsIgnoreCase(new SimpleHasValue<String>(null), new SimpleHasValue<String>(null)), true });
+		list.add(new Object[] { new EqualsIgnoreCase(new SimpleHasValue<String>("abc"), new SimpleHasValue<String>(null)), false });
 		
 		list.add(new Object[] { new SimplePredicate(true).and(new SimplePredicate(false)), false });
 		list.add(new Object[] { new SimplePredicate(true).and(new SimplePredicate(true)), true });
