@@ -7,6 +7,7 @@ import java.util.List;
 import org.joo.libra.Predicate;
 import org.joo.libra.collection.InPredicate;
 import org.joo.libra.common.SimpleHasValue;
+import org.joo.libra.common.SimplePredicate;
 import org.joo.libra.pointer.IsNullPredicate;
 import org.joo.libra.support.PredicateExecutionException;
 import org.joo.libra.text.EqualsIgnoreCase;
@@ -47,6 +48,13 @@ public class TestJavaPredicate {
 		list.add(new Object[] { new EqualsIgnoreCase(new SimpleHasValue<String>("abc"), new SimpleHasValue<String>("abc")), true });
 		list.add(new Object[] { new EqualsIgnoreCase(new SimpleHasValue<String>("abc"), new SimpleHasValue<String>("AbC")), true });
 		list.add(new Object[] { new EqualsIgnoreCase(new SimpleHasValue<String>("abc"), new SimpleHasValue<String>("123")), false });
+		
+		list.add(new Object[] { new SimplePredicate(true).and(new SimplePredicate(false)), false });
+		list.add(new Object[] { new SimplePredicate(true).and(new SimplePredicate(true)), true });
+		list.add(new Object[] { new SimplePredicate(false).or(new SimplePredicate(false)), false });
+		list.add(new Object[] { new SimplePredicate(true).or(new SimplePredicate(false)), true });
+		list.add(new Object[] { new SimplePredicate(true).not(), false });
+		list.add(new Object[] { new SimplePredicate(false).not(), true });
 		
 		return list;
 	}

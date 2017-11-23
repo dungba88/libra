@@ -21,10 +21,14 @@ public class TestSqlPerf {
 
 	public static void main(String[] args) {
 		TestSqlPerf perf = new TestSqlPerf();
-		perf.test(1000000);
+		try {
+			perf.test(1000000);
+		} catch (PredicateExecutionException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public void test(long iterations) {
+	public void test(long iterations) throws PredicateExecutionException {
 		try {
 			System.out.println("Setting up...");
 			setup();
@@ -73,13 +77,9 @@ public class TestSqlPerf {
 		SqlParser.VOCABULARY.getClass();
 	}
 
-	protected void doTest(long iterations, PredicateContext context) {
+	protected void doTest(long iterations, PredicateContext context) throws PredicateExecutionException {
 		for(int i=0; i<iterations; i++) {
-			try {
-				predicate.satisfiedBy(context);
-			} catch (PredicateExecutionException e) {
-				throw new RuntimeException(e);
-			}
+			predicate.satisfiedBy(context);
 		}
 	}
 

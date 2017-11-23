@@ -1,10 +1,9 @@
 package org.joo.libra.common;
 
-import org.joo.libra.Predicate;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.support.PredicateExecutionException;
 
-public class SimplePredicate implements Predicate {
+public class SimplePredicate extends CompositionPredicate {
 	
 	private final boolean value;
 	
