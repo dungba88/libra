@@ -62,6 +62,7 @@ public class TestSqlVariable {
 		
 		List<Object[]> list = new ArrayList<Object[]>();
 		
+		list.add(new Object[] { "name", true, context });
 		list.add(new Object[] { "name is 'John'", true, context });
 		list.add(new Object[] { "name is not 'John'", false, context });
 		list.add(new Object[] { "age > 27", false, context });

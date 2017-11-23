@@ -37,6 +37,7 @@ public class TestSqlSimple {
 	public static List<Object[]> data() {
 		List<Object[]> list = new ArrayList<Object[]>();
 
+		list.add(new Object[] { "''", false });
 		list.add(new Object[] { "'John'", true });
 		list.add(new Object[] { "'John' is 'John'", true });
 		list.add(new Object[] { "'John' == 'John'", true });
@@ -53,6 +54,8 @@ public class TestSqlSimple {
 		list.add(new Object[] { "'John' matches '.*oh.*'", true });
 		list.add(new Object[] { "'John' matches '.*ho.*'", false });
 		
+		list.add(new Object[] { "false", false });
+		list.add(new Object[] { "true", true });
 		list.add(new Object[] { "false is true", false });
 		list.add(new Object[] { "false is false", true });
 		list.add(new Object[] { "0 is false", false });
@@ -71,6 +74,7 @@ public class TestSqlSimple {
 		list.add(new Object[] { "1 == 1", true });
 		list.add(new Object[] { "1 == 2", false });
 		
+		list.add(new Object[] { "0", false});
 		list.add(new Object[] { "1.0 - 1", false});
 		list.add(new Object[] { "1 - 1", false});
 		list.add(new Object[] { "1 + 1", true});
