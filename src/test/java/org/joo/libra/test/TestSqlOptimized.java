@@ -45,11 +45,11 @@ public class TestSqlOptimized {
 		
 		Object mapContext = MockDataUtils.mockMap();
 
-//		list.add(new Object[] { "name is not empty and 1 > 2", false, mapContext});
-//		list.add(new Object[] { "name is not empty and 1 + 1 > 2", false, mapContext});
-//		list.add(new Object[] { "name is not empty or 1 + 1 == 2", true, mapContext});
-//		list.add(new Object[] { "(name is not empty and age > 27) or 1 + 1 == 2", true, mapContext});
-		list.add(new Object[] { "age == 1 + 2", true, mapContext});
+		list.add(new Object[] { "name is not empty and 1 > 2", false, mapContext});
+		list.add(new Object[] { "name is not empty and 1 + 1 > 2", false, mapContext});
+		list.add(new Object[] { "name is not empty or 1 + 1 == 2", true, mapContext});
+		list.add(new Object[] { "(name is not empty and age > 27) or 1 + 1 == 2", true, mapContext});
+		list.add(new Object[] { "age == 1 + 2", false, mapContext});
 
 		return list;
 	}
