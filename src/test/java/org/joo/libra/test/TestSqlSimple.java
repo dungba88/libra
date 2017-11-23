@@ -75,6 +75,7 @@ public class TestSqlSimple {
 		list.add(new Object[] { "1 + 2 * 3 == 7", true});
 		list.add(new Object[] { "1 + 2 * 3 < 8", true });
 		list.add(new Object[] { "1 + 2 * 3 < 7", false });
+		list.add(new Object[] { "1 / 2 < 2", true });
 
 		return list;
 	}
