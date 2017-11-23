@@ -80,6 +80,7 @@ public class TestSqlVariable {
 		list.add(new Object[] { "jobs is empty", false, context });
 		list.add(new Object[] { "jobs is not empty", true, context });
 		list.add(new Object[] { "not jobs is empty", true, context });
+		list.add(new Object[] { "jobssss is empty", context instanceof Map ? true : null, context });
 
 		return list;
 	}
