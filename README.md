@@ -64,6 +64,16 @@ or throw the exception if any
 predicate.checkForErrorAndThrow();
 ```
 
+## optimizers
+
+Libra currently supports a simple [Constant Folding](https://en.wikipedia.org/wiki/Constant_folding) optimization. It will reduces constant-only conditional branches into a single branch. To enable the optimizations, use `OptimizedAntlrSqlPredicateParser` as below:
+
+```java
+SqlPredicate predicate = new SqlPredicate(predicateString, new OptimizedAntlrSqlPredicateParser());
+```
+
+This will take more time to compile the SQL but will reduce evaluation time.
+
 ## extends
 
 The `SqlPredicate` class allows you to pass your own `SqlPredicateParser`:
