@@ -29,8 +29,8 @@ public class TestSqlOptimized {
 		this.context = new PredicateContext(context);
 	}
 
-	@Test()
-	public void testSimple() throws PredicateExecutionException {
+	@Test
+	public void testOptimized() throws PredicateExecutionException {
 		SqlPredicate predicate = new SqlPredicate(value, new OptimizedAntlrSqlPredicateParser());
 		if (predicate.hasError()) {
 			Assert.assertEquals(value + ":", expected, null);
