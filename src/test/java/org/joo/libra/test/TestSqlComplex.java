@@ -23,7 +23,7 @@ public class TestSqlComplex {
 		this.expected = expected;
 	}
 
-	@Test()
+	@Test
 	public void testSimple() throws PredicateExecutionException {
 		SqlPredicate predicate = new SqlPredicate(value);
 		if (predicate.hasError())
