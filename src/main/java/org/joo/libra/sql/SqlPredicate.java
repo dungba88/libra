@@ -27,6 +27,9 @@ public class SqlPredicate extends CompositionPredicate {
         } catch (MalformedSyntaxException ex) {
             error = true;
             cause = ex;
+        } catch (Throwable ex) {
+            error = true;
+            cause = new MalformedSyntaxException(ex);
         }
     }
 
