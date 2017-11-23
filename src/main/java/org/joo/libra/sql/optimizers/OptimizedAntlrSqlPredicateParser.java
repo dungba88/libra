@@ -32,16 +32,17 @@ public class OptimizedAntlrSqlPredicateParser extends AntlrSqlPredicateParser {
 	}
 
 	private ExpressionNode optimize(ExpressionNode node) {
+		ExpressionNode currentNode = node;
 		while(true) {
 			int total = 0;
 			for(Optimizer optimizer : optimizers) {
-				OptimizeStatus status = optimizer.optimize(node);
-				node = status.getNode();
+				OptimizeStatus status = optimizer.optimize(currentNode);
+				currentNode = status.getNode();
 				total += status.getChanges();
 			}
 			if (total == 0) break;
 		}
-		return node;
+		return currentNode;
 	}
 
 	public ExpressionNode getOptimizedNode() {
