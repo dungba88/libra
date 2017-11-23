@@ -15,10 +15,6 @@ public class TestSqlPerf {
 	
 	private SqlPredicate predicate;
 	
-	private Person person;
-	
-	private Map<String, Object> map;
-	
 	private PredicateContext personContext;
 	
 	private PredicateContext mapContext;
@@ -65,8 +61,8 @@ public class TestSqlPerf {
 	@SuppressWarnings("unchecked")
 	protected void setup() {
 		predicate = new SqlPredicate("name is 'John' and age > 27");
-		person = MockDataUtils.mockPerson();
-		map = MockDataUtils.mockMap();
+		Person person = MockDataUtils.mockPerson();
+		Map<String, Object> map = MockDataUtils.mockMap();
 		personContext = new PredicateContext(person);
 		mapContext = new PredicateContext(map);
 	}
