@@ -11,8 +11,4 @@ public class MalformedSyntaxException extends RuntimeException {
 	public MalformedSyntaxException(Throwable cause) {
 		super(cause);
 	}
-
-	public MalformedSyntaxException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
 }
