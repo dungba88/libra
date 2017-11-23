@@ -7,15 +7,15 @@ import org.joo.libra.logic.OrPredicate;
 
 public abstract class CompositionPredicate implements Predicate {
 
-	public Predicate And(Predicate other) {
+	public Predicate and(Predicate other) {
 		return new AndPredicate(this, other);
 	}
 
-	public Predicate Or(Predicate other) {
+	public Predicate or(Predicate other) {
 		return new OrPredicate(this, other);
 	}
 
-	public Predicate Not() {
+	public Predicate not() {
 		return new NotPredicate(this);
 	}
 }
