@@ -90,7 +90,9 @@ public class SqlParserBaseListener implements SqlParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAndExpr(SqlParser.AndExprContext ctx) { }
+	@Override public void exitAndExpr(SqlParser.AndExprContext ctx) {
+		// empty method
+	}
 	/**
 	 * {@inheritDoc}
 	 *
