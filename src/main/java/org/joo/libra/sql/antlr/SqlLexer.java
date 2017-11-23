@@ -72,6 +72,9 @@ public class SqlLexer extends Lexer {
 		}
 	}
 
+	/**
+	 * @deprecated Use {@link #getVocabulary()} instead
+	 */
 	@Override
 	@Deprecated
 	public String[] getTokenNames() {

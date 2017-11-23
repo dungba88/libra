@@ -73,6 +73,9 @@ public class SqlParser extends Parser {
 		}
 	}
 
+	/**
+	 * @deprecated Use {@link #getVocabulary()} instead.
+	 */
 	@Override
 	@Deprecated
 	public String[] getTokenNames() {
