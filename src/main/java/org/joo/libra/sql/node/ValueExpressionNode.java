@@ -22,9 +22,4 @@ public class ValueExpressionNode<T> implements ExpressionNode, HasValue<T> {
 	public Predicate buildPredicate() {
 		return new SimplePredicate(value != null);
 	}
-	
-	@Override
-	public ExpressionNode[] getChildren() {
-		return null;
-	}
 }

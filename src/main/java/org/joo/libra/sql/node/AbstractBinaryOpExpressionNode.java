@@ -33,9 +33,4 @@ public abstract class AbstractBinaryOpExpressionNode<T extends HasValue<?>> impl
 	public void setOp(int op) {
 		this.op = op;
 	}
-	
-	@Override
-	public ExpressionNode[] getChildren() {
-		return new ExpressionNode[] {(ExpressionNode) left, (ExpressionNode) right};
-	}
 }

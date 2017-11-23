@@ -21,9 +21,4 @@ public abstract class InfixExpressionNode implements ExpressionNode {
 	public void setRight(ExpressionNode right) {
 		this.right = right;
 	}
-	
-	@Override
-	public ExpressionNode[] getChildren() {
-		return new ExpressionNode[] {left, right};
-	}
 }

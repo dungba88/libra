@@ -11,9 +11,4 @@ public abstract class UnaryExpressionNode implements ExpressionNode {
 	public void setInnerNode(ExpressionNode innerNode) {
 		this.innerNode = innerNode;
 	}
-	
-	@Override
-	public ExpressionNode[] getChildren() {
-		return new ExpressionNode[] {innerNode};
-	}
 }
