@@ -16,12 +16,18 @@ public class AndPredicate extends CompositionPredicate {
 
     @Override
     public boolean satisfiedBy(PredicateContext context) throws PredicateExecutionException {
-        if (predicates == null)
-            return true;
         for (Predicate predicate : predicates) {
             if (!predicate.satisfiedBy(context))
                 return false;
         }
         return true;
+    }
+    
+    public static void main(String[] args) {
+    	try {
+			new AndPredicate().satisfiedBy(null);
+		} catch (PredicateExecutionException e) {
+			e.printStackTrace();
+		}
     }
 }

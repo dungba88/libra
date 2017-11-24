@@ -15,7 +15,7 @@ public class OrPredicate extends CompositionPredicate {
 
     @Override
     public boolean satisfiedBy(PredicateContext context) throws PredicateExecutionException {
-        if (predicates == null || predicates.length == 0)
+        if (predicates.length == 0)
             return true;
         for (Predicate predicate : predicates) {
             if (predicate.satisfiedBy(context))
