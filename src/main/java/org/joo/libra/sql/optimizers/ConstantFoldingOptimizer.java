@@ -13,7 +13,6 @@ import org.joo.libra.sql.node.ExpressionNode;
 import org.joo.libra.sql.node.InfixExpressionNode;
 import org.joo.libra.sql.node.MathExpressionNode;
 import org.joo.libra.sql.node.NumberExpressionNode;
-import org.joo.libra.sql.node.OrExpressionNode;
 import org.joo.libra.sql.node.UnaryExpressionNode;
 import org.joo.libra.sql.node.VariableExpressionNode;
 import org.joo.libra.support.MalformedSyntaxException;
@@ -67,7 +66,7 @@ public class ConstantFoldingOptimizer implements Optimizer {
             hasVariableNodes.add(node);
             return node;
         }
-        return optimizeConstantFolding(node);
+        return optimizeSingleNode(node);
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -101,21 +100,32 @@ public class ConstantFoldingOptimizer implements Optimizer {
         if (leftIsVariable && rightIsVariable)
             return node;
 
+        changes++;
+
         Boolean leftCondition = leftIsVariable ? null : evaluateNode(leftNode);
         Boolean rightCondition = rightIsVariable ? null : evaluateNode(rightNode);
 
-        if (node instanceof AndExpressionNode) {
-            if (Boolean.FALSE.equals(leftCondition) || Boolean.FALSE.equals(rightCondition)) {
-                changes++;
-                return new BooleanExpressionNode(false);
-            }
-        } else if (node instanceof OrExpressionNode
-                && (Boolean.TRUE.equals(leftCondition) || Boolean.TRUE.equals(rightCondition))) {
-            changes++;
-            return new BooleanExpressionNode(true);
-        }
+        if (node instanceof AndExpressionNode)
+            return optimizeAndNode(leftNode, rightNode, leftIsVariable, leftCondition, rightCondition);
+        return optimizeOrNode(leftNode, rightNode, leftIsVariable, leftCondition, rightCondition);
+    }
 
-        return node;
+    private ExpressionNode optimizeOrNode(ExpressionNode leftNode, ExpressionNode rightNode, boolean leftIsVariable,
+            Boolean leftCondition, Boolean rightCondition) {
+        if (Boolean.TRUE.equals(leftCondition) || Boolean.TRUE.equals(rightCondition))
+            return new BooleanExpressionNode(true);
+        if (leftIsVariable)
+            return leftNode;
+        return rightNode;
+    }
+
+    private ExpressionNode optimizeAndNode(ExpressionNode leftNode, ExpressionNode rightNode, boolean leftIsVariable,
+            Boolean leftCondition, Boolean rightCondition) {
+        if (Boolean.FALSE.equals(leftCondition) || Boolean.FALSE.equals(rightCondition))
+            return new BooleanExpressionNode(false);
+        if (leftIsVariable)
+            return leftNode;
+        return rightNode;
     }
 
     private ExpressionNode optimizeSingleNode(ExpressionNode node) {
