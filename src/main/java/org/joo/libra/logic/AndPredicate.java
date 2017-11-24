@@ -22,12 +22,4 @@ public class AndPredicate extends CompositionPredicate {
         }
         return true;
     }
-    
-    public static void main(String[] args) {
-    	try {
-			new AndPredicate().satisfiedBy(null);
-		} catch (PredicateExecutionException e) {
-			e.printStackTrace();
-		}
-    }
 }
