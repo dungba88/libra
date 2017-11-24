@@ -64,6 +64,7 @@ public class TestSqlVariable {
 
         list.add(new Object[] { "name", true, context });
         list.add(new Object[] { "name is 'John'", true, context });
+        list.add(new Object[] { "name matches 'John'", true, context });
         list.add(new Object[] { "name is not 'John'", false, context });
         list.add(new Object[] { "age > 27", false, context });
         list.add(new Object[] { "age < 27", false, context });

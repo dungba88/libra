@@ -48,6 +48,7 @@ public class TestSqlSimple {
         list.add(new Object[] { "'John' is not 'oh'", true });
         list.add(new Object[] { "'John' != 'oh'", true });
         list.add(new Object[] { "'John' > 'oh'", null });
+        list.add(new Object[] { "1 > 'oh'", null });
         list.add(new Object[] { "'John' contains 'oh'", true });
         list.add(new Object[] { "'John' is not empty", true });
         list.add(new Object[] { "'John' is empty", false });
@@ -55,6 +56,8 @@ public class TestSqlSimple {
         list.add(new Object[] { "'John' is null", false });
         list.add(new Object[] { "'John' matches '.*oh.*'", true });
         list.add(new Object[] { "'John' matches '.*ho.*'", false });
+        list.add(new Object[] { "1 matches '.*ho.*'", null });
+        list.add(new Object[] { "'John' matches 1", null });
 
         list.add(new Object[] { "false", false });
         list.add(new Object[] { "true", true });
@@ -76,6 +79,8 @@ public class TestSqlSimple {
         list.add(new Object[] { "1 == 1", true });
         list.add(new Object[] { "1 == 2", false });
 
+        list.add(new Object[] { "1 - 'a'", null });
+        list.add(new Object[] { "'a' - 1", null });
         list.add(new Object[] { "0", false });
         list.add(new Object[] { "1.0 - 1", false });
         list.add(new Object[] { "1 - 1", false });
