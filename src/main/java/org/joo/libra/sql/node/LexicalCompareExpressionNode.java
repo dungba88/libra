@@ -7,12 +7,13 @@ import org.joo.libra.text.MatchPredicate;
 
 public class LexicalCompareExpressionNode extends AbstractBinaryOpExpressionNode<HasValue<String>> {
 
-	@Override
-	public Predicate buildPredicate() {
-		switch(getOp()) {
-		case SqlLexer.MATCHES:
-			return new MatchPredicate(getLeft(), getRight());
-		}
-		return null;
-	}
+    @Override
+    public Predicate buildPredicate() {
+        switch (getOp()) {
+        case SqlLexer.MATCHES:
+            return new MatchPredicate(getLeft(), getRight());
+        default:
+            return null;
+        }
+    }
 }

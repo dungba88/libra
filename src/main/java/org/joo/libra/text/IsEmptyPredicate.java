@@ -8,23 +8,24 @@ import org.joo.libra.common.HasValue;
 
 public class IsEmptyPredicate extends CompositionPredicate {
 
-	private HasValue<?> value;
+    private HasValue<?> value;
 
-	public IsEmptyPredicate(HasValue<?> value) {
-		this.value = value;
-	}
+    public IsEmptyPredicate(HasValue<?> value) {
+        this.value = value;
+    }
 
-	@SuppressWarnings("rawtypes")
-	@Override
-	public boolean satisfiedBy(PredicateContext context) {
-		Object rawValue = value.getValue(context);
-		if (rawValue == null) return true;
-		if (rawValue instanceof String) {
-			return rawValue.toString().isEmpty();
-		}
-		if (rawValue instanceof Collection) {
-			return ((Collection)rawValue).isEmpty();
-		}
-		return false;
-	}
+    @SuppressWarnings("rawtypes")
+    @Override
+    public boolean satisfiedBy(PredicateContext context) {
+        Object rawValue = value.getValue(context);
+        if (rawValue == null)
+            return true;
+        if (rawValue instanceof String) {
+            return rawValue.toString().isEmpty();
+        }
+        if (rawValue instanceof Collection) {
+            return ((Collection) rawValue).isEmpty();
+        }
+        return false;
+    }
 }

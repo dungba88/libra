@@ -1,29 +1,24 @@
 package org.joo.libra.sql.node;
 
 public abstract class InfixExpressionNode implements ExpressionNode {
-	
-	private ExpressionNode left;
 
-	private ExpressionNode right;
+    private ExpressionNode left;
 
-	public ExpressionNode getLeft() {
-		return left;
-	}
+    private ExpressionNode right;
 
-	public void setLeft(ExpressionNode left) {
-		this.left = left;
-	}
+    public ExpressionNode getLeft() {
+        return left;
+    }
 
-	public ExpressionNode getRight() {
-		return right;
-	}
+    public void setLeft(ExpressionNode left) {
+        this.left = left;
+    }
 
-	public void setRight(ExpressionNode right) {
-		this.right = right;
-	}
-	
-	@Override
-	public ExpressionNode[] getChildren() {
-		return new ExpressionNode[] {left, right};
-	}
+    public ExpressionNode getRight() {
+        return right;
+    }
+
+    public void setRight(ExpressionNode right) {
+        this.right = right;
+    }
 }

@@ -4,20 +4,20 @@ import org.joo.libra.sql.node.ExpressionNode;
 
 public class OptimizeStatus {
 
-	private final ExpressionNode node;
-	
-	private final int changes;
-	
-	public OptimizeStatus(ExpressionNode node, int changes) {
-		this.node = node;
-		this.changes = changes;
-	}
+    private final ExpressionNode node;
 
-	public ExpressionNode getNode() {
-		return node;
-	}
+    private final int changes;
 
-	public int getChanges() {
-		return changes;
-	}
+    public OptimizeStatus(ExpressionNode node, int changes) {
+        this.node = node;
+        this.changes = changes;
+    }
+
+    public ExpressionNode getNode() {
+        return node;
+    }
+
+    public int getChanges() {
+        return changes;
+    }
 }

@@ -4,7 +4,5 @@ import org.joo.libra.Predicate;
 
 public interface ExpressionNode {
 
-	public Predicate buildPredicate();
-	
-	public ExpressionNode[] getChildren();
+    public Predicate buildPredicate();
 }

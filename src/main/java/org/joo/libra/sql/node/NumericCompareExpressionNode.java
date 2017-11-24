@@ -10,18 +10,19 @@ import org.joo.libra.sql.antlr.SqlLexer;
 
 public class NumericCompareExpressionNode extends AbstractBinaryOpExpressionNode<HasValue<Number>> {
 
-	@Override
-	public Predicate buildPredicate() {
-		switch(getOp()) {
-		case SqlLexer.GREATER_THAN:
-			return new GreaterThanPredicate(getLeft(), getRight());
-		case SqlLexer.GREATER_THAN_EQUALS:
-			return new GreaterEqualPredicate(getLeft(), getRight());
-		case SqlLexer.LESS_THAN:
-			return new LessThanPredicate(getLeft(), getRight());
-		case SqlLexer.LESS_THAN_EQUALS:
-			return new LessEqualPredicate(getLeft(), getRight());
-		}
-		return null;
-	}
+    @Override
+    public Predicate buildPredicate() {
+        switch (getOp()) {
+        case SqlLexer.GREATER_THAN:
+            return new GreaterThanPredicate(getLeft(), getRight());
+        case SqlLexer.GREATER_THAN_EQUALS:
+            return new GreaterEqualPredicate(getLeft(), getRight());
+        case SqlLexer.LESS_THAN:
+            return new LessThanPredicate(getLeft(), getRight());
+        case SqlLexer.LESS_THAN_EQUALS:
+            return new LessEqualPredicate(getLeft(), getRight());
+        default:
+            return null;
+        }
+    }
 }

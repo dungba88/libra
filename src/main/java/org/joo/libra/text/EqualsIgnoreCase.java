@@ -5,12 +5,12 @@ import org.joo.libra.common.HasValue;
 
 public class EqualsIgnoreCase extends BinaryPredicate<String, String> {
 
-	public EqualsIgnoreCase(HasValue<String> one, HasValue<String> other) {
-		super(one, other);
-	}
+    public EqualsIgnoreCase(HasValue<String> one, HasValue<String> other) {
+        super(one, other);
+    }
 
-	@Override
-	protected boolean doSatisifiedBy(String one, String other) {
-		return one.equalsIgnoreCase(other);
-	}
+    @Override
+    protected boolean doSatisifiedBy(String one, String other) {
+        return one.equalsIgnoreCase(other);
+    }
 }

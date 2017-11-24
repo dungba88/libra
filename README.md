@@ -1,8 +1,9 @@
 # libra
 [![License](https://img.shields.io/github/license/dungba88/libra.svg?maxAge=2592000)](LICENSE)
-[![Build Status](https://travis-ci.org/dungba88/libra.svg?branch=master)](https://travis-ci.org/dungba88/libra)
 [![Maven Central](https://img.shields.io/maven-central/v/org.dungba/joo-libra.svg?maxAge=2592000)](http://mvnrepository.com/artifact/org.dungba/joo-libra)
-
+[![Build Status](https://travis-ci.org/dungba88/libra.svg?branch=master)](https://travis-ci.org/dungba88/libra)
+[![Coverage Status](https://coveralls.io/repos/github/dungba88/libra/badge.svg?branch=master)](https://coveralls.io/github/dungba88/libra?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b5162a68d84944299bd36ebdfd56987b)](https://www.codacy.com/app/dungba88/libra?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dungba88/libra&amp;utm_campaign=Badge_Grade)
 
 Libra is a Java package for creating and evaluating predicate. Java-based and SQL-like predicate are both supported. For SQL predicates, it is using ANTLR to parse the string against a predefined grammar. The Java-based predicates are implementation of Specification pattern and support numeric/text/collection related conditions.
 
@@ -38,7 +39,7 @@ Libra can be easily installed with Maven:
 <dependency>
     <groupId>org.dungba</groupId>
     <artifactId>joo-libra</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 
@@ -64,6 +65,16 @@ or throw the exception if any
 predicate.checkForErrorAndThrow();
 ```
 
+## optimizers
+
+Libra currently supports a simple [Constant Folding](https://en.wikipedia.org/wiki/Constant_folding) optimization. It will reduces constant-only conditional branches into a single branch. To enable the optimizations, use `OptimizedAntlrSqlPredicateParser` as below:
+
+```java
+SqlPredicate predicate = new SqlPredicate(predicateString, new OptimizedAntlrSqlPredicateParser());
+```
+
+This will take more time to compile the SQL but will reduce evaluation time.
+
 ## extends
 
 The `SqlPredicate` class allows you to pass your own `SqlPredicateParser`:
@@ -72,7 +83,7 @@ The `SqlPredicate` class allows you to pass your own `SqlPredicateParser`:
 SqlPredicate predicate = new SqlPredicate(predicateString, new MyPredicateParser());
 ```
 
-you can implement your own `SqlPredicateParser`, or extend the `AbstractAntlrSqlPredicateParser` to use your own grammar. For the former, the interface has only one method `public Predicate parse(String predicate) throws MalformedSyntaxException;`, so you can even use lambda expression to construct it, like:
+you can implement your own `SqlPredicateParser`, or extend the `AbstractAntlrSqlPredicateParser` to use your own grammar. For the former, the interface has only one method `public Predicate parse(String predicate) throws MalformedSyntaxException`, so you can even use lambda expression to construct it, like:
 
 ```java
 SqlPredicate predicate = new SqlPredicate(predicateString, predicate -> {
