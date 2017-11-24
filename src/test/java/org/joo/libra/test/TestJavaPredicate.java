@@ -66,7 +66,7 @@ public class TestJavaPredicate {
         list.add(new Object[] { new SimplePredicate(true).or(new SimplePredicate(false)), true });
         list.add(new Object[] { new SimplePredicate(true).not(), false });
         list.add(new Object[] { new SimplePredicate(false).not(), true });
-        
+
         list.add(new Object[] { new AndPredicate(), true });
         list.add(new Object[] { new OrPredicate(), true });
 

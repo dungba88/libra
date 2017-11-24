@@ -20,9 +20,9 @@ public class TestSqlPerf {
     private PredicateContext personContext;
 
     private PredicateContext mapContext;
-    
+
     private int iterations = 10000000;
-    
+
     @Test
     public void test() throws PredicateExecutionException {
         try {

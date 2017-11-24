@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.joo.libra.sql.SqlPredicate;
+import org.joo.libra.support.MalformedSyntaxException;
 import org.joo.libra.support.PredicateExecutionException;
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,6 +29,7 @@ public class TestSqlSimple {
         SqlPredicate predicate = new SqlPredicate(value);
         if (predicate.hasError()) {
             Assert.assertEquals(value + ":", expected, null);
+            Assert.assertTrue(predicate.getCause() instanceof MalformedSyntaxException);
         } else {
             Assert.assertEquals(value + ":", expected, predicate.satisfiedBy(null));
         }
@@ -37,6 +39,7 @@ public class TestSqlSimple {
     public static List<Object[]> data() {
         List<Object[]> list = new ArrayList<Object[]>();
 
+        list.add(new Object[] { "null", false });
         list.add(new Object[] { "name'", null });
         list.add(new Object[] { "name", false });
         list.add(new Object[] { "''", false });
