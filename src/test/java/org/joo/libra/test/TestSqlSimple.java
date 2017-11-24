@@ -39,11 +39,13 @@ public class TestSqlSimple {
     public static List<Object[]> data() {
         List<Object[]> list = new ArrayList<Object[]>();
 
+        list.add(new Object[] { "undefined", false });
         list.add(new Object[] { "null", false });
         list.add(new Object[] { "name'", null });
         list.add(new Object[] { "name", false });
         list.add(new Object[] { "''", false });
         list.add(new Object[] { "'John'", true });
+        list.add(new Object[] { "'John' is not undefined", true });
         list.add(new Object[] { "'John' is 'John'", true });
         list.add(new Object[] { "'John' == 'John'", true });
         list.add(new Object[] { "'John' = 'John'", true });
