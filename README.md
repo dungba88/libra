@@ -65,6 +65,18 @@ or throw the exception if any
 predicate.checkForErrorAndThrow();
 ```
 
+## edge cases and limitations
+
+Some special cases or limitations are covered here:
+- Literals, if stand alone in its own branch, will be converted into predicate according to their types:
+  + String literals will be considered as `true` if and only if it was *not null* and *not empty*
+  + Number literals will be considered as `true` if and only if it was *not null* and *not zero*
+  + `null` will always be considered as `false`
+- If literals are compared with any other type, the comparison will be as normal
+  + `0 is false` will be evaluated as `false`, since `0` and `false` have different type
+- When comparing number, they will be converted into `BigDecimal`, so `0.0`, `0` or `0L` are all equal
+- Limitations with `contains` expression: the type of the collection and that of the item must match. `grades contains 5` where items in `grades` are decimal number will be evaluated as `false`
+
 ## optimizers
 
 Libra currently supports a simple [Constant Folding](https://en.wikipedia.org/wiki/Constant_folding) optimization. It will reduces constant-only conditional branches into a single branch. To enable the optimizations, use `OptimizedAntlrSqlPredicateParser` as below:
