@@ -1,8 +1,8 @@
 # libra
 [![License](https://img.shields.io/github/license/dungba88/libra.svg?maxAge=2592000)](LICENSE)
-[![Maven Central](https://img.shields.io/maven-central/v/org.dungba/joo-libra.svg?maxAge=2592000)](http://mvnrepository.com/artifact/org.dungba/joo-libra)
+[![Maven Central](https://img.shields.io/maven-central/v/org.dungba/joo-libra.svg?maxAge=604800)](http://mvnrepository.com/artifact/org.dungba/joo-libra)
 [![Build Status](https://travis-ci.org/dungba88/libra.svg?branch=master)](https://travis-ci.org/dungba88/libra)
-[![Coverage Status](https://coveralls.io/repos/github/dungba88/libra/badge.svg?branch=master)](https://coveralls.io/github/dungba88/libra?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/dungba88/libra/badge.svg?branch=master&maxAge=604800)](https://coveralls.io/github/dungba88/libra?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b5162a68d84944299bd36ebdfd56987b)](https://www.codacy.com/app/dungba88/libra?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dungba88/libra&amp;utm_campaign=Badge_Grade)
 
 Libra is a Java package for creating and evaluating predicate. Java-based and SQL-like predicate are both supported. For SQL predicates, it is using ANTLR to parse the string against a predefined grammar. The Java-based predicates are implementation of Specification pattern and support numeric/text/collection related conditions.
@@ -64,6 +64,18 @@ or throw the exception if any
 ```java
 predicate.checkForErrorAndThrow();
 ```
+
+## edge cases and limitations
+
+Some special cases or limitations are covered here:
+- Literals, if stand alone in its own branch, will be converted into predicate according to their types:
+  + String literals will be considered as `true` if and only if it was *not null* and *not empty*
+  + Number literals will be considered as `true` if and only if it was *not null* and *not zero*
+  + `null` will always be considered as `false`
+- If literals are compared with any other type, the comparison will be as normal
+  + `0 is false` will be evaluated as `false`, since `0` and `false` have different type
+- When comparing number, they will be converted into `BigDecimal`, so `0.0`, `0` or `0L` are all equal
+- Limitations with `contains` expression: the type of the collection and that of the item must match. `grades contains 5` where items in `grades` are decimal number will be evaluated as `false`
 
 ## optimizers
 

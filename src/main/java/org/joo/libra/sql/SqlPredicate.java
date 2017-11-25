@@ -6,21 +6,24 @@ import org.joo.libra.common.CompositionPredicate;
 import org.joo.libra.support.MalformedSyntaxException;
 import org.joo.libra.support.PredicateExecutionException;
 
+import lombok.Getter;
+import lombok.NonNull;
+
 public class SqlPredicate extends CompositionPredicate {
 
     private boolean error;
 
-    private MalformedSyntaxException cause;
+    private @Getter MalformedSyntaxException cause;
+
+    private @Getter SqlPredicateParser parser;
 
     private Predicate predicate;
-
-    private SqlPredicateParser parser;
 
     public SqlPredicate(String predicate) {
         this(predicate, new AntlrSqlPredicateParser());
     }
 
-    public SqlPredicate(String predicate, SqlPredicateParser parser) {
+    public SqlPredicate(String predicate, @NonNull SqlPredicateParser parser) {
         try {
             this.parser = parser;
             this.predicate = parser.parse(predicate);
@@ -51,13 +54,5 @@ public class SqlPredicate extends CompositionPredicate {
 
     public boolean hasError() {
         return error;
-    }
-
-    public MalformedSyntaxException getCause() {
-        return cause;
-    }
-
-    public SqlPredicateParser getParser() {
-        return parser;
     }
 }

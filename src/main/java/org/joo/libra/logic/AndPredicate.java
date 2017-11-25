@@ -16,8 +16,6 @@ public class AndPredicate extends CompositionPredicate {
 
     @Override
     public boolean satisfiedBy(PredicateContext context) throws PredicateExecutionException {
-        if (predicates == null)
-            return true;
         for (Predicate predicate : predicates) {
             if (!predicate.satisfiedBy(context))
                 return false;

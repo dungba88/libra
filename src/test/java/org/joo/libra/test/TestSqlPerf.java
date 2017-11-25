@@ -10,6 +10,8 @@ import org.joo.libra.sql.antlr.SqlParser;
 import org.joo.libra.support.PredicateExecutionException;
 import org.joo.libra.test.support.MockDataUtils;
 import org.joo.libra.test.support.Person;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class TestSqlPerf {
 
@@ -19,16 +21,10 @@ public class TestSqlPerf {
 
     private PredicateContext mapContext;
 
-    public static void main(String[] args) {
-        TestSqlPerf perf = new TestSqlPerf();
-        try {
-            perf.test(1000000);
-        } catch (PredicateExecutionException e) {
-            e.printStackTrace();
-        }
-    }
+    private int iterations = 10000000;
 
-    public void test(long iterations) throws PredicateExecutionException {
+    @Test
+    public void test() throws PredicateExecutionException {
         try {
             System.out.println("Setting up...");
             setup();
@@ -79,7 +75,8 @@ public class TestSqlPerf {
 
     protected void doTest(long iterations, PredicateContext context) throws PredicateExecutionException {
         for (int i = 0; i < iterations; i++) {
-            predicate.satisfiedBy(context);
+            boolean result = predicate.satisfiedBy(context);
+            Assert.assertEquals(false, result);
         }
     }
 

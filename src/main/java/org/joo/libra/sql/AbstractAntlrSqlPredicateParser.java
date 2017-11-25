@@ -21,9 +21,8 @@ public abstract class AbstractAntlrSqlPredicateParser<L extends Lexer, P extends
         P parser = createParser(tokens);
 
         ExpressionNode node = doParse(parser);
-        if (node == null) {
+        if (node == null)
             return null;
-        }
         return node.buildPredicate();
     }
 
