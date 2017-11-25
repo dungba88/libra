@@ -9,7 +9,7 @@ public class BooleanExpressionNode extends ValueExpressionNode<Boolean> {
 
     }
 
-    public BooleanExpressionNode(boolean value) {
+    public BooleanExpressionNode(final boolean value) {
         this.value = value;
     }
 

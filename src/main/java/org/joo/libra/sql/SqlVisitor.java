@@ -87,7 +87,7 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
     }
 
     @Override
-    public ExpressionNode visitContainsExpr(SqlParser.ContainsExprContext ctx) {
+    public ExpressionNode visitContainsExpr(final SqlParser.ContainsExprContext ctx) {
         ContainsCompareExpressionNode node = new ContainsCompareExpressionNode();
         node.setLeft((HasValue<?>) visit(ctx.left));
         node.setRight((HasValue<?>) visit(ctx.right));

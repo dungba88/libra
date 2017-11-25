@@ -110,8 +110,8 @@ public class ConstantFoldingOptimizer implements Optimizer {
         return optimizeOrNode(leftNode, rightNode, leftIsVariable, leftCondition, rightCondition);
     }
 
-    private ExpressionNode optimizeOrNode(final ExpressionNode leftNode, final ExpressionNode rightNode, final boolean leftIsVariable,
-            final Boolean leftCondition, final Boolean rightCondition) {
+    private ExpressionNode optimizeOrNode(final ExpressionNode leftNode, final ExpressionNode rightNode,
+            final boolean leftIsVariable, final Boolean leftCondition, final Boolean rightCondition) {
         if (Boolean.TRUE.equals(leftCondition) || Boolean.TRUE.equals(rightCondition))
             return new BooleanExpressionNode(true);
         if (leftIsVariable)
@@ -119,8 +119,8 @@ public class ConstantFoldingOptimizer implements Optimizer {
         return rightNode;
     }
 
-    private ExpressionNode optimizeAndNode(ExpressionNode leftNode, ExpressionNode rightNode, boolean leftIsVariable,
-            Boolean leftCondition, Boolean rightCondition) {
+    private ExpressionNode optimizeAndNode(final ExpressionNode leftNode, final ExpressionNode rightNode,
+            final boolean leftIsVariable, final Boolean leftCondition, final Boolean rightCondition) {
         if (Boolean.FALSE.equals(leftCondition) || Boolean.FALSE.equals(rightCondition))
             return new BooleanExpressionNode(false);
         if (leftIsVariable)
@@ -128,15 +128,15 @@ public class ConstantFoldingOptimizer implements Optimizer {
         return rightNode;
     }
 
-    private ExpressionNode optimizeSingleNode(ExpressionNode node) {
+    private ExpressionNode optimizeSingleNode(final ExpressionNode node) {
         return new BooleanExpressionNode(evaluateNode(node));
     }
 
-    private ExpressionNode optimizeMathNode(MathExpressionNode node) {
+    private ExpressionNode optimizeMathNode(final MathExpressionNode node) {
         return new NumberExpressionNode(node.getValue(context));
     }
 
-    private boolean evaluateNode(ExpressionNode node) {
+    private boolean evaluateNode(final ExpressionNode node) {
         Predicate predicate = node.buildPredicate();
         try {
             return predicate.satisfiedBy(context);
@@ -150,7 +150,7 @@ public class ConstantFoldingOptimizer implements Optimizer {
     }
 
     @Override
-    public void setContext(PredicateContext context) {
+    public void setContext(final PredicateContext context) {
         this.context = context;
     }
 }

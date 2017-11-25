@@ -18,7 +18,7 @@ public class MathExpressionNode extends AbstractBinaryOpExpressionNode<HasValue<
     }
 
     @Override
-    public Number getValue(PredicateContext context) {
+    public Number getValue(final PredicateContext context) {
         double left = getLeft().getValue(context).doubleValue();
         double right = getRight().getValue(context).doubleValue();
         switch (getOp()) {

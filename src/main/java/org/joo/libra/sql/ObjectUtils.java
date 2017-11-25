@@ -8,7 +8,7 @@ import lombok.NonNull;
 
 public class ObjectUtils {
 
-    public static Object getValue(Object obj, @NonNull String variableName) throws ReflectiveOperationException {
+    public static Object getValue(final Object obj, final @NonNull String variableName) throws ReflectiveOperationException {
         if (obj == null) return null;
         try {
             return PropertyUtils.getNestedProperty(obj, variableName);
