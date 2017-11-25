@@ -9,7 +9,7 @@ public class PredicateContext {
 
     private Map<String, Object> cachedValues;
 
-    public PredicateContext(Object context) {
+    public PredicateContext(final Object context) {
         this.context = context;
         this.cachedValues = new HashMap<>();
     }

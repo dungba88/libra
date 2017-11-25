@@ -7,12 +7,12 @@ import org.joo.libra.common.HasValue;
 
 public class InPredicate extends BinaryPredicate<Object, Collection<?>> {
 
-    public InPredicate(HasValue<Object> one, HasValue<Collection<?>> other) {
+    public InPredicate(final HasValue<Object> one, final HasValue<Collection<?>> other) {
         super(one, other);
     }
 
     @Override
-    protected boolean doSatisifiedBy(Object one, Collection<?> other) {
+    protected boolean doSatisifiedBy(final Object one, final Collection<?> other) {
         return other.contains(one);
     }
 }
