@@ -17,7 +17,7 @@ public class OptimizedAntlrSqlPredicateParser extends AntlrSqlPredicateParser {
         this(new ConstantFoldingOptimizer());
     }
 
-    public OptimizedAntlrSqlPredicateParser(Optimizer... optimizers) {
+    public OptimizedAntlrSqlPredicateParser(final Optimizer... optimizers) {
         this.optimizers = optimizers;
         for (Optimizer optimizer : optimizers) {
             optimizer.setContext(context);

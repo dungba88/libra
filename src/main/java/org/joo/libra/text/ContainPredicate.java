@@ -10,12 +10,12 @@ import org.joo.libra.common.HasValue;
 public class ContainPredicate extends BinaryPredicate {
 
     @SuppressWarnings("unchecked")
-    public ContainPredicate(HasValue<?> one, HasValue<?> other) {
+    public ContainPredicate(final HasValue<?> one, final HasValue<?> other) {
         super(one, other);
     }
 
     @Override
-    protected boolean doSatisifiedBy(Object one, Object other) {
+    protected boolean doSatisifiedBy(final Object one, final Object other) {
         if (one instanceof String && other instanceof String)
             return one.toString().contains(other.toString());
         if (one instanceof Collection<?>)

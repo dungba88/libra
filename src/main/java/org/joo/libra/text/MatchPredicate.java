@@ -5,12 +5,12 @@ import org.joo.libra.common.HasValue;
 
 public class MatchPredicate extends BinaryPredicate<String, String> {
 
-    public MatchPredicate(HasValue<String> one, HasValue<String> other) {
+    public MatchPredicate(final HasValue<String> one, final HasValue<String> other) {
         super(one, other);
     }
 
     @Override
-    protected boolean doSatisifiedBy(String one, String other) {
+    protected boolean doSatisifiedBy(final String one, final String other) {
         return one.matches(other);
     }
 }

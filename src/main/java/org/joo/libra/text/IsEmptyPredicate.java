@@ -10,13 +10,13 @@ public class IsEmptyPredicate extends CompositionPredicate {
 
     private HasValue<?> value;
 
-    public IsEmptyPredicate(HasValue<?> value) {
+    public IsEmptyPredicate(final HasValue<?> value) {
         this.value = value;
     }
 
     @SuppressWarnings("rawtypes")
     @Override
-    public boolean satisfiedBy(PredicateContext context) {
+    public boolean satisfiedBy(final PredicateContext context) {
         Object rawValue = value.getValue(context);
         if (rawValue == null)
             return true;
