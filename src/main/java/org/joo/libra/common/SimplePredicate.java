@@ -7,12 +7,12 @@ public class SimplePredicate extends CompositionPredicate {
 
     private final boolean value;
 
-    public SimplePredicate(boolean value) {
+    public SimplePredicate(final boolean value) {
         this.value = value;
     }
 
     @Override
-    public boolean satisfiedBy(PredicateContext context) throws PredicateExecutionException {
+    public boolean satisfiedBy(final PredicateContext context) throws PredicateExecutionException {
         return value;
     }
 }
