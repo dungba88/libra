@@ -8,7 +8,7 @@ public abstract class UnaryExpressionNode implements ExpressionNode {
         return innerNode;
     }
 
-    public void setInnerNode(ExpressionNode innerNode) {
+    public void setInnerNode(final ExpressionNode innerNode) {
         this.innerNode = innerNode;
     }
 }

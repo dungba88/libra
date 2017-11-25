@@ -4,5 +4,5 @@ import org.joo.libra.support.PredicateExecutionException;
 
 public interface Predicate {
 
-    public boolean satisfiedBy(PredicateContext context) throws PredicateExecutionException;
+    public boolean satisfiedBy(final PredicateContext context) throws PredicateExecutionException;
 }

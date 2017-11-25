@@ -19,11 +19,11 @@ public class SqlPredicate extends CompositionPredicate {
 
     private Predicate predicate;
 
-    public SqlPredicate(String predicate) {
+    public SqlPredicate(final String predicate) {
         this(predicate, new AntlrSqlPredicateParser());
     }
 
-    public SqlPredicate(String predicate, @NonNull SqlPredicateParser parser) {
+    public SqlPredicate(final String predicate, final @NonNull SqlPredicateParser parser) {
         try {
             this.parser = parser;
             this.predicate = parser.parse(predicate);
@@ -37,7 +37,7 @@ public class SqlPredicate extends CompositionPredicate {
     }
 
     @Override
-    public boolean satisfiedBy(PredicateContext context) throws PredicateExecutionException {
+    public boolean satisfiedBy(final PredicateContext context) throws PredicateExecutionException {
         if (error || predicate == null)
             return false;
         try {

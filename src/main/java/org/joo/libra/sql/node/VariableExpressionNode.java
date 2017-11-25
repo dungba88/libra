@@ -17,12 +17,12 @@ public class VariableExpressionNode implements ExpressionNode, HasValue<Object> 
         return variableName;
     }
 
-    public void setVariableName(String variableName) {
+    public void setVariableName(final String variableName) {
         this.variableName = variableName;
     }
 
     @Override
-    public Object getValue(PredicateContext context) {
+    public Object getValue(final PredicateContext context) {
         if (context == null)
             return null;
         Map<String, Object> cachedValues = context.getCachedValues();
@@ -34,7 +34,7 @@ public class VariableExpressionNode implements ExpressionNode, HasValue<Object> 
         return value;
     }
 
-    private Object getValueNoCache(PredicateContext context) {
+    private Object getValueNoCache(final PredicateContext context) {
         try {
             return ObjectUtils.getValue(context.getContext(), variableName);
         } catch (ReflectiveOperationException e) {

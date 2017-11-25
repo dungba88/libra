@@ -26,19 +26,19 @@ import org.joo.libra.support.MalformedSyntaxException;
 public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 
     @Override
-    public ExpressionNode visitParenExpr(SqlParser.ParenExprContext ctx) {
+    public ExpressionNode visitParenExpr(final SqlParser.ParenExprContext ctx) {
         return visit(ctx.getChild(1));
     }
 
     @Override
-    public ExpressionNode visitNotExpr(SqlParser.NotExprContext ctx) {
+    public ExpressionNode visitNotExpr(final SqlParser.NotExprContext ctx) {
         NotExpressionNode node = new NotExpressionNode();
         node.setInnerNode(visitChildren(ctx));
         return node;
     }
 
     @Override
-    public ExpressionNode visitOrExpr(SqlParser.OrExprContext ctx) {
+    public ExpressionNode visitOrExpr(final SqlParser.OrExprContext ctx) {
         OrExpressionNode node = new OrExpressionNode();
         node.setLeft(visit(ctx.left));
         node.setRight(visit(ctx.right));
@@ -46,7 +46,7 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
     }
 
     @Override
-    public ExpressionNode visitAndExpr(SqlParser.AndExprContext ctx) {
+    public ExpressionNode visitAndExpr(final SqlParser.AndExprContext ctx) {
         AndExpressionNode node = new AndExpressionNode();
         node.setLeft(visit(ctx.left));
         node.setRight(visit(ctx.right));
@@ -55,7 +55,7 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public ExpressionNode visitCompareExpr(SqlParser.CompareExprContext ctx) {
+    public ExpressionNode visitCompareExpr(final SqlParser.CompareExprContext ctx) {
         NumericCompareExpressionNode node = new NumericCompareExpressionNode();
         node.setLeft((HasValue<Number>) visit(ctx.left));
         node.setRight((HasValue<Number>) visit(ctx.right));
@@ -69,7 +69,7 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
         return node;
     }
 
-    public ExpressionNode visitEqualExpr(SqlParser.EqualExprContext ctx) {
+    public ExpressionNode visitEqualExpr(final SqlParser.EqualExprContext ctx) {
         GenericCompareExpressionNode node = new GenericCompareExpressionNode();
         node.setLeft((HasValue<?>) visit(ctx.left));
         node.setRight((HasValue<?>) visit(ctx.right));
@@ -78,7 +78,7 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
     }
 
     @Override
-    public ExpressionNode visitNotEqualExpr(SqlParser.NotEqualExprContext ctx) {
+    public ExpressionNode visitNotEqualExpr(final SqlParser.NotEqualExprContext ctx) {
         GenericCompareExpressionNode node = new GenericCompareExpressionNode();
         node.setLeft((HasValue<?>) visit(ctx.left));
         node.setRight((HasValue<?>) visit(ctx.right));
@@ -97,7 +97,7 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public ExpressionNode visitMatchesExpr(SqlParser.MatchesExprContext ctx) {
+    public ExpressionNode visitMatchesExpr(final SqlParser.MatchesExprContext ctx) {
         LexicalCompareExpressionNode node = new LexicalCompareExpressionNode();
         node.setLeft((HasValue<String>) visit(ctx.left));
         node.setRight((HasValue<String>) visit(ctx.right));
@@ -111,7 +111,7 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
     }
 
     @Override
-    public ExpressionNode visitStringExpr(SqlParser.StringExprContext ctx) {
+    public ExpressionNode visitStringExpr(final SqlParser.StringExprContext ctx) {
         StringExpressionNode node = new StringExpressionNode();
         String value = ctx.getText();
         node.setValue(value.substring(1, value.length() - 1));
@@ -119,21 +119,21 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
     }
 
     @Override
-    public ExpressionNode visitVariableExpr(SqlParser.VariableExprContext ctx) {
+    public ExpressionNode visitVariableExpr(final SqlParser.VariableExprContext ctx) {
         VariableExpressionNode node = new VariableExpressionNode();
         node.setVariableName(ctx.getText());
         return node;
     }
 
     @Override
-    public ExpressionNode visitNullExpr(SqlParser.NullExprContext ctx) {
+    public ExpressionNode visitNullExpr(final SqlParser.NullExprContext ctx) {
         ObjectExpressionNode node = new ObjectExpressionNode();
         node.setValue(null);
         return node;
     }
 
     @Override
-    public ExpressionNode visitEmptyExpr(SqlParser.EmptyExprContext ctx) {
+    public ExpressionNode visitEmptyExpr(final SqlParser.EmptyExprContext ctx) {
         EmptyExpressionNode node = new EmptyExpressionNode();
         node.setInnerNode(visit(ctx.left));
         node.setOp(ctx.op.getType());
@@ -141,7 +141,7 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
     }
 
     @Override
-    public ExpressionNode visitNumberExpr(SqlParser.NumberExprContext ctx) {
+    public ExpressionNode visitNumberExpr(final SqlParser.NumberExprContext ctx) {
         NumberExpressionNode node = new NumberExpressionNode();
         try {
             Number num = NumberFormat.getInstance().parse(ctx.getText());
@@ -152,7 +152,7 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
     }
 
     @Override
-    public ExpressionNode visitBooleanExpr(SqlParser.BooleanExprContext ctx) {
+    public ExpressionNode visitBooleanExpr(final SqlParser.BooleanExprContext ctx) {
         BooleanExpressionNode node = new BooleanExpressionNode();
         boolean value = Boolean.valueOf(ctx.getText().toLowerCase());
         node.setValue(value);
@@ -161,7 +161,7 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public ExpressionNode visitMathExpr(SqlParser.MathExprContext ctx) {
+    public ExpressionNode visitMathExpr(final SqlParser.MathExprContext ctx) {
         MathExpressionNode node = new MathExpressionNode();
         node.setLeft((HasValue<Number>) visit(ctx.left));
         node.setRight((HasValue<Number>) visit(ctx.right));
@@ -175,11 +175,11 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
         return node;
     }
 
-    private boolean isStringNode(Object node) {
+    private boolean isStringNode(final Object node) {
         return node instanceof StringExpressionNode || node instanceof VariableExpressionNode;
     }
 
-    private boolean isNumberNode(Object node) {
+    private boolean isNumberNode(final Object node) {
         return node instanceof NumberExpressionNode || node instanceof MathExpressionNode
                 || node instanceof VariableExpressionNode;
     }

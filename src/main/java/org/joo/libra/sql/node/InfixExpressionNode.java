@@ -10,7 +10,7 @@ public abstract class InfixExpressionNode implements ExpressionNode {
         return left;
     }
 
-    public void setLeft(ExpressionNode left) {
+    public void setLeft(final ExpressionNode left) {
         this.left = left;
     }
 
@@ -18,7 +18,7 @@ public abstract class InfixExpressionNode implements ExpressionNode {
         return right;
     }
 
-    public void setRight(ExpressionNode right) {
+    public void setRight(final ExpressionNode right) {
         this.right = right;
     }
 }

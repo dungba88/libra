@@ -10,7 +10,7 @@ public class NumberExpressionNode extends ValueExpressionNode<Number> {
 
     }
 
-    public NumberExpressionNode(Number value) {
+    public NumberExpressionNode(final Number value) {
         this.value = value;
     }
 

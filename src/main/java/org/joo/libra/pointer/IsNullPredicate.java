@@ -8,12 +8,12 @@ public class IsNullPredicate extends CompositionPredicate {
 
     private HasValue<Object> value;
 
-    public IsNullPredicate(HasValue<Object> value) {
+    public IsNullPredicate(final HasValue<Object> value) {
         this.value = value;
     }
 
     @Override
-    public boolean satisfiedBy(PredicateContext context) {
+    public boolean satisfiedBy(final PredicateContext context) {
         return value.getValue(context) == null;
     }
 }

@@ -14,7 +14,7 @@ public abstract class AbstractBinaryOpExpressionNode<T extends HasValue<?>> impl
         return left;
     }
 
-    public void setLeft(T left) {
+    public void setLeft(final T left) {
         this.left = left;
     }
 
@@ -22,7 +22,7 @@ public abstract class AbstractBinaryOpExpressionNode<T extends HasValue<?>> impl
         return right;
     }
 
-    public void setRight(T right) {
+    public void setRight(final T right) {
         this.right = right;
     }
 
@@ -30,7 +30,7 @@ public abstract class AbstractBinaryOpExpressionNode<T extends HasValue<?>> impl
         return op;
     }
 
-    public void setOp(int op) {
+    public void setOp(final int op) {
         this.op = op;
     }
 }

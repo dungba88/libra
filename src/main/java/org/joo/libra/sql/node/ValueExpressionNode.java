@@ -9,11 +9,11 @@ public abstract class ValueExpressionNode<T> implements ExpressionNode, HasValue
     protected T value;
 
     @Override
-    public T getValue(PredicateContext context) {
+    public T getValue(final PredicateContext context) {
         return value;
     }
 
-    public void setValue(T value) {
+    public void setValue(final T value) {
         this.value = value;
     }
 

@@ -22,7 +22,7 @@ public class PredicateContext {
         return cachedValues;
     }
 
-    public boolean hasCachedValue(String key) {
+    public boolean hasCachedValue(final String key) {
         return cachedValues.containsKey(key);
     }
 }

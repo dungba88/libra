@@ -11,7 +11,7 @@ import org.joo.libra.sql.node.ExpressionNode;
 public abstract class AbstractAntlrSqlPredicateParser<L extends Lexer, P extends Parser> implements SqlPredicateParser {
 
     @Override
-    public Predicate parse(String predicate) {
+    public Predicate parse(final String predicate) {
         CharStream stream = CharStreams.fromString(predicate);
 
         Lexer lexer = createLexer(stream);

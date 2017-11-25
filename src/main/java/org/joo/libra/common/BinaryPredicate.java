@@ -8,13 +8,13 @@ public abstract class BinaryPredicate<T, H> extends CompositionPredicate {
 
     private HasValue<H> other;
 
-    public BinaryPredicate(HasValue<T> one, HasValue<H> other) {
+    public BinaryPredicate(final HasValue<T> one, final HasValue<H> other) {
         this.one = one;
         this.other = other;
     }
 
     @Override
-    public boolean satisfiedBy(PredicateContext context) {
+    public boolean satisfiedBy(final PredicateContext context) {
         T theOne = one != null ? one.getValue(context) : null;
         H theOther = other != null ? other.getValue(context) : null;
         if (theOne == null && theOther == null)

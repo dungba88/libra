@@ -27,14 +27,14 @@ public class ConstantFoldingOptimizer implements Optimizer {
     private int changes = 0;
 
     @Override
-    public OptimizeStatus optimize(ExpressionNode node) {
+    public OptimizeStatus optimize(final ExpressionNode node) {
         hasVariableNodes = new HashSet<>();
         changes = 0;
         ExpressionNode optimizedNode = optimizeConstantFolding(node);
         return new OptimizeStatus(optimizedNode, changes);
     }
 
-    private ExpressionNode optimizeConstantFolding(ExpressionNode node) {
+    private ExpressionNode optimizeConstantFolding(final ExpressionNode node) {
         if (checkVariableNode(node))
             return node;
         if (node instanceof InfixExpressionNode)
@@ -47,7 +47,7 @@ public class ConstantFoldingOptimizer implements Optimizer {
         return node;
     }
 
-    private boolean checkVariableNode(ExpressionNode node) {
+    private boolean checkVariableNode(final ExpressionNode node) {
         if (hasVariableNodes.contains(node))
             return true;
         if (node instanceof VariableExpressionNode) {
@@ -59,7 +59,7 @@ public class ConstantFoldingOptimizer implements Optimizer {
         return false;
     }
 
-    private ExpressionNode optimizeUnaryNode(UnaryExpressionNode node) {
+    private ExpressionNode optimizeUnaryNode(final UnaryExpressionNode node) {
         ExpressionNode innerNode = optimizeConstantFolding(node.getInnerNode());
         node.setInnerNode(innerNode);
         if (checkVariableNode(innerNode)) {
@@ -70,7 +70,7 @@ public class ConstantFoldingOptimizer implements Optimizer {
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    private ExpressionNode optimizeBinaryNode(AbstractBinaryOpExpressionNode node) {
+    private ExpressionNode optimizeBinaryNode(final AbstractBinaryOpExpressionNode node) {
         ExpressionNode leftNode = optimizeConstantFolding((ExpressionNode) node.getLeft());
         ExpressionNode rightNode = optimizeConstantFolding((ExpressionNode) node.getRight());
         node.setLeft((HasValue) leftNode);
@@ -85,7 +85,7 @@ public class ConstantFoldingOptimizer implements Optimizer {
         return optimizeSingleNode(node);
     }
 
-    private ExpressionNode optimizeInfixNode(InfixExpressionNode node) {
+    private ExpressionNode optimizeInfixNode(final InfixExpressionNode node) {
         ExpressionNode leftNode = optimizeConstantFolding(node.getLeft());
         ExpressionNode rightNode = optimizeConstantFolding(node.getRight());
         node.setLeft(leftNode);
@@ -110,8 +110,8 @@ public class ConstantFoldingOptimizer implements Optimizer {
         return optimizeOrNode(leftNode, rightNode, leftIsVariable, leftCondition, rightCondition);
     }
 
-    private ExpressionNode optimizeOrNode(ExpressionNode leftNode, ExpressionNode rightNode, boolean leftIsVariable,
-            Boolean leftCondition, Boolean rightCondition) {
+    private ExpressionNode optimizeOrNode(final ExpressionNode leftNode, final ExpressionNode rightNode, final boolean leftIsVariable,
+            final Boolean leftCondition, final Boolean rightCondition) {
         if (Boolean.TRUE.equals(leftCondition) || Boolean.TRUE.equals(rightCondition))
             return new BooleanExpressionNode(true);
         if (leftIsVariable)
