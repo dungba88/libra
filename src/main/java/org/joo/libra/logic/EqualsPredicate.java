@@ -8,12 +8,12 @@ import org.joo.libra.numeric.NumericComparator;
 public class EqualsPredicate extends BinaryPredicate {
 
     @SuppressWarnings("unchecked")
-    public EqualsPredicate(HasValue<?> one, HasValue<?> other) {
+    public EqualsPredicate(final HasValue<?> one, final HasValue<?> other) {
         super(one, other);
     }
 
     @Override
-    protected boolean doSatisifiedBy(Object one, Object other) {
+    protected boolean doSatisifiedBy(final Object one, final Object other) {
         if (one instanceof Number && other instanceof Number) {
             return NumericComparator.compare((Number) one, (Number) other) == 0;
         }
