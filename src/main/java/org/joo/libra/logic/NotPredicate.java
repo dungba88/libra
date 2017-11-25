@@ -9,12 +9,12 @@ public class NotPredicate extends CompositionPredicate {
 
     private Predicate predicate;
 
-    public NotPredicate(Predicate predicate) {
+    public NotPredicate(final Predicate predicate) {
         this.predicate = predicate;
     }
 
     @Override
-    public boolean satisfiedBy(PredicateContext context) throws PredicateExecutionException {
+    public boolean satisfiedBy(final PredicateContext context) throws PredicateExecutionException {
         return !predicate.satisfiedBy(context);
     }
 }

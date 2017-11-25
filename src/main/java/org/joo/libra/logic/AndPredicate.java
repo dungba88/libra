@@ -10,12 +10,12 @@ public class AndPredicate extends CompositionPredicate {
     private Predicate[] predicates;
 
     @SafeVarargs
-    public AndPredicate(Predicate... predicates) {
+    public AndPredicate(final Predicate... predicates) {
         this.predicates = predicates;
     }
 
     @Override
-    public boolean satisfiedBy(PredicateContext context) throws PredicateExecutionException {
+    public boolean satisfiedBy(final PredicateContext context) throws PredicateExecutionException {
         for (Predicate predicate : predicates) {
             if (!predicate.satisfiedBy(context))
                 return false;

@@ -9,12 +9,12 @@ public class OrPredicate extends CompositionPredicate {
 
     private Predicate[] predicates;
 
-    public OrPredicate(Predicate... predicates) {
+    public OrPredicate(final Predicate... predicates) {
         this.predicates = predicates;
     }
 
     @Override
-    public boolean satisfiedBy(PredicateContext context) throws PredicateExecutionException {
+    public boolean satisfiedBy(final PredicateContext context) throws PredicateExecutionException {
         if (predicates.length == 0)
             return true;
         for (Predicate predicate : predicates) {
