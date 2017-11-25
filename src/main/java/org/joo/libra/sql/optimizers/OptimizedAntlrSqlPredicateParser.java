@@ -5,9 +5,11 @@ import org.joo.libra.sql.AntlrSqlPredicateParser;
 import org.joo.libra.sql.antlr.SqlParser;
 import org.joo.libra.sql.node.ExpressionNode;
 
+import lombok.Getter;
+
 public class OptimizedAntlrSqlPredicateParser extends AntlrSqlPredicateParser {
 
-    private ExpressionNode optimizedNode;
+    private @Getter ExpressionNode optimizedNode;
 
     private PredicateContext context = new PredicateContext(null);
 
@@ -25,13 +27,13 @@ public class OptimizedAntlrSqlPredicateParser extends AntlrSqlPredicateParser {
     }
 
     @Override
-    protected ExpressionNode doParse(SqlParser parser) {
+    protected ExpressionNode doParse(final SqlParser parser) {
         ExpressionNode node = super.doParse(parser);
         optimizedNode = optimize(node);
         return optimizedNode;
     }
 
-    private ExpressionNode optimize(ExpressionNode node) {
+    private ExpressionNode optimize(final ExpressionNode node) {
         ExpressionNode currentNode = node;
         while (true) {
             int total = 0;
@@ -44,9 +46,5 @@ public class OptimizedAntlrSqlPredicateParser extends AntlrSqlPredicateParser {
                 break;
         }
         return currentNode;
-    }
-
-    public ExpressionNode getOptimizedNode() {
-        return optimizedNode;
     }
 }
