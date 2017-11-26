@@ -1,6 +1,5 @@
 package org.joo.libra.sql.node;
 
-import org.joo.libra.Predicate;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.common.HasValue;
 
@@ -16,6 +15,4 @@ public abstract class ValueExpressionNode<T> implements ExpressionNode, HasValue
     public void setValue(final T value) {
         this.value = value;
     }
-
-    public abstract Predicate buildPredicate();
 }
