@@ -41,7 +41,7 @@ public class SqlPredicate implements CompositionPredicate {
         if (error || predicate == null)
             return false;
         try {
-            return predicate != null ? predicate.satisfiedBy(context) : false;
+            return predicate.satisfiedBy(context);
         } catch (Exception ex) {
             throw new PredicateExecutionException("Exception while executing SQL predicate", ex);
         }
