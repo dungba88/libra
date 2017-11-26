@@ -9,11 +9,8 @@ public class LexicalCompareExpressionNode extends AbstractBinaryOpExpressionNode
 
     @Override
     public Predicate buildPredicate() {
-        switch (getOp()) {
-        case SqlLexer.MATCHES:
+        if (getOp() == SqlLexer.MATCHES)
             return new MatchPredicate(getLeft(), getRight());
-        default:
-            return null;
-        }
+        return null;
     }
 }
