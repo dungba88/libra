@@ -5,17 +5,17 @@ import org.joo.libra.logic.AndPredicate;
 import org.joo.libra.logic.NotPredicate;
 import org.joo.libra.logic.OrPredicate;
 
-public abstract class CompositionPredicate implements Predicate {
+public interface CompositionPredicate extends Predicate {
 
-    public Predicate and(final Predicate other) {
+    public default Predicate and(final Predicate other) {
         return new AndPredicate(this, other);
     }
 
-    public Predicate or(final Predicate other) {
+    public default Predicate or(final Predicate other) {
         return new OrPredicate(this, other);
     }
 
-    public Predicate not() {
+    public default Predicate not() {
         return new NotPredicate(this);
     }
 }

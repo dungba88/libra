@@ -69,6 +69,7 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
         return node;
     }
 
+    @Override
     public ExpressionNode visitEqualExpr(final SqlParser.EqualExprContext ctx) {
         GenericCompareExpressionNode node = new GenericCompareExpressionNode();
         node.setLeft((HasValue<?>) visit(ctx.left));
@@ -103,9 +104,8 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
         node.setRight((HasValue<String>) visit(ctx.right));
         node.setOp(ctx.op.getType());
 
-        if (!isStringNode(node.getLeft()) || !isStringNode(node.getRight())) {
+        if (!isStringNode(node.getLeft()) || !isStringNode(node.getRight()))
             throw new MalformedSyntaxException("Malformed syntax at visit node, string node expected");
-        }
 
         return node;
     }

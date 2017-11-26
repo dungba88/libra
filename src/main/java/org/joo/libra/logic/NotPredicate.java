@@ -5,7 +5,7 @@ import org.joo.libra.PredicateContext;
 import org.joo.libra.common.CompositionPredicate;
 import org.joo.libra.support.PredicateExecutionException;
 
-public class NotPredicate extends CompositionPredicate {
+public class NotPredicate implements CompositionPredicate {
 
     private Predicate predicate;
 

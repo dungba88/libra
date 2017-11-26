@@ -2,7 +2,7 @@ package org.joo.libra.common;
 
 import org.joo.libra.PredicateContext;
 
-public abstract class BinaryPredicate<T, H> extends CompositionPredicate {
+public abstract class BinaryPredicate<T, H> implements CompositionPredicate {
 
     private HasValue<T> one;
 

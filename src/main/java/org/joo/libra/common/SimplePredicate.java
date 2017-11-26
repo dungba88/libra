@@ -3,7 +3,7 @@ package org.joo.libra.common;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.support.PredicateExecutionException;
 
-public class SimplePredicate extends CompositionPredicate {
+public class SimplePredicate implements CompositionPredicate {
 
     private final boolean value;
 

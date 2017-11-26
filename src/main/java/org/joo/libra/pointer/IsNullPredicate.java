@@ -4,7 +4,7 @@ import org.joo.libra.PredicateContext;
 import org.joo.libra.common.CompositionPredicate;
 import org.joo.libra.common.HasValue;
 
-public class IsNullPredicate extends CompositionPredicate {
+public class IsNullPredicate implements CompositionPredicate {
 
     private HasValue<Object> value;
 

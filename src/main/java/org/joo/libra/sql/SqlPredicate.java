@@ -9,7 +9,7 @@ import org.joo.libra.support.PredicateExecutionException;
 import lombok.Getter;
 import lombok.NonNull;
 
-public class SqlPredicate extends CompositionPredicate {
+public class SqlPredicate implements CompositionPredicate {
 
     private boolean error;
 
@@ -30,7 +30,7 @@ public class SqlPredicate extends CompositionPredicate {
         } catch (MalformedSyntaxException ex) {
             error = true;
             cause = ex;
-        } catch (Throwable ex) {
+        } catch (Exception ex) {
             error = true;
             cause = new MalformedSyntaxException(ex);
         }
@@ -42,7 +42,7 @@ public class SqlPredicate extends CompositionPredicate {
             return false;
         try {
             return predicate != null ? predicate.satisfiedBy(context) : false;
-        } catch (Throwable ex) {
+        } catch (Exception ex) {
             throw new PredicateExecutionException("Exception while executing SQL predicate", ex);
         }
     }

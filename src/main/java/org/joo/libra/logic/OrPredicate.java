@@ -5,7 +5,7 @@ import org.joo.libra.PredicateContext;
 import org.joo.libra.common.CompositionPredicate;
 import org.joo.libra.support.PredicateExecutionException;
 
-public class OrPredicate extends CompositionPredicate {
+public class OrPredicate implements CompositionPredicate {
 
     private Predicate[] predicates;
 

@@ -6,7 +6,7 @@ import org.joo.libra.PredicateContext;
 import org.joo.libra.common.CompositionPredicate;
 import org.joo.libra.common.HasValue;
 
-public class IsEmptyPredicate extends CompositionPredicate {
+public class IsEmptyPredicate implements CompositionPredicate {
 
     private HasValue<?> value;
 
