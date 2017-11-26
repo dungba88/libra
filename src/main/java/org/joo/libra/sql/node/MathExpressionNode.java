@@ -27,9 +27,9 @@ public class MathExpressionNode extends AbstractBinaryOpExpressionNode<HasValue<
         case SqlLexer.MINUS:
             return left - right;
         case SqlLexer.TIMES:
-            return new BigDecimal(left).multiply(new BigDecimal(right));
+            return BigDecimal.valueOf(left).multiply(BigDecimal.valueOf(right));
         case SqlLexer.DIVIDE:
-            return new BigDecimal(left).divide(new BigDecimal(right));
+            return BigDecimal.valueOf(left).divide(BigDecimal.valueOf(right));
         default:
             return null;
         }
