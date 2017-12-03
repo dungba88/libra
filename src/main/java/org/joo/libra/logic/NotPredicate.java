@@ -5,6 +5,13 @@ import org.joo.libra.PredicateContext;
 import org.joo.libra.common.CompositionPredicate;
 import org.joo.libra.support.PredicateExecutionException;
 
+/**
+ * Represents a predicate with <code>not</code> rule. It will be satisfied by if
+ * and only if the child predicate is not satisfied.
+ * 
+ * @author griever
+ *
+ */
 public class NotPredicate implements CompositionPredicate {
 
     private Predicate predicate;

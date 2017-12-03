@@ -3,6 +3,12 @@ package org.joo.libra.numeric;
 import org.joo.libra.common.BinaryPredicate;
 import org.joo.libra.common.HasValue;
 
+/**
+ * Represents a numeric <code>greater than or equals to</code> predicate
+ * 
+ * @author griever
+ *
+ */
 public class GreaterEqualPredicate extends BinaryPredicate<Number, Number> {
 
     public GreaterEqualPredicate(final HasValue<Number> one, final HasValue<Number> other) {

@@ -5,6 +5,14 @@ import java.util.Collection;
 import org.joo.libra.common.BinaryPredicate;
 import org.joo.libra.common.HasValue;
 
+/**
+ * A predicate to check if one object is contained by another collection. It
+ * will use Java built-in <code>contains</code> method of
+ * {@link java.util.Collection}
+ * 
+ * @author griever
+ *
+ */
 public class InPredicate extends BinaryPredicate<Object, Collection<?>> {
 
     public InPredicate(final HasValue<Object> one, final HasValue<Collection<?>> other) {

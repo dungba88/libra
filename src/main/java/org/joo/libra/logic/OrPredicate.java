@@ -5,6 +5,14 @@ import org.joo.libra.PredicateContext;
 import org.joo.libra.common.CompositionPredicate;
 import org.joo.libra.support.PredicateExecutionException;
 
+/**
+ * Represents a predicate with <code>or</code> rule. It will be satisfied by if
+ * and only if any of the child predicates is satisfied. If the child is empty,
+ * it will always return true.
+ * 
+ * @author griever
+ *
+ */
 public class OrPredicate implements CompositionPredicate {
 
     private Predicate[] predicates;

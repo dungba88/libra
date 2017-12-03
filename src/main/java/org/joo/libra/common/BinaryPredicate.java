@@ -2,6 +2,23 @@ package org.joo.libra.common;
 
 import org.joo.libra.PredicateContext;
 
+/**
+ * Abstract class for any predicate with 2 inputs. It wraps the evaluation with
+ * following conditions:
+ * 
+ * <ul>
+ * <li>- If both objects are null, it will return true</li>
+ * <li>- If one object is null, but the other is not, it will return false</li>
+ * </ul>
+ * 
+ * If none of the above conditions are matched, it will let the subclasses
+ * determine.
+ * 
+ * @author griever
+ *
+ * @param <T>
+ * @param <H>
+ */
 public abstract class BinaryPredicate<T, H> implements CompositionPredicate {
 
     private HasValue<T> one;

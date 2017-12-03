@@ -5,6 +5,14 @@ import org.joo.libra.PredicateContext;
 import org.joo.libra.common.CompositionPredicate;
 import org.joo.libra.support.PredicateExecutionException;
 
+/**
+ * Represents a predicate with <code>and</code> rule. It will be satisfied by if
+ * and only if all of the child predicates are satisfied. If the child is empty,
+ * it will always return true.
+ * 
+ * @author griever
+ *
+ */
 public class AndPredicate implements CompositionPredicate {
 
     private Predicate[] predicates;

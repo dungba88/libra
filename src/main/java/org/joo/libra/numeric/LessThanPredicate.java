@@ -3,6 +3,12 @@ package org.joo.libra.numeric;
 import org.joo.libra.common.BinaryPredicate;
 import org.joo.libra.common.HasValue;
 
+/**
+ * Represents a numeric <code>less than</code> predicate
+ * 
+ * @author griever
+ *
+ */
 public class LessThanPredicate extends BinaryPredicate<Number, Number> {
 
     public LessThanPredicate(final HasValue<Number> one, final HasValue<Number> other) {

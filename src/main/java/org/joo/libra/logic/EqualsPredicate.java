@@ -4,6 +4,16 @@ import org.joo.libra.common.BinaryPredicate;
 import org.joo.libra.common.HasValue;
 import org.joo.libra.numeric.NumericComparator;
 
+/**
+ * Represents a 'equal' predicate. It is used to check if both objects are equal
+ * to each other. If both object are <code>Number</code>, they will be converted
+ * to {@link java.math.BigDecimal} before comparing, so <code>5</code>,
+ * <code>5.0</code> and <code>5L</code> are equally. Otherwise they will be
+ * compared using <code>equals</code> method.
+ * 
+ * @author griever
+ *
+ */
 @SuppressWarnings("rawtypes")
 public class EqualsPredicate extends BinaryPredicate {
 
