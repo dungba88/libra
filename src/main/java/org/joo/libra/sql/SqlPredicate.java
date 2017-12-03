@@ -9,6 +9,13 @@ import org.joo.libra.support.PredicateExecutionException;
 import lombok.Getter;
 import lombok.NonNull;
 
+/**
+ * Represents a SQL-syntax predicate. It will parse the given string using a
+ * specified grammar.
+ * 
+ * @author griever
+ *
+ */
 public class SqlPredicate implements CompositionPredicate {
 
     private boolean error;
@@ -47,11 +54,19 @@ public class SqlPredicate implements CompositionPredicate {
         }
     }
 
+    /**
+     * Check if there is any error while parsing the SQL and throw it.
+     */
     public void checkForErrorAndThrow() {
         if (error)
             throw cause;
     }
 
+    /**
+     * Check if there is any error while parsing the SQL.
+     * 
+     * @return true if and only if any error occurred while parsing the SQL.
+     */
     public boolean hasError() {
         return error;
     }
