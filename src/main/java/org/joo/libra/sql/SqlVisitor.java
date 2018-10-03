@@ -8,6 +8,7 @@ import org.joo.libra.sql.antlr.SqlParser;
 import org.joo.libra.sql.antlr.SqlParserBaseVisitor;
 import org.joo.libra.sql.node.AndExpressionNode;
 import org.joo.libra.sql.node.BooleanExpressionNode;
+import org.joo.libra.sql.node.ConditionalExpressionNode;
 import org.joo.libra.sql.node.ContainsCompareExpressionNode;
 import org.joo.libra.sql.node.EmptyExpressionNode;
 import org.joo.libra.sql.node.ExpressionNode;
@@ -17,6 +18,7 @@ import org.joo.libra.sql.node.LexicalCompareExpressionNode;
 import org.joo.libra.sql.node.ListExpressionNode;
 import org.joo.libra.sql.node.ListItemExpressionNode;
 import org.joo.libra.sql.node.MathExpressionNode;
+import org.joo.libra.sql.node.MathUnaryExpressionNode;
 import org.joo.libra.sql.node.NotExpressionNode;
 import org.joo.libra.sql.node.NumberExpressionNode;
 import org.joo.libra.sql.node.NumericCompareExpressionNode;
@@ -27,6 +29,25 @@ import org.joo.libra.sql.node.VariableExpressionNode;
 import org.joo.libra.support.MalformedSyntaxException;
 
 public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public ExpressionNode visitConditionalExpr(SqlParser.ConditionalExprContext ctx) {
+		ConditionalExpressionNode node = new ConditionalExpressionNode();
+		node.setMain(visit(ctx.main));
+		node.setLeft((HasValue<Object>) visit(ctx.left));
+		node.setRight((HasValue<Object>) visit(ctx.right));
+		return node;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public ExpressionNode visitMathUnaryExpr(SqlParser.MathUnaryExprContext ctx) {
+		MathUnaryExpressionNode node = new MathUnaryExpressionNode();
+		node.setInner((HasValue<Number>) visit(ctx.inner));
+		node.setOp(ctx.op.getType());
+		return node;
+	}
 	
 	@Override 
 	public ExpressionNode visitWrapListExpr(SqlParser.WrapListExprContext ctx) { 
@@ -123,7 +144,8 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
         node.setLeft((HasValue<?>) visit(ctx.left));
         node.setRight((HasValue<?>) visit(ctx.right));
         node.setOp(ctx.op.getType());
-        return node;	}
+        return node;	
+    }
 
     @Override
     public ExpressionNode visitContainsExpr(final SqlParser.ContainsExprContext ctx) {

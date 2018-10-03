@@ -50,6 +50,11 @@ public class TestSqlComplex {
         list.add(new Object[] { "('John' is not 'John' or 1 == 1) or 1 > 2", true });
         list.add(new Object[] { "('John' is not 'John' or 1 == 1) or (1 < 2 and 1 + 1 == 2)", true });
 
+        list.add(new Object[] { "(1 + 1 == 2 ? 3 : 4) == 3", true });
+        list.add(new Object[] { "(1 + 1 == 3 ? 3 : 4) == 3", false });
+        list.add(new Object[] { "('John' ? 3 : 4) == 3", true });
+        list.add(new Object[] { "('' ? 3 : 4) == 3", false });
+
         return list;
     }
 }

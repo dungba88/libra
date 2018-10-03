@@ -98,6 +98,10 @@ public class TestSqlVariable {
         list.add(new Object[] { "jobssss is empty", context instanceof Map ? true : null, context });
         list.add(new Object[] { "age contains 3", false, context });
 
+        list.add(new Object[] { "(name ? age + 1 : age - 1) == 28", true, context });
+        list.add(new Object[] { "(age > 20 ? age + 1 : age - 1) == 28", true, context });
+        list.add(new Object[] { "(age < 20 ? age + 1 : age - 1) == 26", true, context });
+
         return list;
     }
 }

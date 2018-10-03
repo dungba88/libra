@@ -13,6 +13,7 @@ expression : NOT inner=expression							#notExpr
 			| left=expression AND right=expression			#andExpr
      		| left=expression OR right=expression			#orExpr
      		| term											#termExpr
+     		| main=expression QUESTION left=factor COLON right=factor	#conditionalExpr
      		;
 
 term : left=factor op=GREATER_THAN right=factor				#compareExpr
@@ -41,6 +42,7 @@ factor : DOUBLE												#numberExpr
        | NULL												#nullExpr
        | VARIABLE											#variableExpr
        | LPAREN expression RPAREN							#parenExpr
+       | op=SQRT inner=factor								#mathUnaryExpr
        | left=factor op=POW right=factor					#mathExpr
        | left=factor op=TIMES right=factor					#mathExpr
        | left=factor op=DIVIDE right=factor					#mathExpr
