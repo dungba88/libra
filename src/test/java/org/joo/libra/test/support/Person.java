@@ -1,5 +1,6 @@
 package org.joo.libra.test.support;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Person {
@@ -14,7 +15,11 @@ public class Person {
 
     private String[] jobs;
 
+    private String[] noJobs = new String[0];
+    
     private List<String> jobList;
+    
+    private List<String> noJobList = new ArrayList<>();
     
     private boolean female;
     
@@ -82,5 +87,21 @@ public class Person {
 
 	public void setSalary(int salary) {
 		this.salary = salary;
+	}
+
+	public String[] getNoJobs() {
+		return noJobs;
+	}
+
+	public void setNoJobs(String[] noJobs) {
+		this.noJobs = noJobs;
+	}
+
+	public List<String> getNoJobList() {
+		return noJobList;
+	}
+
+	public void setNoJobList(List<String> noJobList) {
+		this.noJobList = noJobList;
 	}
 }

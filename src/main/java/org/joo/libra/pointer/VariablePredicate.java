@@ -1,5 +1,7 @@
 package org.joo.libra.pointer;
 
+import java.util.Collection;
+
 import org.joo.libra.PredicateContext;
 import org.joo.libra.common.CompositionPredicate;
 import org.joo.libra.common.HasValue;
@@ -33,6 +35,10 @@ public class VariablePredicate implements CompositionPredicate {
         	return ((Number) rawValue).doubleValue() != 0.0;
         if (rawValue instanceof Boolean)
         	return Boolean.TRUE.equals(rawValue);
+        if (rawValue instanceof Collection)
+        	return !((Collection<?>) rawValue).isEmpty();
+        if (rawValue instanceof Object[])
+        	return ((Object[]) rawValue).length != 0;
         return true;
     }
     
