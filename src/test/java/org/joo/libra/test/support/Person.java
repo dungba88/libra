@@ -13,6 +13,10 @@ public class Person {
     private String[] jobs;
 
     private List<String> jobList;
+    
+    private boolean female;
+    
+    private String data;
 
     public String getName() {
         return name;
@@ -53,4 +57,20 @@ public class Person {
     public void setJobList(List<String> jobList) {
         this.jobList = jobList;
     }
+
+	public boolean isFemale() {
+		return female;
+	}
+
+	public void setFemale(boolean female) {
+		this.female = female;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
 }

@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.joo.libra.test.support.UserVO.Bar;
+import org.joo.libra.test.support.UserVO.Foo;
+
 public class MockDataUtils {
 
     public static Person mockPerson() {
@@ -29,4 +32,25 @@ public class MockDataUtils {
         map.put("jobList", new ArrayList<>(Arrays.asList(new String[] { "Oracle" })));
         return map;
     }
+
+    public static Object mockUserVO() {
+    	UserVO userVO = new UserVO();
+		userVO.setName("dungba");
+		userVO.setAge(7);
+		userVO.setFemale(false);
+		userVO.setData("ok");
+		userVO.setTime(20);
+
+		Foo foo = new Foo();
+		foo.setValue(27);
+		foo.setName("sophie");
+		foo.setCollection(Arrays.asList("dungba", "sophie", "heo", "meo", "cho"));
+		foo.setCollection1(Arrays.asList(23, 45, 80));
+
+		Bar bar = new Bar();
+		bar.setFoo(foo);
+
+		userVO.setBar(bar);
+		return userVO;
+	}
 }
