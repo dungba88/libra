@@ -79,7 +79,7 @@ Some special cases or limitations are covered here:
 - If literals are compared with any other type, the comparison will be as normal
   + `0 is false` will be evaluated as `false`, since `0` and `false` have different type
 - Variables, if stand alone in their own branch, will be converted into predicate according to their types:
-  + String variables will be considered as `true` if and only if they are *not null* and *not empty*
+  + String & list variables will be considered as `true` if and only if they are *not null* and *not empty*
   + Number variables will be considered as `true` if and only if they are *not null* and *not zero*
   + Boolean variables will be considered as their own values
   + `null` variables will always be considered as `false`
