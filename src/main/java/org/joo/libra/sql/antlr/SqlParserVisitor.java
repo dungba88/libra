@@ -97,6 +97,13 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFactorExpr(SqlParser.FactorExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code inExpr}
+	 * labeled alternative in {@link SqlParser#term}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInExpr(SqlParser.InExprContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code stringExpr}
 	 * labeled alternative in {@link SqlParser#factor}.
 	 * @param ctx the parse tree
@@ -125,6 +132,13 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMathExpr(SqlParser.MathExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code wrapListExpr}
+	 * labeled alternative in {@link SqlParser#factor}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWrapListExpr(SqlParser.WrapListExprContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code numberExpr}
 	 * labeled alternative in {@link SqlParser#factor}.
 	 * @param ctx the parse tree
@@ -145,4 +159,18 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitParenExpr(SqlParser.ParenExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code listFactorExpr}
+	 * labeled alternative in {@link SqlParser#list}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitListFactorExpr(SqlParser.ListFactorExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code listCommaExpr}
+	 * labeled alternative in {@link SqlParser#list}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitListCommaExpr(SqlParser.ListCommaExprContext ctx);
 }

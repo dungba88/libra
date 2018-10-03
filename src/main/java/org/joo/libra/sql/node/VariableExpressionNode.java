@@ -9,17 +9,12 @@ import org.joo.libra.pointer.VariablePredicate;
 import org.joo.libra.sql.ObjectUtils;
 import org.joo.libra.support.PredicateValueException;
 
+import lombok.Data;
+
+@Data
 public class VariableExpressionNode implements ExpressionNode, HasValue<Object> {
 
     private String variableName;
-
-    public String getVariableName() {
-        return variableName;
-    }
-
-    public void setVariableName(final String variableName) {
-        this.variableName = variableName;
-    }
 
     @Override
     public Object getValue(final PredicateContext context) {

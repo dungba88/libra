@@ -29,21 +29,27 @@ term : left=factor op=GREATER_THAN right=factor				#compareExpr
        | left=factor op=CONTAINS right=factor				#containsExpr
        | left=factor op=MATCHES right=factor				#matchesExpr
        | factor												#factorExpr
+       | left=factor op=IN right=factor						#inExpr
        ;
 
-factor : DOUBLE										#numberExpr
-	   | INTEGER									#numberExpr
-       | STRING										#stringExpr
-       | TRUE										#booleanExpr
-       | FALSE										#booleanExpr
-       | UNDEFINED									#nullExpr
-       | NULL										#nullExpr
-       | VARIABLE									#variableExpr
-       | LPAREN expression RPAREN					#parenExpr
-       | left=factor op=POW right=factor						#mathExpr
-       | left=factor op=TIMES right=factor						#mathExpr
-       | left=factor op=DIVIDE right=factor						#mathExpr
-       | left=factor op=PLUS right=factor						#mathExpr
-       | left=factor op=MINUS right=factor						#mathExpr
-       | left=factor op=MOD right=factor						#mathExpr
+factor : DOUBLE												#numberExpr
+	   | INTEGER											#numberExpr
+       | STRING												#stringExpr
+       | TRUE												#booleanExpr
+       | FALSE												#booleanExpr
+       | UNDEFINED											#nullExpr
+       | NULL												#nullExpr
+       | VARIABLE											#variableExpr
+       | LPAREN expression RPAREN							#parenExpr
+       | left=factor op=POW right=factor					#mathExpr
+       | left=factor op=TIMES right=factor					#mathExpr
+       | left=factor op=DIVIDE right=factor					#mathExpr
+       | left=factor op=PLUS right=factor					#mathExpr
+       | left=factor op=MINUS right=factor					#mathExpr
+       | left=factor op=MOD right=factor					#mathExpr
+       | LBRACK item=list RBRACK							#wrapListExpr
        ;
+       
+list   : factor												#listFactorExpr
+	   | left=list COMMA right=list							#listCommaExpr
+	   ;

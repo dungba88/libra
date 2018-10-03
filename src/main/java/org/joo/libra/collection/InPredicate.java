@@ -1,5 +1,6 @@
 package org.joo.libra.collection;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 import org.joo.libra.common.BinaryPredicate;
@@ -13,14 +14,22 @@ import org.joo.libra.common.HasValue;
  * @author griever
  *
  */
-public class InPredicate extends BinaryPredicate<Object, Collection<?>> {
+@SuppressWarnings("rawtypes")
+public class InPredicate extends BinaryPredicate {
 
-    public InPredicate(final HasValue<Object> one, final HasValue<Collection<?>> other) {
+    @SuppressWarnings("unchecked")
+	public InPredicate(final HasValue<?> one, final HasValue<?> other) {
         super(one, other);
     }
 
     @Override
-    protected boolean doSatisifiedBy(final Object one, final Collection<?> other) {
-        return other.contains(one);
+    protected boolean doSatisifiedBy(final Object one, final Object other) {
+    	if (one instanceof String && other instanceof String)
+            return other.toString().contains(one.toString());
+        if (other instanceof Collection<?>)
+            return ((Collection<?>) other).contains(one);
+        if (other instanceof Object[])
+            return Arrays.asList((Object[]) other).contains(one);
+        return false;
     }
 }

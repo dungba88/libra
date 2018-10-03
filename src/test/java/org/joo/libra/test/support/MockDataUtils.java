@@ -55,7 +55,7 @@ public class MockDataUtils {
 		foo.setValue(27);
 		foo.setName("sophie");
 		foo.setCollection(Arrays.asList("dungba", "sophie", "heo", "meo", "cho"));
-		foo.setCollection1(Arrays.asList(23, 45, 80));
+		foo.setCollection1(Arrays.asList(7, 23, 45, 80));
 
 		Bar bar = new Bar();
 		bar.setFoo(foo);

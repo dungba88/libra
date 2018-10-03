@@ -12,7 +12,10 @@ import org.joo.libra.sql.node.ContainsCompareExpressionNode;
 import org.joo.libra.sql.node.EmptyExpressionNode;
 import org.joo.libra.sql.node.ExpressionNode;
 import org.joo.libra.sql.node.GenericCompareExpressionNode;
+import org.joo.libra.sql.node.InCompareExpressionNode;
 import org.joo.libra.sql.node.LexicalCompareExpressionNode;
+import org.joo.libra.sql.node.ListExpressionNode;
+import org.joo.libra.sql.node.ListItemExpressionNode;
 import org.joo.libra.sql.node.MathExpressionNode;
 import org.joo.libra.sql.node.NotExpressionNode;
 import org.joo.libra.sql.node.NumberExpressionNode;
@@ -24,7 +27,34 @@ import org.joo.libra.sql.node.VariableExpressionNode;
 import org.joo.libra.support.MalformedSyntaxException;
 
 public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
-
+	
+	@Override 
+	public ExpressionNode visitWrapListExpr(SqlParser.WrapListExprContext ctx) { 
+		ListExpressionNode node = new ListExpressionNode();
+		node.setListItem((ListItemExpressionNode) visit(ctx.item));
+		return node;
+	}
+	
+	@Override
+	public ExpressionNode visitListFactorExpr(SqlParser.ListFactorExprContext ctx) {
+		ListItemExpressionNode node = new ListItemExpressionNode();
+		ExpressionNode innerNode = visitChildren(ctx);
+		if (!(innerNode instanceof HasValue))
+			throw new MalformedSyntaxException("Inner node must be value type: " + ctx.getChild(0).getText());
+		node.getInnerNode().add(innerNode);
+		return node;
+	}
+	
+	@Override
+	public ExpressionNode visitListCommaExpr(SqlParser.ListCommaExprContext ctx) {
+		ListItemExpressionNode node = new ListItemExpressionNode();
+		ListItemExpressionNode left = (ListItemExpressionNode) visit(ctx.left);
+		ListItemExpressionNode right = (ListItemExpressionNode) visit(ctx.right);
+		node.getInnerNode().addAll(left.getInnerNode());
+		node.getInnerNode().addAll(right.getInnerNode());
+		return node;
+	}
+	
     @Override
     public ExpressionNode visitParenExpr(final SqlParser.ParenExprContext ctx) {
         return visit(ctx.getChild(1));
@@ -86,6 +116,14 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
         node.setOp(ctx.op.getType());
         return node;
     }
+    
+	@Override
+	public ExpressionNode  visitInExpr(SqlParser.InExprContext ctx) {
+		InCompareExpressionNode node = new InCompareExpressionNode();
+        node.setLeft((HasValue<?>) visit(ctx.left));
+        node.setRight((HasValue<?>) visit(ctx.right));
+        node.setOp(ctx.op.getType());
+        return node;	}
 
     @Override
     public ExpressionNode visitContainsExpr(final SqlParser.ContainsExprContext ctx) {

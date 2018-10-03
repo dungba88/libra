@@ -3,6 +3,9 @@ package org.joo.libra.sql.node;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.common.HasValue;
 
+import lombok.Data;
+
+@Data
 public abstract class ValueExpressionNode<T> implements ExpressionNode, HasValue<T> {
 
     protected T value;

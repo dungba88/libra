@@ -5,7 +5,7 @@ package org.joo.libra.sql.antlr;
 }
 
 fragment Digit: 		'0'..'9' ;
-fragment Alpha: 		'[' | ']' | '.' | '_' | 'A'..'Z' | 'a'..'z' ;
+fragment Alpha: 		'.' | '_' | 'A'..'Z' | 'a'..'z' ;
 
 AND:					('AND' | 'and') ;
 OR:						('OR' | 'or') ;
@@ -16,6 +16,7 @@ IS_EQUALS_NOT:			('IS NOT' | 'is not') ;
 IS_EMPTY:				('IS EMPTY' | 'is empty') ;
 IS_NOT_EMPTY:			('IS NOT EMPTY' | 'is not empty') ;
 CONTAINS:				('CONTAINS' | 'contains') ;
+IN:						('IN' | 'in') ;
 MATCHES:				('MATCHES' | 'matches') ;
 TRUE:					('TRUE' | 'true') ;
 FALSE:					('FALSE' | 'false') ;
@@ -37,8 +38,12 @@ MOD:					'%' ;
 POW:					'^' ;
 LPAREN:					'(' ;
 RPAREN:					')' ;
+LBRACK:					'[' ;
+RBRACK:					']' ;
+COMMA:					',' ;
 STRING:					'\'' ~('\r' | '\n' | '\'')* '\'' ;
 INTEGER:				'-'* Digit+ ;
 DOUBLE:					'-'* Digit+'.'Digit+ ;
-VARIABLE:				Alpha+ (Alpha | Digit)* ;
+INDEX:					'[' Digit+ ']' ;
+VARIABLE:				Alpha+ (Alpha | Digit | INDEX)* ;
 WS: 					(' ' | '\t')+ -> channel(HIDDEN) ;
