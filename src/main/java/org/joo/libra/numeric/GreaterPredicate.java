@@ -9,9 +9,9 @@ import org.joo.libra.common.HasValue;
  * @author griever
  *
  */
-public class GreaterThanPredicate extends BinaryPredicate<Number, Number> {
+public class GreaterPredicate extends BinaryPredicate<Number, Number> {
 
-    public GreaterThanPredicate(final HasValue<Number> one, final HasValue<Number> other) {
+    public GreaterPredicate(final HasValue<Number> one, final HasValue<Number> other) {
         super(one, other);
     }
 

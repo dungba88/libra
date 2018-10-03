@@ -46,6 +46,7 @@ public class TestSqlPerf {
     protected void setup() {
         predicate = new SqlPredicate("name is 'John' and age > 27");
         predicate.checkForErrorAndThrow();
+        System.out.println("Parsed expression: " + predicate);
 
         String sql = "age * 2 + 4 * age - 1 * 5 + 6 != 0 " //
 				+ "and (1 + 2 * 4) / 5 - 8 = 1 " //

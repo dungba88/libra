@@ -9,9 +9,9 @@ import org.joo.libra.common.HasValue;
  * @author griever
  *
  */
-public class LessThanPredicate extends BinaryPredicate<Number, Number> {
+public class LessPredicate extends BinaryPredicate<Number, Number> {
 
-    public LessThanPredicate(final HasValue<Number> one, final HasValue<Number> other) {
+    public LessPredicate(final HasValue<Number> one, final HasValue<Number> other) {
         super(one, other);
     }
 
