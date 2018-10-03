@@ -3,6 +3,7 @@ package org.joo.libra.test;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joo.libra.PredicateContext;
 import org.joo.libra.sql.SqlPredicate;
 import org.joo.libra.support.PredicateExecutionException;
 import org.junit.Assert;
@@ -27,6 +28,7 @@ public class TestSqlSimple {
     public void testSimple() throws PredicateExecutionException {
 		SqlPredicate predicate = new SqlPredicate(value);
 		predicate.checkForErrorAndThrow();
+		Assert.assertEquals(value + ":", expected, predicate.satisfiedBy(new PredicateContext(null)));
 		Assert.assertEquals(value + ":", expected, predicate.satisfiedBy(null));
     }
 
