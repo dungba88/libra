@@ -27,9 +27,13 @@ public class MathExpressionNode extends AbstractBinaryOpExpressionNode<HasValue<
         case SqlLexer.MINUS:
             return left - right;
         case SqlLexer.TIMES:
-            return BigDecimal.valueOf(left).multiply(BigDecimal.valueOf(right));
+            return left * right;
         case SqlLexer.DIVIDE:
             return BigDecimal.valueOf(left).divide(BigDecimal.valueOf(right));
+        case SqlLexer.MOD:
+        	return left % right;
+        case SqlLexer.POW:
+        	return Math.pow(left, right);
         default:
             return null;
         }
@@ -49,6 +53,10 @@ public class MathExpressionNode extends AbstractBinaryOpExpressionNode<HasValue<
             return "TIMES";
         case SqlLexer.DIVIDE:
             return "DIVIDE";
+        case SqlLexer.MOD:
+            return "MOD";
+        case SqlLexer.POW:
+            return "POW";
         default:
             return null;
         }

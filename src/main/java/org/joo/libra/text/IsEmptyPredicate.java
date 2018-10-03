@@ -36,4 +36,8 @@ public class IsEmptyPredicate implements CompositionPredicate {
             return ((Object[]) rawValue).length == 0;
         return false;
     }
+    
+    public String toString() {
+    	return "IS_EMPTY(" + value + ")";
+    }
 }

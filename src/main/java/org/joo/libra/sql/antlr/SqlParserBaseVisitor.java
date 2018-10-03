@@ -1,4 +1,4 @@
-// Generated from /home/griever/Documents/javawork/libra/src/main/java/org/joo/libra/sql/antlr/SqlParser.g4 by ANTLR 4.7
+// Generated from SqlParser.g4 by ANTLR 4.7.1
 
 package org.joo.libra.sql.antlr;
 

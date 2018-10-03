@@ -40,8 +40,10 @@ factor : DOUBLE										#numberExpr
        | NULL										#nullExpr
        | VARIABLE									#variableExpr
        | LPAREN expression RPAREN					#parenExpr
+       | left=factor op=POW right=factor						#mathExpr
        | left=factor op=TIMES right=factor						#mathExpr
        | left=factor op=DIVIDE right=factor						#mathExpr
        | left=factor op=PLUS right=factor						#mathExpr
        | left=factor op=MINUS right=factor						#mathExpr
+       | left=factor op=MOD right=factor						#mathExpr
        ;

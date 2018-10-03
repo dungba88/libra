@@ -41,6 +41,10 @@ public class SqlPredicate implements CompositionPredicate {
             error = true;
             cause = new MalformedSyntaxException(ex);
         }
+        if (this.predicate == null) {
+        	error = true;
+        	cause = new MalformedSyntaxException("Predicate cannot be parsed");
+        }
     }
     
     @Override
@@ -72,7 +76,7 @@ public class SqlPredicate implements CompositionPredicate {
     }
     
     public String toString() {
-    	if (error || predicate == null)
+    	if (error)
     		return "#ERROR#";
     	return predicate.toString();
     }

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.joo.libra.sql.SqlPredicate;
-import org.joo.libra.support.MalformedSyntaxException;
 import org.joo.libra.support.PredicateExecutionException;
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,13 +25,9 @@ public class TestSqlSimple {
 
     @Test
     public void testSimple() throws PredicateExecutionException {
-        SqlPredicate predicate = new SqlPredicate(value);
-        if (predicate.hasError()) {
-            Assert.assertEquals(value + ":", expected, null);
-            Assert.assertTrue(predicate.getCause() instanceof MalformedSyntaxException);
-        } else {
-            Assert.assertEquals(value + ":", expected, predicate.satisfiedBy(null));
-        }
+		SqlPredicate predicate = new SqlPredicate(value);
+		predicate.checkForErrorAndThrow();
+		Assert.assertEquals(value + ":", expected, predicate.satisfiedBy(null));
     }
 
     @Parameters
@@ -41,7 +36,6 @@ public class TestSqlSimple {
 
         list.add(new Object[] { "undefined", false });
         list.add(new Object[] { "null", false });
-        list.add(new Object[] { "name'", null });
         list.add(new Object[] { "name", false });
         list.add(new Object[] { "''", false });
         list.add(new Object[] { "'John'", true });
@@ -52,8 +46,6 @@ public class TestSqlSimple {
         list.add(new Object[] { "'John' is 'oh'", false });
         list.add(new Object[] { "'John' is not 'oh'", true });
         list.add(new Object[] { "'John' != 'oh'", true });
-        list.add(new Object[] { "'John' > 'oh'", null });
-        list.add(new Object[] { "1 > 'oh'", null });
         list.add(new Object[] { "'John' contains 'oh'", true });
         list.add(new Object[] { "'John' is not empty", true });
         list.add(new Object[] { "'John' is empty", false });
@@ -61,8 +53,6 @@ public class TestSqlSimple {
         list.add(new Object[] { "'John' is null", false });
         list.add(new Object[] { "'John' matches '.*oh.*'", true });
         list.add(new Object[] { "'John' matches '.*ho.*'", false });
-        list.add(new Object[] { "1 matches '.*ho.*'", null });
-        list.add(new Object[] { "'John' matches 1", null });
 
         list.add(new Object[] { "false", false });
         list.add(new Object[] { "true", true });
@@ -83,9 +73,17 @@ public class TestSqlSimple {
         list.add(new Object[] { "1 = 2", false });
         list.add(new Object[] { "1 == 1", true });
         list.add(new Object[] { "1 == 2", false });
+        list.add(new Object[] { "1 ^ 2 == 1", true });
+        list.add(new Object[] { "2 ^ 2 % 3 == 1", true });
+        list.add(new Object[] { "5 % 2 ^ 2 == 1", true });
+        list.add(new Object[] { "(5 % 3) ^ 2 == 4", true });
+        list.add(new Object[] { "4 % 3 == 1", true });
+        list.add(new Object[] { "4 % 2 == 1", false });
+        list.add(new Object[] { "2 * 2 % 2 == 0", true });
+        list.add(new Object[] { "5 % 2 * 2 == 1", true });
+        list.add(new Object[] { "5 ^ 2 * 2 == 50", true });
+        list.add(new Object[] { "2 * 2 ^ 3 == 16", true });
 
-        list.add(new Object[] { "1 - 'a'", null });
-        list.add(new Object[] { "'a' - 1", null });
         list.add(new Object[] { "0", false });
         list.add(new Object[] { "1.0 - 1", false });
         list.add(new Object[] { "1 - 1", false });

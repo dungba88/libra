@@ -21,4 +21,8 @@ public class SimplePredicate implements CompositionPredicate {
     public boolean satisfiedBy(final PredicateContext context) throws PredicateExecutionException {
         return value;
     }
+    
+    public String toString() {
+    	return value + "";
+    }
 }

@@ -33,6 +33,8 @@ PLUS:					'+' ;
 MINUS:					'-' ;
 TIMES:					'*' ;
 DIVIDE:					'/' ;
+MOD:					'%' ;
+POW:					'^' ;
 LPAREN:					'(' ;
 RPAREN:					')' ;
 STRING:					'\'' ~('\r' | '\n' | '\'')* '\'' ;

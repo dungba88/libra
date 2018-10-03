@@ -17,4 +17,8 @@ public class BooleanExpressionNode extends ValueExpressionNode<Boolean> {
     public Predicate buildPredicate() {
         return new SimplePredicate(Boolean.TRUE.equals(value));
     }
+    
+    public String toString() {
+    	return value + "";
+    }
 }
