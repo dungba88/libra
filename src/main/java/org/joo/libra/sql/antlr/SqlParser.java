@@ -274,7 +274,7 @@ public class SqlParser extends Parser {
 				setState(11);
 				match(NOT);
 				setState(12);
-				((NotExprContext)_localctx).inner = expression(2);
+				((NotExprContext)_localctx).inner = expression(4);
 				}
 				break;
 			case TRUE:
@@ -315,11 +315,11 @@ public class SqlParser extends Parser {
 						((AndExprContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(16);
-						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
+						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
 						setState(17);
 						match(AND);
 						setState(18);
-						((AndExprContext)_localctx).right = expression(5);
+						((AndExprContext)_localctx).right = expression(4);
 						}
 						break;
 					case 2:
@@ -328,11 +328,11 @@ public class SqlParser extends Parser {
 						((OrExprContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(19);
-						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
+						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
 						setState(20);
 						match(OR);
 						setState(21);
-						((OrExprContext)_localctx).right = expression(4);
+						((OrExprContext)_localctx).right = expression(3);
 						}
 						break;
 					}
@@ -1106,9 +1106,9 @@ public class SqlParser extends Parser {
 	private boolean expression_sempred(ExpressionContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
-			return precpred(_ctx, 4);
-		case 1:
 			return precpred(_ctx, 3);
+		case 1:
+			return precpred(_ctx, 2);
 		}
 		return true;
 	}
@@ -1140,9 +1140,9 @@ public class SqlParser extends Parser {
 		"\3\5\3\5\3\5\3\5\3\5\5\5`\n\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5"+
 		"\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\7\5t\n\5\f\5\16\5w\13\5\3\5\2\4\4\b\6"+
 		"\2\4\6\b\2\2\2\u0092\2\n\3\2\2\2\4\20\3\2\2\2\6P\3\2\2\2\b_\3\2\2\2\n"+
-		"\13\5\4\3\2\13\3\3\2\2\2\f\r\b\3\1\2\r\16\7\5\2\2\16\21\5\4\3\4\17\21"+
-		"\5\6\4\2\20\f\3\2\2\2\20\17\3\2\2\2\21\32\3\2\2\2\22\23\f\6\2\2\23\24"+
-		"\7\3\2\2\24\31\5\4\3\7\25\26\f\5\2\2\26\27\7\4\2\2\27\31\5\4\3\6\30\22"+
+		"\13\5\4\3\2\13\3\3\2\2\2\f\r\b\3\1\2\r\16\7\5\2\2\16\21\5\4\3\6\17\21"+
+		"\5\6\4\2\20\f\3\2\2\2\20\17\3\2\2\2\21\32\3\2\2\2\22\23\f\5\2\2\23\24"+
+		"\7\3\2\2\24\31\5\4\3\6\25\26\f\4\2\2\26\27\7\4\2\2\27\31\5\4\3\5\30\22"+
 		"\3\2\2\2\30\25\3\2\2\2\31\34\3\2\2\2\32\30\3\2\2\2\32\33\3\2\2\2\33\5"+
 		"\3\2\2\2\34\32\3\2\2\2\35\36\5\b\5\2\36\37\7\20\2\2\37 \5\b\5\2 Q\3\2"+
 		"\2\2!\"\5\b\5\2\"#\7\21\2\2#$\5\b\5\2$Q\3\2\2\2%&\5\b\5\2&\'\7\22\2\2"+

@@ -5,7 +5,7 @@ import java.util.Map;
 import org.joo.libra.Predicate;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.common.HasValue;
-import org.joo.libra.pointer.IsNullPredicate;
+import org.joo.libra.pointer.VariablePredicate;
 import org.joo.libra.sql.ObjectUtils;
 import org.joo.libra.support.PredicateValueException;
 
@@ -44,7 +44,7 @@ public class VariableExpressionNode implements ExpressionNode, HasValue<Object> 
 
     @Override
     public Predicate buildPredicate() {
-        return new IsNullPredicate(this).not();
+        return new VariablePredicate(this);
     }
     
     public String toString() {

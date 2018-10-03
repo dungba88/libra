@@ -9,9 +9,9 @@ options { tokenVocab=SqlLexer; }
 predicate : expression	#expressionExpr
 			;
 
-expression : left=expression AND right=expression			#andExpr
+expression : NOT inner=expression							#notExpr
+			| left=expression AND right=expression			#andExpr
      		| left=expression OR right=expression			#orExpr
-     		| NOT inner=expression							#notExpr
      		| term											#termExpr
      		;
 

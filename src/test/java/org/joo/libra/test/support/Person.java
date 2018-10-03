@@ -7,6 +7,8 @@ public class Person {
     private String name;
 
     private int age;
+    
+    private int salary = 0;
 
     private Demographic demographic;
 
@@ -72,5 +74,13 @@ public class Person {
 
 	public void setData(String data) {
 		this.data = data;
+	}
+
+	public int getSalary() {
+		return salary;
+	}
+
+	public void setSalary(int salary) {
+		this.salary = salary;
 	}
 }
