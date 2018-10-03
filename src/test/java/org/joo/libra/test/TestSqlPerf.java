@@ -32,7 +32,7 @@ public class TestSqlPerf {
             System.out.println("\nTesting with Java object...");
 
             long start = System.currentTimeMillis();
-            doTest(iterations, () -> new PredicateContext(MockDataUtils.mockPerson()));
+            doTest(iterations, predicate, false, () -> new PredicateContext(MockDataUtils.mockPerson()));
             long elapsed = System.currentTimeMillis() - start;
             long pace = iterations * 1000L / elapsed;
 
@@ -42,16 +42,16 @@ public class TestSqlPerf {
             System.out.println("\nTesting with Map...");
 
             start = System.currentTimeMillis();
-            doTest(iterations, () -> new PredicateContext(MockDataUtils.mockMap()));
+            doTest(iterations, predicate, false, () -> new PredicateContext(MockDataUtils.mockMap()));
             elapsed = System.currentTimeMillis() - start;
             pace = iterations * 1000L / elapsed;
 
             System.out.println("Elapsed: " + elapsed + "ms");
             System.out.println("Pace: " + pace + " ops/sec");
             
-            System.out.println("Test Complex SQL");
+            System.out.println("\nTest Complex SQL");
             start = System.currentTimeMillis();
-            doTest(iterations, () -> new PredicateContext(MockDataUtils.mockUserVO()));
+            doTest(iterations, complexPredicate, true, () -> new PredicateContext(MockDataUtils.mockUserVO()));
             elapsed = System.currentTimeMillis() - start;
 			pace = iterations * 1000L / elapsed;
 
@@ -86,11 +86,11 @@ public class TestSqlPerf {
         SqlParser.VOCABULARY.getClass();
     }
 
-    protected void doTest(long iterations, Supplier<PredicateContext> contextSupplier) throws PredicateExecutionException {
+    protected void doTest(long iterations, SqlPredicate predicate, boolean expected, Supplier<PredicateContext> contextSupplier) throws PredicateExecutionException {
         for (int i = 0; i < iterations; i++) {
         	PredicateContext context = contextSupplier.get();
             boolean result = predicate.satisfiedBy(context);
-            Assert.assertEquals(false, result);
+            Assert.assertEquals(expected, result);
         }
     }
 
