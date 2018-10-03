@@ -42,7 +42,7 @@ public class SqlPredicate implements CompositionPredicate {
             cause = new MalformedSyntaxException(ex);
         }
     }
-
+    
     @Override
     public boolean satisfiedBy(final PredicateContext context) throws PredicateExecutionException {
         if (error || predicate == null)
@@ -69,5 +69,11 @@ public class SqlPredicate implements CompositionPredicate {
      */
     public boolean hasError() {
         return error;
+    }
+    
+    public String toString() {
+    	if (error || predicate == null)
+    		return "#ERROR#";
+    	return predicate.toString();
     }
 }

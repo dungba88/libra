@@ -24,4 +24,8 @@ public class NotPredicate implements CompositionPredicate {
     public boolean satisfiedBy(final PredicateContext context) throws PredicateExecutionException {
         return !predicate.satisfiedBy(context);
     }
+    
+    public String toString() {
+    	return "NOT(" + predicate.toString() + ")";
+    }
 }

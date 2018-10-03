@@ -1,5 +1,7 @@
 package org.joo.libra.logic;
 
+import java.util.Arrays;
+
 import org.joo.libra.Predicate;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.common.CompositionPredicate;
@@ -30,5 +32,15 @@ public class OrPredicate implements CompositionPredicate {
                 return true;
         }
         return false;
+    }
+
+    public String toString() {
+		String[] predicatesAsString = Arrays.stream(predicates).map(p -> p.toString())
+				.toArray(size -> new String[size]);
+    	return "OR(" + String.join(", ", predicatesAsString) + ")";
+    }
+    
+    public Predicate[] getPredicates() {
+    	return predicates;
     }
 }

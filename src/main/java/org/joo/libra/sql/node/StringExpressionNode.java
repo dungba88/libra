@@ -9,4 +9,8 @@ public class StringExpressionNode extends ValueExpressionNode<String> {
     public Predicate buildPredicate() {
         return new SimplePredicate(value != null && !value.isEmpty());
     }
+    
+    public String toString() {
+    	return "'" + value + "'";
+    }
 }

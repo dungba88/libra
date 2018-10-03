@@ -34,4 +34,23 @@ public class MathExpressionNode extends AbstractBinaryOpExpressionNode<HasValue<
             return null;
         }
     }
+    
+    public String toString() {
+    	return getOpAsString() + "(" + getLeft() + "," + getRight() + ")";
+    }
+
+	private String getOpAsString() {
+		switch (getOp()) {
+        case SqlLexer.PLUS:
+            return "PLUS";
+        case SqlLexer.MINUS:
+            return "MINUS";
+        case SqlLexer.TIMES:
+            return "TIMES";
+        case SqlLexer.DIVIDE:
+            return "DIVIDE";
+        default:
+            return null;
+        }
+	}
 }

@@ -18,4 +18,8 @@ public class NumberExpressionNode extends ValueExpressionNode<Number> {
     public Predicate buildPredicate() {
         return new SimplePredicate(value != null && NumericComparator.compare(value, 0) != 0);
     }
+    
+    public String toString() {
+    	return value + "";
+    }
 }

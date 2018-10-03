@@ -42,4 +42,9 @@ public abstract class BinaryPredicate<T, H> implements CompositionPredicate {
     }
 
     protected abstract boolean doSatisifiedBy(T one, H other);
+    
+    public String toString() {
+    	String name = getClass().getSimpleName().replaceAll("Predicate", "").toUpperCase();
+    	return name + "(" + one + "," + other + ")";
+    }
 }

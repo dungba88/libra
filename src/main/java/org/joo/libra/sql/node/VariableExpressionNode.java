@@ -46,4 +46,8 @@ public class VariableExpressionNode implements ExpressionNode, HasValue<Object> 
     public Predicate buildPredicate() {
         return new IsNullPredicate(this).not();
     }
+    
+    public String toString() {
+    	return variableName;
+    }
 }

@@ -9,4 +9,8 @@ public class ObjectExpressionNode extends ValueExpressionNode<Object> {
     public Predicate buildPredicate() {
         return new SimplePredicate(value != null);
     }
+    
+    public String toString() {
+    	return value + "";
+    }
 }

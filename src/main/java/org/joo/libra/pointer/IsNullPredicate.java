@@ -23,4 +23,8 @@ public class IsNullPredicate implements CompositionPredicate {
     public boolean satisfiedBy(final PredicateContext context) {
         return value.getValue(context) == null;
     }
+    
+    public String toString() {
+    	return "IS_NULL(" + value + ")";
+    }
 }
