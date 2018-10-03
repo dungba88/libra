@@ -109,14 +109,6 @@ public class SqlParser extends Parser {
 		}
 		public ExpressionExprContext(PredicateContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).enterExpressionExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).exitExpressionExpr(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SqlParserVisitor ) return ((SqlParserVisitor<? extends T>)visitor).visitExpressionExpr(this);
 			else return visitor.visitChildren(this);
@@ -164,14 +156,6 @@ public class SqlParser extends Parser {
 		}
 		public NotExprContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).enterNotExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).exitNotExpr(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SqlParserVisitor ) return ((SqlParserVisitor<? extends T>)visitor).visitNotExpr(this);
 			else return visitor.visitChildren(this);
@@ -182,14 +166,6 @@ public class SqlParser extends Parser {
 			return getRuleContext(TermContext.class,0);
 		}
 		public TermExprContext(ExpressionContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).enterTermExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).exitTermExpr(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SqlParserVisitor ) return ((SqlParserVisitor<? extends T>)visitor).visitTermExpr(this);
@@ -208,14 +184,6 @@ public class SqlParser extends Parser {
 		}
 		public OrExprContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).enterOrExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).exitOrExpr(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SqlParserVisitor ) return ((SqlParserVisitor<? extends T>)visitor).visitOrExpr(this);
 			else return visitor.visitChildren(this);
@@ -232,14 +200,6 @@ public class SqlParser extends Parser {
 			return getRuleContext(ExpressionContext.class,i);
 		}
 		public AndExprContext(ExpressionContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).enterAndExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).exitAndExpr(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SqlParserVisitor ) return ((SqlParserVisitor<? extends T>)visitor).visitAndExpr(this);
@@ -376,14 +336,6 @@ public class SqlParser extends Parser {
 		public TerminalNode IS_NOT_EMPTY() { return getToken(SqlParser.IS_NOT_EMPTY, 0); }
 		public EmptyExprContext(TermContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).enterEmptyExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).exitEmptyExpr(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SqlParserVisitor ) return ((SqlParserVisitor<? extends T>)visitor).visitEmptyExpr(this);
 			else return visitor.visitChildren(this);
@@ -403,14 +355,6 @@ public class SqlParser extends Parser {
 		public TerminalNode IS_EQUALS_NOT() { return getToken(SqlParser.IS_EQUALS_NOT, 0); }
 		public NotEqualExprContext(TermContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).enterNotEqualExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).exitNotEqualExpr(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SqlParserVisitor ) return ((SqlParserVisitor<? extends T>)visitor).visitNotEqualExpr(this);
 			else return visitor.visitChildren(this);
@@ -428,14 +372,6 @@ public class SqlParser extends Parser {
 		}
 		public TerminalNode MATCHES() { return getToken(SqlParser.MATCHES, 0); }
 		public MatchesExprContext(TermContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).enterMatchesExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).exitMatchesExpr(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SqlParserVisitor ) return ((SqlParserVisitor<? extends T>)visitor).visitMatchesExpr(this);
@@ -455,14 +391,6 @@ public class SqlParser extends Parser {
 		public TerminalNode CONTAINS() { return getToken(SqlParser.CONTAINS, 0); }
 		public ContainsExprContext(TermContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).enterContainsExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).exitContainsExpr(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SqlParserVisitor ) return ((SqlParserVisitor<? extends T>)visitor).visitContainsExpr(this);
 			else return visitor.visitChildren(this);
@@ -473,14 +401,6 @@ public class SqlParser extends Parser {
 			return getRuleContext(FactorContext.class,0);
 		}
 		public FactorExprContext(TermContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).enterFactorExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).exitFactorExpr(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SqlParserVisitor ) return ((SqlParserVisitor<? extends T>)visitor).visitFactorExpr(this);
@@ -503,14 +423,6 @@ public class SqlParser extends Parser {
 		public TerminalNode LESS_THAN_EQUALS() { return getToken(SqlParser.LESS_THAN_EQUALS, 0); }
 		public CompareExprContext(TermContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).enterCompareExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).exitCompareExpr(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SqlParserVisitor ) return ((SqlParserVisitor<? extends T>)visitor).visitCompareExpr(this);
 			else return visitor.visitChildren(this);
@@ -530,14 +442,6 @@ public class SqlParser extends Parser {
 		public TerminalNode DBL_EQUALS() { return getToken(SqlParser.DBL_EQUALS, 0); }
 		public TerminalNode IS_EQUALS() { return getToken(SqlParser.IS_EQUALS, 0); }
 		public EqualExprContext(TermContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).enterEqualExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).exitEqualExpr(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SqlParserVisitor ) return ((SqlParserVisitor<? extends T>)visitor).visitEqualExpr(this);
@@ -740,14 +644,6 @@ public class SqlParser extends Parser {
 		public TerminalNode STRING() { return getToken(SqlParser.STRING, 0); }
 		public StringExprContext(FactorContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).enterStringExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).exitStringExpr(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SqlParserVisitor ) return ((SqlParserVisitor<? extends T>)visitor).visitStringExpr(this);
 			else return visitor.visitChildren(this);
@@ -756,14 +652,6 @@ public class SqlParser extends Parser {
 	public static class VariableExprContext extends FactorContext {
 		public TerminalNode VARIABLE() { return getToken(SqlParser.VARIABLE, 0); }
 		public VariableExprContext(FactorContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).enterVariableExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).exitVariableExpr(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SqlParserVisitor ) return ((SqlParserVisitor<? extends T>)visitor).visitVariableExpr(this);
@@ -774,14 +662,6 @@ public class SqlParser extends Parser {
 		public TerminalNode UNDEFINED() { return getToken(SqlParser.UNDEFINED, 0); }
 		public TerminalNode NULL() { return getToken(SqlParser.NULL, 0); }
 		public NullExprContext(FactorContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).enterNullExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).exitNullExpr(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SqlParserVisitor ) return ((SqlParserVisitor<? extends T>)visitor).visitNullExpr(this);
@@ -806,14 +686,6 @@ public class SqlParser extends Parser {
 		public TerminalNode MOD() { return getToken(SqlParser.MOD, 0); }
 		public MathExprContext(FactorContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).enterMathExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).exitMathExpr(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SqlParserVisitor ) return ((SqlParserVisitor<? extends T>)visitor).visitMathExpr(this);
 			else return visitor.visitChildren(this);
@@ -824,14 +696,6 @@ public class SqlParser extends Parser {
 		public TerminalNode INTEGER() { return getToken(SqlParser.INTEGER, 0); }
 		public NumberExprContext(FactorContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).enterNumberExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).exitNumberExpr(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SqlParserVisitor ) return ((SqlParserVisitor<? extends T>)visitor).visitNumberExpr(this);
 			else return visitor.visitChildren(this);
@@ -841,14 +705,6 @@ public class SqlParser extends Parser {
 		public TerminalNode TRUE() { return getToken(SqlParser.TRUE, 0); }
 		public TerminalNode FALSE() { return getToken(SqlParser.FALSE, 0); }
 		public BooleanExprContext(FactorContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).enterBooleanExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).exitBooleanExpr(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SqlParserVisitor ) return ((SqlParserVisitor<? extends T>)visitor).visitBooleanExpr(this);
@@ -862,14 +718,6 @@ public class SqlParser extends Parser {
 		}
 		public TerminalNode RPAREN() { return getToken(SqlParser.RPAREN, 0); }
 		public ParenExprContext(FactorContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).enterParenExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).exitParenExpr(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof SqlParserVisitor ) return ((SqlParserVisitor<? extends T>)visitor).visitParenExpr(this);
