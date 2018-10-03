@@ -6,6 +6,7 @@ import org.joo.libra.sql.SqlPredicate;
 import org.joo.libra.sql.antlr.SqlParser;
 import org.joo.libra.sql.antlr.SqlParserBaseVisitor;
 import org.joo.libra.sql.node.AbstractBinaryOpExpressionNode;
+import org.joo.libra.sql.node.BooleanExpressionNode;
 import org.joo.libra.sql.node.ExpressionNode;
 import org.joo.libra.sql.node.GenericCompareExpressionNode;
 import org.joo.libra.sql.node.LexicalCompareExpressionNode;
@@ -24,7 +25,8 @@ public class TestSqlMisc {
 
             protected ExpressionNode doParse(SqlParser parser) {
                 SqlParserBaseVisitor<ExpressionNode> visitor = new SqlParserBaseVisitor<>();
-                return visitor.visit(parser.predicate());
+                visitor.visit(parser.predicate());
+                return new BooleanExpressionNode(false);
             }
         };
 
