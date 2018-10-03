@@ -35,7 +35,7 @@ public class TestSqlPerf {
             doTest(iterations, predicate, false, 2);
 
             System.out.println("\nTest Complex SQL");
-            doTest(iterations, complexPredicate, false, 3);
+            doTest(iterations, complexPredicate, true, 3);
         } finally {
             System.out.println("\nCleaning up...");
             cleanup();
@@ -49,7 +49,7 @@ public class TestSqlPerf {
         System.out.println("Parsed expression: " + predicate);
 
         String sql = "age % 2 + 4 * age - 1 * 5 + 6 != 0 " //
-				+ "and (1 + 2 ^ 4) % 5 - 8 = 1 " //
+				+ "and (1 + 2 ^ 4) % 5 - 1 = 1 " //
 				+ "or bar.foo.collection1 contains age " //
 				+ "and data = 'ok' " //
 				+ "and (not female or name = bar.foo.name) " //
