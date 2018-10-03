@@ -72,12 +72,17 @@ predicate.checkForErrorAndThrow();
 ## edge cases and limitations
 
 Some special cases or limitations are covered here:
-- Literals, if stand alone in its own branch, will be converted into predicate according to their types:
-  + String literals will be considered as `true` if and only if it was *not null* and *not empty*
-  + Number literals will be considered as `true` if and only if it was *not null* and *not zero*
+- Literals, if stand alone in their own branch, will be converted into predicate according to their types:
+  + String literals will be considered as `true` if and only they are was *not null* and *not empty*
+  + Number literals will be considered as `true` if and only they are was *not null* and *not zero*
   + `null` will always be considered as `false`
 - If literals are compared with any other type, the comparison will be as normal
   + `0 is false` will be evaluated as `false`, since `0` and `false` have different type
+- Variables, if stand alone in their own branch, will be converted into predicate according to their types:
+  + String variables will be considered as `true` if and only if they are *not null* and *not empty*
+  + Number variables will be considered as `true` if and only if they are *not null* and *not zero*
+  + Boolean variables will be considered as their own values
+  + `null` variables will always be considered as `false`
 - When comparing number, they will be converted into `BigDecimal`, so `0.0`, `0` or `0L` are all equal
 - Limitations with `contains` expression: the type of the collection and that of the item must match. `grades contains 5` where items in `grades` are decimal number will be evaluated as `false`
 
