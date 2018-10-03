@@ -34,16 +34,16 @@ public class SqlPredicate implements CompositionPredicate {
         try {
             this.parser = parser;
             this.predicate = parser.parse(predicate);
+            if (this.predicate == null) {
+            	error = true;
+            	cause = new MalformedSyntaxException("Predicate cannot be parsed");
+            }
         } catch (MalformedSyntaxException ex) {
             error = true;
             cause = ex;
         } catch (Exception ex) {
             error = true;
             cause = new MalformedSyntaxException(ex);
-        }
-        if (this.predicate == null) {
-        	error = true;
-        	cause = new MalformedSyntaxException("Predicate cannot be parsed");
         }
     }
     
