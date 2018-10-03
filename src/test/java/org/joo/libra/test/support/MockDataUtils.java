@@ -9,6 +9,16 @@ import org.joo.libra.test.support.UserVO.Bar;
 import org.joo.libra.test.support.UserVO.Foo;
 
 public class MockDataUtils {
+	
+	public static Object mock(int type) {
+		if (type == 1)
+			return mockPerson();
+		if (type == 2)
+			return mockMap();
+		if (type == 3)
+			return mockUserVO();
+		return null;
+	}
 
     public static Person mockPerson() {
         Person person = new Person();
