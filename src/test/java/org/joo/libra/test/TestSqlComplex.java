@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.joo.libra.sql.SqlPredicate;
-import org.joo.libra.support.PredicateExecutionException;
+import org.joo.libra.support.exceptions.PredicateExecutionException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

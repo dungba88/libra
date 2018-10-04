@@ -18,7 +18,7 @@ import org.joo.libra.sql.node.LexicalCompareExpressionNode;
 import org.joo.libra.sql.node.ListExpressionNode;
 import org.joo.libra.sql.node.ListItemExpressionNode;
 import org.joo.libra.sql.node.MathExpressionNode;
-import org.joo.libra.sql.node.MathUnaryExpressionNode;
+import org.joo.libra.sql.node.FunctionExpressionNode;
 import org.joo.libra.sql.node.NotExpressionNode;
 import org.joo.libra.sql.node.NumberExpressionNode;
 import org.joo.libra.sql.node.NumericCompareExpressionNode;
@@ -26,7 +26,7 @@ import org.joo.libra.sql.node.ObjectExpressionNode;
 import org.joo.libra.sql.node.OrExpressionNode;
 import org.joo.libra.sql.node.StringExpressionNode;
 import org.joo.libra.sql.node.VariableExpressionNode;
-import org.joo.libra.support.MalformedSyntaxException;
+import org.joo.libra.support.exceptions.MalformedSyntaxException;
 
 public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 
@@ -40,12 +40,11 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 		return node;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public ExpressionNode visitMathUnaryExpr(SqlParser.MathUnaryExprContext ctx) {
-		MathUnaryExpressionNode node = new MathUnaryExpressionNode();
-		node.setInner((HasValue<Number>) visit(ctx.inner));
-		node.setOp(ctx.op.getType());
+	public ExpressionNode visitFunctionExpr(SqlParser.FunctionExprContext ctx) {
+		FunctionExpressionNode node = new FunctionExpressionNode();
+		node.setInner((ListItemExpressionNode) visit(ctx.inner));
+		node.setName(ctx.name.getText());
 		return node;
 	}
 
@@ -241,7 +240,7 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 
 	private boolean isNumberNode(final Object node) {
 		return node instanceof NumberExpressionNode || node instanceof MathExpressionNode
-				|| node instanceof MathUnaryExpressionNode
+				|| node instanceof FunctionExpressionNode
 				|| node instanceof VariableExpressionNode;
 	}
 }

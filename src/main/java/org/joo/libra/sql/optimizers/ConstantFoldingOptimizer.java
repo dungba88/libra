@@ -15,8 +15,8 @@ import org.joo.libra.sql.node.MathExpressionNode;
 import org.joo.libra.sql.node.NumberExpressionNode;
 import org.joo.libra.sql.node.UnaryExpressionNode;
 import org.joo.libra.sql.node.VariableExpressionNode;
-import org.joo.libra.support.MalformedSyntaxException;
-import org.joo.libra.support.PredicateExecutionException;
+import org.joo.libra.support.exceptions.MalformedSyntaxException;
+import org.joo.libra.support.exceptions.PredicateExecutionException;
 
 public class ConstantFoldingOptimizer implements Optimizer {
 

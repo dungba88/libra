@@ -12,7 +12,7 @@ import org.joo.libra.sql.node.ExpressionNode;
 import org.joo.libra.sql.node.GenericCompareExpressionNode;
 import org.joo.libra.sql.node.NumberExpressionNode;
 import org.joo.libra.sql.optimizers.OptimizedAntlrSqlPredicateParser;
-import org.joo.libra.support.PredicateExecutionException;
+import org.joo.libra.support.exceptions.PredicateExecutionException;
 import org.joo.libra.test.support.MockDataUtils;
 import org.junit.Assert;
 import org.junit.Test;

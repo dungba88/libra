@@ -3,7 +3,7 @@ package org.joo.libra.logic;
 import org.joo.libra.Predicate;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.common.CompositionPredicate;
-import org.joo.libra.support.PredicateExecutionException;
+import org.joo.libra.support.exceptions.PredicateExecutionException;
 
 /**
  * Represents a predicate with <code>not</code> rule. It will be satisfied by if

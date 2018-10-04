@@ -53,7 +53,7 @@ factor
 	| NULL # nullExpr
 	| VARIABLE # variableExpr
 	| LPAREN expression RPAREN # parenExpr
-	| op = SQRT inner = factor # mathUnaryExpr
+	| name = VARIABLE LPAREN inner = list RPAREN # functionExpr
 	| left = factor op = POW right = factor # mathExpr
 	| left = factor op = TIMES right = factor # mathExpr
 	| left = factor op = DIVIDE right = factor # mathExpr

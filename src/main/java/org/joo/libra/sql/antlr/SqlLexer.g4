@@ -36,7 +36,6 @@ TIMES:					'*' ;
 DIVIDE:					'/' ;
 MOD:					'%' ;
 POW:					'^' ;
-SQRT:					('SQRT' | 'sqrt') ;
 QUESTION:				'?' ;
 COLON:					':' ;
 LPAREN:					'(' ;

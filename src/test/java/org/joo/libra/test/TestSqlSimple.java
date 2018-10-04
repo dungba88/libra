@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.joo.libra.PredicateContext;
 import org.joo.libra.sql.SqlPredicate;
-import org.joo.libra.support.PredicateExecutionException;
+import org.joo.libra.support.exceptions.PredicateExecutionException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -101,10 +101,18 @@ public class TestSqlSimple {
 		list.add(new Object[] { "4 / 3 > 1", true });
 		list.add(new Object[] { "4 / 3 < 2", true });
 		list.add(new Object[] { "-4 < -2", true });
-		list.add(new Object[] { "sqrt 4 == 2", true });
+		list.add(new Object[] { "sqrt (4) == 2", true });
 		list.add(new Object[] { "sqrt (2 * 5 + 6) == 4", true });
 		list.add(new Object[] { "sqrt (4) - 1 = 1", true });
 		list.add(new Object[] { "sqrt (4) - 1 * 2 = 0", true });
+		list.add(new Object[] { "sqrt (4) - 1 * 2 = 0", true });
+
+		list.add(new Object[] { "avg (4, 5, 6) == 5", true });
+		list.add(new Object[] { "avg (4, 5) == 4.5", true });
+		list.add(new Object[] { "avg (4) == 4", true });
+		list.add(new Object[] { "avg (4, 5, 6) - 5 == 0", true });
+		list.add(new Object[] { "avg (4, 5, 6) is 5 ? 0 : 1", false });
+		list.add(new Object[] { "avg (4, 5, 6) is 5 ? 1 : 0", true });
 
 		return list;
 	}

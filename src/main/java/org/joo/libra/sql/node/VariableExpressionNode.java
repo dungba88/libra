@@ -7,7 +7,7 @@ import org.joo.libra.PredicateContext;
 import org.joo.libra.common.HasValue;
 import org.joo.libra.pointer.VariablePredicate;
 import org.joo.libra.sql.ObjectUtils;
-import org.joo.libra.support.PredicateValueException;
+import org.joo.libra.support.exceptions.PredicateValueException;
 
 import lombok.Data;
 

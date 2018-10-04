@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.joo.libra.PredicateContext;
 import org.joo.libra.sql.SqlPredicate;
-import org.joo.libra.support.PredicateExecutionException;
+import org.joo.libra.support.exceptions.PredicateExecutionException;
 import org.joo.libra.test.support.MockDataUtils;
 import org.junit.Assert;
 import org.junit.Test;

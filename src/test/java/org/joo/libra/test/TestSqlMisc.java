@@ -13,7 +13,7 @@ import org.joo.libra.sql.node.LexicalCompareExpressionNode;
 import org.joo.libra.sql.node.MathExpressionNode;
 import org.joo.libra.sql.node.NumericCompareExpressionNode;
 import org.joo.libra.sql.node.ObjectExpressionNode;
-import org.joo.libra.support.PredicateExecutionException;
+import org.joo.libra.support.exceptions.PredicateExecutionException;
 import org.junit.Assert;
 import org.junit.Test;
 

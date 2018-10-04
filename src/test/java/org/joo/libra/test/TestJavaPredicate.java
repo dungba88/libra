@@ -11,7 +11,7 @@ import org.joo.libra.common.SimplePredicate;
 import org.joo.libra.logic.AndPredicate;
 import org.joo.libra.logic.OrPredicate;
 import org.joo.libra.pointer.IsNullPredicate;
-import org.joo.libra.support.PredicateExecutionException;
+import org.joo.libra.support.exceptions.PredicateExecutionException;
 import org.joo.libra.text.EqualsIgnoreCase;
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,6 +1,6 @@
 package org.joo.libra;
 
-import org.joo.libra.support.PredicateExecutionException;
+import org.joo.libra.support.exceptions.PredicateExecutionException;
 
 /**
  * Represents a predicate

@@ -1,7 +1,7 @@
 package org.joo.libra.common;
 
 import org.joo.libra.PredicateContext;
-import org.joo.libra.support.PredicateExecutionException;
+import org.joo.libra.support.exceptions.PredicateExecutionException;
 
 /**
  * Simple implementation of {@link org.joo.libra.Predicate}

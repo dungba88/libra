@@ -6,7 +6,7 @@ import org.joo.libra.sql.SqlPredicate;
 import org.joo.libra.sql.antlr.SqlLexer;
 import org.joo.libra.sql.antlr.SqlParser;
 import org.joo.libra.sql.optimizers.OptimizedAntlrSqlPredicateParser;
-import org.joo.libra.support.PredicateExecutionException;
+import org.joo.libra.support.exceptions.PredicateExecutionException;
 import org.joo.libra.test.support.MockDataUtils;
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,7 +17,7 @@ public class TestSqlPerf {
 
 	private SqlPredicate complexPredicate;
 
-	private int iterations = 10000000;
+	private int iterations = 1;
 
 	@Test
 	public void test() throws PredicateExecutionException {

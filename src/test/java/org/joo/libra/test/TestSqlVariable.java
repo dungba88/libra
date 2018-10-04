@@ -7,7 +7,7 @@ import java.util.Map;
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.sql.SqlPredicate;
-import org.joo.libra.support.PredicateExecutionException;
+import org.joo.libra.support.exceptions.PredicateExecutionException;
 import org.joo.libra.test.support.MockDataUtils;
 import org.junit.Assert;
 import org.junit.Test;
@@ -102,6 +102,9 @@ public class TestSqlVariable {
 		list.add(new Object[] { "jobssss is empty", context instanceof Map ? true : null, context });
 		list.add(new Object[] { "age contains 3", false, context });
 
+		list.add(new Object[] { "sqrt(age) > 5", true, context });
+		list.add(new Object[] { "sqrt(age) < 6", true, context });
+		list.add(new Object[] { "sqrt(age + 9) == 6", true, context });
 		list.add(new Object[] { "(name ? age + 1 : age - 1) == 28", true, context });
 		list.add(new Object[] { "(age > 20 ? age + 1 : age - 1) == 28", true, context });
 		list.add(new Object[] { "(age < 20 ? age + 1 : age - 1) == 26", true, context });

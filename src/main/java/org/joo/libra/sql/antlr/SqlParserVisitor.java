@@ -139,13 +139,6 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMathExpr(SqlParser.MathExprContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code mathUnaryExpr}
-	 * labeled alternative in {@link SqlParser#factor}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitMathUnaryExpr(SqlParser.MathUnaryExprContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code wrapListExpr}
 	 * labeled alternative in {@link SqlParser#factor}.
 	 * @param ctx the parse tree
@@ -173,6 +166,13 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitParenExpr(SqlParser.ParenExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code functionExpr}
+	 * labeled alternative in {@link SqlParser#factor}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionExpr(SqlParser.FunctionExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code listFactorExpr}
 	 * labeled alternative in {@link SqlParser#list}.

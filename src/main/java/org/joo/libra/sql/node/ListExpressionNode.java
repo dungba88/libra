@@ -28,8 +28,7 @@ public class ListExpressionNode implements ExpressionNode, HasValue<Object> {
 	public Collection<?> getValue(PredicateContext context) {
 		if (listItem == null)
 			return Collections.emptyList();
-		return listItem.getInnerNode().stream().map(node -> ((HasValue<?>) node).getValue(context))
-				.collect(Collectors.toList());
+		return listItem.getValue(context);
 	}
 
 	public String toString() {

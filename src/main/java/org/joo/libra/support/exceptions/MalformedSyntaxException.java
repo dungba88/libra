@@ -1,4 +1,4 @@
-package org.joo.libra.support;
+package org.joo.libra.support.exceptions;
 
 /**
  * This exception will be thrown if any exception occurred while parsing
