@@ -54,6 +54,7 @@ factor
 	| VARIABLE # variableExpr
 	| LPAREN expression RPAREN # parenExpr
 	| name = VARIABLE LPAREN inner = list RPAREN # functionExpr
+	| name = VARIABLE LPAREN RPAREN # functionExpr
 	| left = factor op = POW right = factor # mathExpr
 	| left = factor op = TIMES right = factor # mathExpr
 	| left = factor op = DIVIDE right = factor # mathExpr

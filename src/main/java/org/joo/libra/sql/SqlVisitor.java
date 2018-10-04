@@ -43,7 +43,8 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 	@Override
 	public ExpressionNode visitFunctionExpr(SqlParser.FunctionExprContext ctx) {
 		FunctionExpressionNode node = new FunctionExpressionNode();
-		node.setInner((ListItemExpressionNode) visit(ctx.inner));
+		if (ctx.inner != null)
+			node.setInner((ListItemExpressionNode) visit(ctx.inner));
 		node.setName(ctx.name.getText());
 		return node;
 	}

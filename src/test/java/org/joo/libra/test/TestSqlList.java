@@ -37,21 +37,23 @@ public class TestSqlList {
 	public static List<Object[]> data() {
 		List<Object[]> list = new ArrayList<Object[]>();
 
-		list.add(new Object[] { "[1, 2, 3] contains 1", true });
-		list.add(new Object[] { "['abc', 2, 3] contains 1", false });
-		list.add(new Object[] { "['abc', 2, 3] contains 'abc'", true });
-		list.add(new Object[] { "[name, 2, 3] contains 'John'", true });
-		list.add(new Object[] { "['John', 2, 3] contains name", true });
-		list.add(new Object[] { "[name, 2, age] contains 27", true });
-		list.add(new Object[] { "[name, 2, age] contains 1", false });
+		list.add(new Object[] { "{1, 2, 3} contains 1", true });
+		list.add(new Object[] { "{'abc', 2, 3} contains 1", false });
+		list.add(new Object[] { "{'abc', 2, 3} contains 'abc'", true });
+		list.add(new Object[] { "{name, 2, 3} contains 'John'", true });
+		list.add(new Object[] { "{'John', 2, 3} contains name", true });
+		list.add(new Object[] { "{name, 2, age} contains 27", true });
+		list.add(new Object[] { "{name, 2, age} contains 1", false });
 
-		list.add(new Object[] { "1 in [1, 2, 3]", true });
-		list.add(new Object[] { "1 in ['abc', 2, 3]", false });
-		list.add(new Object[] { "'abc' in ['abc', 2, 3]", true });
-		list.add(new Object[] { "'John' in [name, 2, 3]", true });
-		list.add(new Object[] { "name in ['John', 2, 3]", true });
-		list.add(new Object[] { "27 in [name, 2, age]", true });
-		list.add(new Object[] { "1 in [name, 2, age]", false });
+		list.add(new Object[] { "1 in {1, 2, 3}", true });
+		list.add(new Object[] { "1 in {'abc', 2, 3}", false });
+		list.add(new Object[] { "'abc' in {'abc', 2, 3}", true });
+		list.add(new Object[] { "'John' in {name, 2, 3}", true });
+		list.add(new Object[] { "name in {'John', 2, 3}", true });
+		list.add(new Object[] { "27 in {name, 2, age}", true });
+		list.add(new Object[] { "1 in {name, 2, age}", false });
+
+		list.add(new Object[] { "1 in {1}", true });
 
 		return list;
 	}

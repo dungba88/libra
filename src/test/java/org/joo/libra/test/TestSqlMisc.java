@@ -1,5 +1,6 @@
 package org.joo.libra.test;
 
+import org.joo.libra.PredicateContext;
 import org.joo.libra.common.SimpleHasValue;
 import org.joo.libra.sql.AntlrSqlPredicateParser;
 import org.joo.libra.sql.SqlPredicate;
@@ -18,6 +19,15 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class TestSqlMisc {
+	
+	@Test
+	public void testCustomFunction() {
+		PredicateContext context = new PredicateContext(null);
+		context.registerFunction("rand", (ctx, args) -> Math.random());
+		SqlPredicate predicate = new SqlPredicate("rand() >= 0 and rand() <= 1");
+		predicate.checkForErrorAndThrow();
+		Assert.assertEquals(true, predicate.satisfiedBy(context));
+	}
 
 	@Test
 	public void test() {
