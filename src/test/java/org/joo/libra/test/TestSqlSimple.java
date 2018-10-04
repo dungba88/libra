@@ -120,6 +120,10 @@ public class TestSqlSimple {
 		list.add(new Object[] { "sum (4, 5, 6) is 15 ? 0 : 1", false });
 		list.add(new Object[] { "sum (4, 5, 6) is 15 ? 1 : 0", true });
 
+		list.add(new Object[] { "min (5, 4, 6) is 4 ? 1 : 0", true });
+		list.add(new Object[] { "max (5, 4, 6) is 4", false });
+		list.add(new Object[] { "max (5, 4, 6) is 6", true });
+
 		return list;
 	}
 }

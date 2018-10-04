@@ -14,6 +14,8 @@ public class GlobalFunctions {
 		instance.functionMappings.put("sqrt", new SqrtFunction());
 		instance.functionMappings.put("avg", new AvgFunction());
 		instance.functionMappings.put("sum", new SumFunction());
+		instance.functionMappings.put("min", new MinFunction());
+		instance.functionMappings.put("max", new MaxFunction());
 	}
 
 	public static final GlobalFunctions getInstance() {
