@@ -25,6 +25,7 @@ Libra supports the following syntax for SQL predicates:
 - Boolean literals: `true`, `false`
 - Other literals: `null`, `undefined`, `empty`
 - Variables: alphanumerics, `_`, `.` (to denote nested object) and `[`, `]` (to denote array index), must starts with alphabet characters.
+- Function: functionName(arg1, arg2...) It's also possible to configure custom function in predicateContext.
 
 ## example
 
@@ -34,6 +35,7 @@ Some examples of SQL predicates:
 name is 'John' and age > 27
 employments contains 'LEGO assistant' and name is 'Anh Dzung Bui'
 experiences >= 4 or (skills contains 'Java' and projects is not empty)
+avg(4, 5, 6) is 5
 ```
 ## install
 
