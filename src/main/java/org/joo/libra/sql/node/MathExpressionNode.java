@@ -1,6 +1,7 @@
 package org.joo.libra.sql.node;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import org.joo.libra.Predicate;
 import org.joo.libra.PredicateContext;
@@ -29,7 +30,7 @@ public class MathExpressionNode extends AbstractBinaryOpExpressionNode<HasValue<
 		case SqlLexer.TIMES:
 			return left * right;
 		case SqlLexer.DIVIDE:
-			return BigDecimal.valueOf(left).divide(BigDecimal.valueOf(right));
+			return BigDecimal.valueOf(left).divide(BigDecimal.valueOf(right), 10, RoundingMode.HALF_UP);
 		case SqlLexer.MOD:
 			return left % right;
 		case SqlLexer.POW:

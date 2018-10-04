@@ -97,6 +97,9 @@ public class TestSqlSimple {
 		list.add(new Object[] { "1 + 2 * 3 < 8", true });
 		list.add(new Object[] { "1 + 2 * 3 < 7", false });
 		list.add(new Object[] { "1 / 2 < 2", true });
+		list.add(new Object[] { "4 / 3 = 1", false });
+		list.add(new Object[] { "4 / 3 > 1", true });
+		list.add(new Object[] { "4 / 3 < 2", true });
 		list.add(new Object[] { "-4 < -2", true });
 		list.add(new Object[] { "sqrt 4 == 2", true });
 		list.add(new Object[] { "sqrt (2 * 5 + 6) == 4", true });
