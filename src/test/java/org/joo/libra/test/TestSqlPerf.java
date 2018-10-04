@@ -53,7 +53,7 @@ public class TestSqlPerf {
 				+ "or bar.foo.collection1 contains age " //
 				+ "and data = 'ok' " //
 				+ "and (not female or name = bar.foo.name) " //
-				+ "and name in ['dungba', 'puppie', 'kitty']" + "and name in bar.foo.collection "
+				+ "and name in {'dungba', 'puppie', 'kitty'}" + "and name in bar.foo.collection "
 				+ "and bar IS NOT NULL " //
 				+ "and not bar.foo.name matches '[Ms]ario.*' ";
 		complexPredicate = new SqlPredicate(sql, new OptimizedAntlrSqlPredicateParser());
