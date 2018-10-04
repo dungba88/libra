@@ -21,11 +21,11 @@ public class ListItemExpressionNode implements ExpressionNode {
 		return null;
 	}
 
-	public Collection<?> getValue(PredicateContext context) {
+	public Collection<?> getValue(final PredicateContext context) {
 		return innerNode.stream().map(node -> ((HasValue<?>) node).getValue(context)).collect(Collectors.toList());
 	}
-	
-	public Object[] getValueAsArray(PredicateContext context) {
+
+	public Object[] getValueAsArray(final PredicateContext context) {
 		return innerNode.stream().map(node -> ((HasValue<?>) node).getValue(context)).toArray();
 	}
 }

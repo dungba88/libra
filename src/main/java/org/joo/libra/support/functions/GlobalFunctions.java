@@ -23,7 +23,7 @@ public class GlobalFunctions {
 		return instance;
 	}
 
-	public MultiArgsFunction getRegisteredFunction(String name) {
+	public MultiArgsFunction getRegisteredFunction(final String name) {
 		return functionMappings.get(name);
 	}
 }

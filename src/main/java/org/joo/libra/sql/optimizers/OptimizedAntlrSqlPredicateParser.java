@@ -8,7 +8,7 @@ import org.joo.libra.sql.node.ExpressionNode;
 import lombok.Getter;
 
 public class OptimizedAntlrSqlPredicateParser extends AntlrSqlPredicateParser {
-	
+
 	private static final int DEFAULT_THRESHOLD = 10;
 
 	private @Getter ExpressionNode optimizedNode;
@@ -16,18 +16,18 @@ public class OptimizedAntlrSqlPredicateParser extends AntlrSqlPredicateParser {
 	private PredicateContext context = new PredicateContext(null);
 
 	private Optimizer[] optimizers;
-	
+
 	private int threshold = DEFAULT_THRESHOLD;
 
 	public OptimizedAntlrSqlPredicateParser() {
 		this(DEFAULT_THRESHOLD, new ConstantFoldingOptimizer());
 	}
 
-	public OptimizedAntlrSqlPredicateParser(int threshold) {
+	public OptimizedAntlrSqlPredicateParser(final int threshold) {
 		this(threshold, new ConstantFoldingOptimizer());
 	}
 
-	public OptimizedAntlrSqlPredicateParser(int threshold, final Optimizer... optimizers) {
+	public OptimizedAntlrSqlPredicateParser(final int threshold, final Optimizer... optimizers) {
 		this.threshold = threshold;
 		this.optimizers = optimizers;
 		for (Optimizer optimizer : optimizers) {

@@ -25,7 +25,7 @@ public class ListExpressionNode implements ExpressionNode, HasValue<Object> {
 	}
 
 	@Override
-	public Collection<?> getValue(PredicateContext context) {
+	public Collection<?> getValue(final PredicateContext context) {
 		if (listItem == null)
 			return Collections.emptyList();
 		return listItem.getValue(context);

@@ -13,7 +13,7 @@ import lombok.Data;
 public class FunctionExpressionNode implements ExpressionNode, HasValue<Object> {
 
 	private String name;
-	
+
 	private ListItemExpressionNode inner;
 
 	@Override
@@ -27,18 +27,18 @@ public class FunctionExpressionNode implements ExpressionNode, HasValue<Object> 
 		Object[] args = getArgs(context);
 		return handler.apply(context, args);
 	}
-	
-	private MultiArgsFunction getHandler(PredicateContext context) {
+
+	private MultiArgsFunction getHandler(final PredicateContext context) {
 		MultiArgsFunction handler = context != null ? context.getRegisteredFunction(name) : null;
 		if (handler != null)
 			return handler;
 		handler = GlobalFunctions.getInstance().getRegisteredFunction(name);
 		if (handler == null)
-			throw new IllegalArgumentException("Function " + name  + " is not defined");
+			throw new IllegalArgumentException("Function " + name + " is not defined");
 		return handler;
 	}
-	
-	public Object[] getArgs(PredicateContext context) {
+
+	public Object[] getArgs(final PredicateContext context) {
 		if (inner == null)
 			return new Object[0];
 		return inner.getValueAsArray(context);

@@ -24,7 +24,7 @@ public class PredicateContext {
 
 	@Getter
 	private Map<String, Object> cachedValues;
-	
+
 	private Map<String, MultiArgsFunction> functionMappings = new HashMap<>();
 
 	public PredicateContext(final Object context) {
@@ -35,16 +35,16 @@ public class PredicateContext {
 	public boolean hasCachedValue(final String key) {
 		return cachedValues.containsKey(key);
 	}
-	
-	public void registerFunction(String name, MultiArgsFunction function) {
+
+	public void registerFunction(final String name, final MultiArgsFunction function) {
 		functionMappings.put(name, function);
 	}
 
-	public void unregisterFunction(String name) {
+	public void unregisterFunction(final String name) {
 		functionMappings.remove(name);
 	}
-	
-	public MultiArgsFunction getRegisteredFunction(String name) {
+
+	public MultiArgsFunction getRegisteredFunction(final String name) {
 		return functionMappings.get(name);
 	}
 }

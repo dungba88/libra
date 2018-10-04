@@ -12,6 +12,8 @@ import org.joo.libra.support.NumericComparator;
 
 public class MathExpressionNode extends AbstractBinaryOpExpressionNode<HasValue<Number>> implements HasValue<Number> {
 
+	private static final int ROUNDING_SCALE = 10;
+
 	@Override
 	public Predicate buildPredicate() {
 		Number value = getValue(null);
@@ -30,7 +32,7 @@ public class MathExpressionNode extends AbstractBinaryOpExpressionNode<HasValue<
 		case SqlLexer.TIMES:
 			return left * right;
 		case SqlLexer.DIVIDE:
-			return BigDecimal.valueOf(left).divide(BigDecimal.valueOf(right), 10, RoundingMode.HALF_UP);
+			return BigDecimal.valueOf(left).divide(BigDecimal.valueOf(right), ROUNDING_SCALE, RoundingMode.HALF_UP);
 		case SqlLexer.MOD:
 			return left % right;
 		case SqlLexer.POW:

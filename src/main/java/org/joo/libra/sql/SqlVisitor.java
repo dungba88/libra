@@ -32,7 +32,7 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public ExpressionNode visitConditionalExpr(SqlParser.ConditionalExprContext ctx) {
+	public ExpressionNode visitConditionalExpr(final SqlParser.ConditionalExprContext ctx) {
 		ConditionalExpressionNode node = new ConditionalExpressionNode();
 		node.setMain(visit(ctx.main));
 		node.setLeft((HasValue<Object>) visit(ctx.left));
@@ -41,7 +41,7 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 	}
 
 	@Override
-	public ExpressionNode visitFunctionExpr(SqlParser.FunctionExprContext ctx) {
+	public ExpressionNode visitFunctionExpr(final SqlParser.FunctionExprContext ctx) {
 		FunctionExpressionNode node = new FunctionExpressionNode();
 		if (ctx.inner != null)
 			node.setInner((ListItemExpressionNode) visit(ctx.inner));
@@ -50,14 +50,14 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 	}
 
 	@Override
-	public ExpressionNode visitWrapListExpr(SqlParser.WrapListExprContext ctx) {
+	public ExpressionNode visitWrapListExpr(final SqlParser.WrapListExprContext ctx) {
 		ListExpressionNode node = new ListExpressionNode();
 		node.setListItem((ListItemExpressionNode) visit(ctx.item));
 		return node;
 	}
 
 	@Override
-	public ExpressionNode visitListFactorExpr(SqlParser.ListFactorExprContext ctx) {
+	public ExpressionNode visitListFactorExpr(final SqlParser.ListFactorExprContext ctx) {
 		ListItemExpressionNode node = new ListItemExpressionNode();
 		ExpressionNode innerNode = visitChildren(ctx);
 		if (!(innerNode instanceof HasValue))
@@ -67,7 +67,7 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 	}
 
 	@Override
-	public ExpressionNode visitListCommaExpr(SqlParser.ListCommaExprContext ctx) {
+	public ExpressionNode visitListCommaExpr(final SqlParser.ListCommaExprContext ctx) {
 		ListItemExpressionNode node = new ListItemExpressionNode();
 		ListItemExpressionNode left = (ListItemExpressionNode) visit(ctx.left);
 		ListItemExpressionNode right = (ListItemExpressionNode) visit(ctx.right);
@@ -241,7 +241,6 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 
 	private boolean isNumberNode(final Object node) {
 		return node instanceof NumberExpressionNode || node instanceof MathExpressionNode
-				|| node instanceof FunctionExpressionNode
-				|| node instanceof VariableExpressionNode;
+				|| node instanceof FunctionExpressionNode || node instanceof VariableExpressionNode;
 	}
 }
