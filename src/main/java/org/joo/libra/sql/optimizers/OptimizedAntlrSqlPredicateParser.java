@@ -8,18 +8,27 @@ import org.joo.libra.sql.node.ExpressionNode;
 import lombok.Getter;
 
 public class OptimizedAntlrSqlPredicateParser extends AntlrSqlPredicateParser {
+	
+	private static final int DEFAULT_THRESHOLD = 10;
 
 	private @Getter ExpressionNode optimizedNode;
 
 	private PredicateContext context = new PredicateContext(null);
 
 	private Optimizer[] optimizers;
+	
+	private int threshold = DEFAULT_THRESHOLD;
 
 	public OptimizedAntlrSqlPredicateParser() {
-		this(new ConstantFoldingOptimizer());
+		this(DEFAULT_THRESHOLD, new ConstantFoldingOptimizer());
 	}
 
-	public OptimizedAntlrSqlPredicateParser(final Optimizer... optimizers) {
+	public OptimizedAntlrSqlPredicateParser(int threshold) {
+		this(threshold, new ConstantFoldingOptimizer());
+	}
+
+	public OptimizedAntlrSqlPredicateParser(int threshold, final Optimizer... optimizers) {
+		this.threshold = threshold;
 		this.optimizers = optimizers;
 		for (Optimizer optimizer : optimizers) {
 			optimizer.setContext(context);
@@ -37,12 +46,13 @@ public class OptimizedAntlrSqlPredicateParser extends AntlrSqlPredicateParser {
 		ExpressionNode currentNode = node;
 		while (true) {
 			int total = 0;
+			int count = 0;
 			for (Optimizer optimizer : optimizers) {
 				OptimizeStatus status = optimizer.optimize(currentNode);
 				currentNode = status.getNode();
 				total += status.getChanges();
 			}
-			if (total == 0)
+			if (total == 0 || ++count >= threshold)
 				break;
 		}
 		return currentNode;
