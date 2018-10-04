@@ -1,4 +1,4 @@
-package org.joo.libra.numeric;
+package org.joo.libra.support;
 
 import java.math.BigDecimal;
 

@@ -2,7 +2,7 @@ package org.joo.libra.logic;
 
 import org.joo.libra.common.BinaryPredicate;
 import org.joo.libra.common.HasValue;
-import org.joo.libra.numeric.NumericComparator;
+import org.joo.libra.support.NumericComparator;
 
 /**
  * Represents a 'equal' predicate. It is used to check if both objects are equal

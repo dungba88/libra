@@ -2,6 +2,7 @@ package org.joo.libra.numeric;
 
 import org.joo.libra.common.BinaryPredicate;
 import org.joo.libra.common.HasValue;
+import org.joo.libra.support.NumericComparator;
 
 /**
  * Represents a numeric <code>greater than</code> predicate

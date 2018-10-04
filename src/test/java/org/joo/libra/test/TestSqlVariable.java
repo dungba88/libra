@@ -90,6 +90,8 @@ public class TestSqlVariable {
         list.add(new Object[] { "jobList contains 'Oracle'", true, context });
         list.add(new Object[] { "jobs contains 'Paypal'", false, context });
         list.add(new Object[] { "jobList contains 'Paypal'", false, context });
+        list.add(new Object[] { "'Paypal' in jobList", false, context });
+        list.add(new Object[] { "'Oracle' in jobList", true, context });
         list.add(new Object[] { "jobs is empty", false, context });
         list.add(new Object[] { "jobList is empty", false, context });
         list.add(new Object[] { "jobs is not empty", true, context });

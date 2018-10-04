@@ -6,8 +6,8 @@ import org.joo.libra.Predicate;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.common.HasValue;
 import org.joo.libra.common.SimplePredicate;
-import org.joo.libra.numeric.NumericComparator;
 import org.joo.libra.sql.antlr.SqlLexer;
+import org.joo.libra.support.NumericComparator;
 
 public class MathExpressionNode extends AbstractBinaryOpExpressionNode<HasValue<Number>> implements HasValue<Number> {
 

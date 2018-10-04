@@ -55,6 +55,8 @@ public class TestSqlSimple {
         list.add(new Object[] { "'John' is null", false });
         list.add(new Object[] { "'John' matches '.*oh.*'", true });
         list.add(new Object[] { "'John' matches '.*ho.*'", false });
+        list.add(new Object[] { "'oh' in 'John'", true });
+        list.add(new Object[] { "'oh' in 'Jose'", false });
 
         list.add(new Object[] { "false", false });
         list.add(new Object[] { "true", true });

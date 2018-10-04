@@ -1,10 +1,10 @@
 package org.joo.libra.collection;
 
-import java.util.Arrays;
 import java.util.Collection;
 
 import org.joo.libra.common.BinaryPredicate;
 import org.joo.libra.common.HasValue;
+import org.joo.libra.support.ListUtils;
 
 /**
  * A predicate to check if one object is contained by another collection. It
@@ -29,7 +29,7 @@ public class InPredicate extends BinaryPredicate {
         if (other instanceof Collection<?>)
             return ((Collection<?>) other).contains(one);
         if (other instanceof Object[])
-            return Arrays.asList((Object[]) other).contains(one);
+            return ListUtils.contains((Object[]) other, one);
         return false;
     }
 }

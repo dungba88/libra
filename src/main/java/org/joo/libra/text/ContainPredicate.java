@@ -1,10 +1,10 @@
 package org.joo.libra.text;
 
-import java.util.Arrays;
 import java.util.Collection;
 
 import org.joo.libra.common.BinaryPredicate;
 import org.joo.libra.common.HasValue;
+import org.joo.libra.support.ListUtils;
 
 /**
  * Represents a general <code>contains</code> predicate. It supports
@@ -28,7 +28,7 @@ public class ContainPredicate extends BinaryPredicate {
         if (one instanceof Collection<?>)
             return ((Collection<?>) one).contains(other);
         if (one instanceof Object[])
-            return Arrays.asList((Object[]) one).contains(other);
+            return ListUtils.contains((Object[]) one, other);
         return false;
     }
 }
