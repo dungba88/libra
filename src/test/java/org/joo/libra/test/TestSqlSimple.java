@@ -114,6 +114,12 @@ public class TestSqlSimple {
 		list.add(new Object[] { "avg (4, 5, 6) is 5 ? 0 : 1", false });
 		list.add(new Object[] { "avg (4, 5, 6) is 5 ? 1 : 0", true });
 
+		list.add(new Object[] { "sum (4, 5, 6) == 15", true });
+		list.add(new Object[] { "sum (4) == 4", true });
+		list.add(new Object[] { "sum (4, 5, 6) - 5 == 10", true });
+		list.add(new Object[] { "sum (4, 5, 6) is 15 ? 0 : 1", false });
+		list.add(new Object[] { "sum (4, 5, 6) is 15 ? 1 : 0", true });
+
 		return list;
 	}
 }

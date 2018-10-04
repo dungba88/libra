@@ -105,6 +105,9 @@ public class TestSqlVariable {
 		list.add(new Object[] { "sqrt(age) > 5", true, context });
 		list.add(new Object[] { "sqrt(age) < 6", true, context });
 		list.add(new Object[] { "sqrt(age + 9) == 6", true, context });
+		list.add(new Object[] { "avg(age, 25) == 26", true, context });
+		list.add(new Object[] { "sum(age, -2) == 25", true, context });
+		
 		list.add(new Object[] { "(name ? age + 1 : age - 1) == 28", true, context });
 		list.add(new Object[] { "(age > 20 ? age + 1 : age - 1) == 28", true, context });
 		list.add(new Object[] { "(age < 20 ? age + 1 : age - 1) == 26", true, context });

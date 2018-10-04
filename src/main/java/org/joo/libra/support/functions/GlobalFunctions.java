@@ -13,6 +13,7 @@ public class GlobalFunctions {
 		instance = new GlobalFunctions();
 		instance.functionMappings.put("sqrt", new SqrtFunction());
 		instance.functionMappings.put("avg", new AvgFunction());
+		instance.functionMappings.put("sum", new SumFunction());
 	}
 
 	public static final GlobalFunctions getInstance() {
