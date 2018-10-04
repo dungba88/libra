@@ -14,35 +14,35 @@ import lombok.Data;
 @Data
 public class VariableExpressionNode implements ExpressionNode, HasValue<Object> {
 
-    private String variableName;
+	private String variableName;
 
-    @Override
-    public Object getValue(final PredicateContext context) {
-        if (context == null)
-            return null;
-        Map<String, Object> cachedValues = context.getCachedValues();
-        Object value = cachedValues.get(variableName);
-        if (value == null) {
-            value = getValueNoCache(context);
-            cachedValues.put(variableName, value);
-        }
-        return value;
-    }
+	@Override
+	public Object getValue(final PredicateContext context) {
+		if (context == null)
+			return null;
+		Map<String, Object> cachedValues = context.getCachedValues();
+		Object value = cachedValues.get(variableName);
+		if (value == null) {
+			value = getValueNoCache(context);
+			cachedValues.put(variableName, value);
+		}
+		return value;
+	}
 
-    private Object getValueNoCache(final PredicateContext context) {
-        try {
-            return ObjectUtils.getValue(context.getContext(), variableName);
-        } catch (ReflectiveOperationException e) {
-            throw new PredicateValueException(e);
-        }
-    }
+	private Object getValueNoCache(final PredicateContext context) {
+		try {
+			return ObjectUtils.getValue(context.getContext(), variableName);
+		} catch (ReflectiveOperationException e) {
+			throw new PredicateValueException(e);
+		}
+	}
 
-    @Override
-    public Predicate buildPredicate() {
-        return new VariablePredicate(this);
-    }
-    
-    public String toString() {
-    	return variableName;
-    }
+	@Override
+	public Predicate buildPredicate() {
+		return new VariablePredicate(this);
+	}
+
+	public String toString() {
+		return variableName;
+	}
 }

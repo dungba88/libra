@@ -12,12 +12,12 @@ import org.joo.libra.PredicateContext;
  */
 public interface HasValue<T> {
 
-    /**
-     * Get the value this object is holding using a given context
-     * 
-     * @param context
-     *            the context
-     * @return the value this object is currently holding
-     */
-    public T getValue(final PredicateContext context);
+	/**
+	 * Get the value this object is holding using a given context
+	 * 
+	 * @param context
+	 *            the context
+	 * @return the value this object is currently holding
+	 */
+	public T getValue(final PredicateContext context);
 }

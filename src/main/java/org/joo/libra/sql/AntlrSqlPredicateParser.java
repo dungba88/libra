@@ -13,31 +13,31 @@ import org.joo.libra.support.MalformedSyntaxException;
 
 public class AntlrSqlPredicateParser extends AbstractAntlrSqlPredicateParser<SqlLexer, SqlParser> {
 
-    protected SqlLexer createLexer(final CharStream stream) {
-        SqlLexer lexer = new SqlLexer(stream);
-        lexer.removeErrorListener(ConsoleErrorListener.INSTANCE);
-        lexer.addErrorListener(new SqlErrorListener());
-        return lexer;
-    }
+	protected SqlLexer createLexer(final CharStream stream) {
+		SqlLexer lexer = new SqlLexer(stream);
+		lexer.removeErrorListener(ConsoleErrorListener.INSTANCE);
+		lexer.addErrorListener(new SqlErrorListener());
+		return lexer;
+	}
 
-    protected SqlParser createParser(final CommonTokenStream tokens) {
-        SqlParser parser = new SqlParser(tokens);
-        parser.removeErrorListener(ConsoleErrorListener.INSTANCE);
-        parser.addErrorListener(new SqlErrorListener());
-        return parser;
-    }
+	protected SqlParser createParser(final CommonTokenStream tokens) {
+		SqlParser parser = new SqlParser(tokens);
+		parser.removeErrorListener(ConsoleErrorListener.INSTANCE);
+		parser.addErrorListener(new SqlErrorListener());
+		return parser;
+	}
 
-    protected ExpressionNode doParse(final SqlParser parser) {
-        SqlVisitor visitor = new SqlVisitor();
-        return visitor.visit(parser.predicate());
-    }
+	protected ExpressionNode doParse(final SqlParser parser) {
+		SqlVisitor visitor = new SqlVisitor();
+		return visitor.visit(parser.predicate());
+	}
 }
 
 class SqlErrorListener extends BaseErrorListener {
 
-    @Override
-    public void syntaxError(final Recognizer<?, ?> recognizer, final Object offendingSymbol, final int line,
-            final int charPositionInLine, final String msg, final RecognitionException e) {
-        throw new MalformedSyntaxException(msg);
-    }
+	@Override
+	public void syntaxError(final Recognizer<?, ?> recognizer, final Object offendingSymbol, final int line,
+			final int charPositionInLine, final String msg, final RecognitionException e) {
+		throw new MalformedSyntaxException(msg);
+	}
 }

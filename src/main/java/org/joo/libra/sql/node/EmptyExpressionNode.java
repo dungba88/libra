@@ -11,12 +11,12 @@ import lombok.Setter;
 
 public class EmptyExpressionNode extends UnaryExpressionNode {
 
-    private @Getter @Setter int op;
+	private @Getter @Setter int op;
 
-    @Override
-    public Predicate buildPredicate() {
-        if (op == SqlLexer.IS_NOT_EMPTY)
-            return new NotPredicate(new IsEmptyPredicate((HasValue<?>) getInnerNode()));
-        return new IsEmptyPredicate((HasValue<?>) getInnerNode());
-    }
+	@Override
+	public Predicate buildPredicate() {
+		if (op == SqlLexer.IS_NOT_EMPTY)
+			return new NotPredicate(new IsEmptyPredicate((HasValue<?>) getInnerNode()));
+		return new IsEmptyPredicate((HasValue<?>) getInnerNode());
+	}
 }

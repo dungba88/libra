@@ -13,18 +13,18 @@ import org.joo.libra.common.HasValue;
  */
 public class IsNullPredicate implements CompositionPredicate {
 
-    private HasValue<Object> value;
+	private HasValue<Object> value;
 
-    public IsNullPredicate(final HasValue<Object> value) {
-        this.value = value;
-    }
+	public IsNullPredicate(final HasValue<Object> value) {
+		this.value = value;
+	}
 
-    @Override
-    public boolean satisfiedBy(final PredicateContext context) {
-        return value.getValue(context) == null;
-    }
-    
-    public String toString() {
-    	return "IS_NULL(" + value + ")";
-    }
+	@Override
+	public boolean satisfiedBy(final PredicateContext context) {
+		return value.getValue(context) == null;
+	}
+
+	public String toString() {
+		return "IS_NULL(" + value + ")";
+	}
 }

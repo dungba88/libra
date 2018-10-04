@@ -5,12 +5,12 @@ import org.joo.libra.common.SimplePredicate;
 
 public class ObjectExpressionNode extends ValueExpressionNode<Object> {
 
-    @Override
-    public Predicate buildPredicate() {
-        return new SimplePredicate(value != null);
-    }
-    
-    public String toString() {
-    	return value + "";
-    }
+	@Override
+	public Predicate buildPredicate() {
+		return new SimplePredicate(value != null);
+	}
+
+	public String toString() {
+		return value + "";
+	}
 }

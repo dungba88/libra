@@ -5,8 +5,8 @@ import org.joo.libra.logic.NotPredicate;
 
 public class NotExpressionNode extends UnaryExpressionNode {
 
-    @Override
-    public Predicate buildPredicate() {
-        return new NotPredicate(getInnerNode().buildPredicate());
-    }
+	@Override
+	public Predicate buildPredicate() {
+		return new NotPredicate(getInnerNode().buildPredicate());
+	}
 }

@@ -28,7 +28,7 @@ public class TestSqlError {
 
 	@Parameters
 	public static List<Object[]> data() {
-        List<Object[]> list = new ArrayList<Object[]>();
+		List<Object[]> list = new ArrayList<Object[]>();
 		list.add(new Object[] { "name'" });
 		list.add(new Object[] { "'John' > 'oh'" });
 		list.add(new Object[] { "1 > 'oh'" });

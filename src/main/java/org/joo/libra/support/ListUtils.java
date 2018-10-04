@@ -9,17 +9,17 @@ package org.joo.libra.support;
  */
 public class ListUtils {
 
-    private ListUtils() {
+	private ListUtils() {
 
-    }
+	}
 
-    public static boolean contains(final Object[] list, final Object item) {
-    	if (list == null)
-    		return false;
-    	for(Object o : list) {
-    		if (o != null && o.equals(item))
-    			return true;
-    	}
-    	return false;
-    }
+	public static boolean contains(final Object[] list, final Object item) {
+		if (list == null)
+			return false;
+		for (Object o : list) {
+			if (o != null && o.equals(item))
+				return true;
+		}
+		return false;
+	}
 }

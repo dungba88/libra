@@ -6,20 +6,20 @@ import org.joo.libra.support.NumericComparator;
 
 public class NumberExpressionNode extends ValueExpressionNode<Number> {
 
-    public NumberExpressionNode() {
+	public NumberExpressionNode() {
 
-    }
+	}
 
-    public NumberExpressionNode(final Number value) {
-        this.value = value;
-    }
+	public NumberExpressionNode(final Number value) {
+		this.value = value;
+	}
 
-    @Override
-    public Predicate buildPredicate() {
-        return new SimplePredicate(value != null && NumericComparator.compare(value, 0) != 0);
-    }
-    
-    public String toString() {
-    	return value + "";
-    }
+	@Override
+	public Predicate buildPredicate() {
+		return new SimplePredicate(value != null && NumericComparator.compare(value, 0) != 0);
+	}
+
+	public String toString() {
+		return value + "";
+	}
 }

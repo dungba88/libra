@@ -6,12 +6,12 @@ import lombok.Getter;
 
 public class OptimizeStatus {
 
-    private final @Getter ExpressionNode node;
+	private final @Getter ExpressionNode node;
 
-    private final @Getter int changes;
+	private final @Getter int changes;
 
-    public OptimizeStatus(final ExpressionNode node, final int changes) {
-        this.node = node;
-        this.changes = changes;
-    }
+	public OptimizeStatus(final ExpressionNode node, final int changes) {
+		this.node = node;
+		this.changes = changes;
+	}
 }

@@ -14,15 +14,15 @@ import lombok.Data;
 
 @Data
 public class ListExpressionNode implements ExpressionNode, HasValue<Object> {
-	
+
 	private ListItemExpressionNode listItem;
-	
+
 	private Collection<HasValue<?>> rawValues;
 
-    @Override
-    public Predicate buildPredicate() {
-    	return new VariablePredicate(this);
-    }
+	@Override
+	public Predicate buildPredicate() {
+		return new VariablePredicate(this);
+	}
 
 	@Override
 	public Collection<?> getValue(PredicateContext context) {
@@ -31,7 +31,7 @@ public class ListExpressionNode implements ExpressionNode, HasValue<Object> {
 		return listItem.getInnerNode().stream().map(node -> ((HasValue<?>) node).getValue(context))
 				.collect(Collectors.toList());
 	}
-	
+
 	public String toString() {
 		if (listItem == null)
 			return null;

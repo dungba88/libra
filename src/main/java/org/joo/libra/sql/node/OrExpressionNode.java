@@ -9,26 +9,26 @@ import org.joo.libra.logic.OrPredicate;
 
 public class OrExpressionNode extends InfixExpressionNode {
 
-    @Override
-    public Predicate buildPredicate() {
-    	List<Predicate> predicates = compactExpressionPath();
-        return new OrPredicate(predicates.toArray(new Predicate[0]));
-    }
-    
-    private List<Predicate> compactExpressionPath() {
+	@Override
+	public Predicate buildPredicate() {
+		List<Predicate> predicates = compactExpressionPath();
+		return new OrPredicate(predicates.toArray(new Predicate[0]));
+	}
+
+	private List<Predicate> compactExpressionPath() {
 		List<Predicate> predicates = new ArrayList<>();
-    	Predicate leftPredicate = getLeft().buildPredicate();
-    	if (leftPredicate instanceof OrPredicate) {
-    		predicates.addAll(Arrays.asList(((OrPredicate) leftPredicate).getPredicates()));
-    	} else {
-    		predicates.add(leftPredicate);
-    	}
-    	Predicate rightPredicate = getRight().buildPredicate();
-    	if (rightPredicate instanceof OrPredicate) {
-    		predicates.addAll(Arrays.asList(((OrPredicate) rightPredicate).getPredicates()));
-    	} else {
-    		predicates.add(rightPredicate);
-    	}
+		Predicate leftPredicate = getLeft().buildPredicate();
+		if (leftPredicate instanceof OrPredicate) {
+			predicates.addAll(Arrays.asList(((OrPredicate) leftPredicate).getPredicates()));
+		} else {
+			predicates.add(leftPredicate);
+		}
+		Predicate rightPredicate = getRight().buildPredicate();
+		if (rightPredicate instanceof OrPredicate) {
+			predicates.addAll(Arrays.asList(((OrPredicate) rightPredicate).getPredicates()));
+		} else {
+			predicates.add(rightPredicate);
+		}
 		return predicates;
 	}
 }

@@ -14,18 +14,18 @@ import org.joo.libra.support.PredicateExecutionException;
  */
 public class NotPredicate implements CompositionPredicate {
 
-    private Predicate predicate;
+	private Predicate predicate;
 
-    public NotPredicate(final Predicate predicate) {
-        this.predicate = predicate;
-    }
+	public NotPredicate(final Predicate predicate) {
+		this.predicate = predicate;
+	}
 
-    @Override
-    public boolean satisfiedBy(final PredicateContext context) throws PredicateExecutionException {
-        return !predicate.satisfiedBy(context);
-    }
-    
-    public String toString() {
-    	return "NOT(" + predicate.toString() + ")";
-    }
+	@Override
+	public boolean satisfiedBy(final PredicateContext context) throws PredicateExecutionException {
+		return !predicate.satisfiedBy(context);
+	}
+
+	public String toString() {
+		return "NOT(" + predicate.toString() + ")";
+	}
 }

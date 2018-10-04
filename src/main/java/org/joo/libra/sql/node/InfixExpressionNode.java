@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public abstract class InfixExpressionNode implements ExpressionNode {
 
-    private ExpressionNode left;
+	private ExpressionNode left;
 
-    private ExpressionNode right;
+	private ExpressionNode right;
 }

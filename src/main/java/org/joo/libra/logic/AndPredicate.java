@@ -17,29 +17,29 @@ import org.joo.libra.support.PredicateExecutionException;
  */
 public class AndPredicate implements CompositionPredicate {
 
-    private Predicate[] predicates;
+	private Predicate[] predicates;
 
-    @SafeVarargs
-    public AndPredicate(final Predicate... predicates) {
-        this.predicates = predicates;
-    }
+	@SafeVarargs
+	public AndPredicate(final Predicate... predicates) {
+		this.predicates = predicates;
+	}
 
-    @Override
-    public boolean satisfiedBy(final PredicateContext context) throws PredicateExecutionException {
-        for (Predicate predicate : predicates) {
-            if (!predicate.satisfiedBy(context))
-                return false;
-        }
-        return true;
-    }
-    
-    public Predicate[] getPredicates() {
-    	return predicates;
-    }
+	@Override
+	public boolean satisfiedBy(final PredicateContext context) throws PredicateExecutionException {
+		for (Predicate predicate : predicates) {
+			if (!predicate.satisfiedBy(context))
+				return false;
+		}
+		return true;
+	}
 
-    public String toString() {
+	public Predicate[] getPredicates() {
+		return predicates;
+	}
+
+	public String toString() {
 		String[] predicatesAsString = Arrays.stream(predicates).map(p -> p.toString())
 				.toArray(size -> new String[size]);
-    	return "AND(" + String.join(",", predicatesAsString) + ")";
-    }
+		return "AND(" + String.join(",", predicatesAsString) + ")";
+	}
 }

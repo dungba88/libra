@@ -8,23 +8,23 @@ import lombok.Data;
 @Data
 public class Person {
 
-    private String name;
+	private String name;
 
-    private long age;
-    
-    private int salary = 0;
+	private long age;
 
-    private Demographic demographic;
+	private int salary = 0;
 
-    private String[] jobs;
+	private Demographic demographic;
 
-    private String[] noJobs = new String[0];
-    
-    private List<String> jobList;
-    
-    private List<String> noJobList = new ArrayList<>();
-    
-    private boolean female;
-    
-    private String data;
+	private String[] jobs;
+
+	private String[] noJobs = new String[0];
+
+	private List<String> jobList;
+
+	private List<String> noJobList = new ArrayList<>();
+
+	private boolean female;
+
+	private String data;
 }

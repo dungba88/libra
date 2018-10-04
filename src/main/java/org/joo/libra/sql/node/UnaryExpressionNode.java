@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public abstract class UnaryExpressionNode implements ExpressionNode {
 
-    private ExpressionNode innerNode;
+	private ExpressionNode innerNode;
 }

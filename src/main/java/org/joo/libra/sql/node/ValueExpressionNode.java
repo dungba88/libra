@@ -8,14 +8,14 @@ import lombok.Data;
 @Data
 public abstract class ValueExpressionNode<T> implements ExpressionNode, HasValue<T> {
 
-    protected T value;
+	protected T value;
 
-    @Override
-    public T getValue(final PredicateContext context) {
-        return value;
-    }
+	@Override
+	public T getValue(final PredicateContext context) {
+		return value;
+	}
 
-    public void setValue(final T value) {
-        this.value = value;
-    }
+	public void setValue(final T value) {
+		this.value = value;
+	}
 }

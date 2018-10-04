@@ -5,5 +5,5 @@ import org.joo.libra.support.MalformedSyntaxException;
 
 public interface SqlPredicateParser {
 
-    public Predicate parse(String predicate) throws MalformedSyntaxException;
+	public Predicate parse(String predicate) throws MalformedSyntaxException;
 }

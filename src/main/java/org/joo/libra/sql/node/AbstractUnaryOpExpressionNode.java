@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public abstract class AbstractUnaryOpExpressionNode<T extends HasValue<?>> implements ExpressionNode {
 
-    private T inner;
+	private T inner;
 
-    private int op;
+	private int op;
 }

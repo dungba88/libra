@@ -18,66 +18,66 @@ import lombok.NonNull;
  */
 public class SqlPredicate implements CompositionPredicate {
 
-    private boolean error;
+	private boolean error;
 
-    private @Getter MalformedSyntaxException cause;
+	private @Getter MalformedSyntaxException cause;
 
-    private @Getter SqlPredicateParser parser;
+	private @Getter SqlPredicateParser parser;
 
-    private Predicate predicate;
+	private Predicate predicate;
 
-    public SqlPredicate(final String predicate) {
-        this(predicate, new AntlrSqlPredicateParser());
-    }
+	public SqlPredicate(final String predicate) {
+		this(predicate, new AntlrSqlPredicateParser());
+	}
 
-    public SqlPredicate(final String predicate, final @NonNull SqlPredicateParser parser) {
-        try {
-            this.parser = parser;
-            this.predicate = parser.parse(predicate);
-            if (this.predicate == null) {
-            	error = true;
-            	cause = new MalformedSyntaxException("Predicate cannot be parsed");
-            }
-        } catch (MalformedSyntaxException ex) {
-            error = true;
-            cause = ex;
-        } catch (Exception ex) {
-            error = true;
-            cause = new MalformedSyntaxException(ex);
-        }
-    }
-    
-    @Override
-    public boolean satisfiedBy(final PredicateContext context) throws PredicateExecutionException {
-        if (error || predicate == null)
-            return false;
-        try {
-            return predicate.satisfiedBy(context);
-        } catch (Exception ex) {
-            throw new PredicateExecutionException("Exception while executing SQL predicate", ex);
-        }
-    }
+	public SqlPredicate(final String predicate, final @NonNull SqlPredicateParser parser) {
+		try {
+			this.parser = parser;
+			this.predicate = parser.parse(predicate);
+			if (this.predicate == null) {
+				error = true;
+				cause = new MalformedSyntaxException("Predicate cannot be parsed");
+			}
+		} catch (MalformedSyntaxException ex) {
+			error = true;
+			cause = ex;
+		} catch (Exception ex) {
+			error = true;
+			cause = new MalformedSyntaxException(ex);
+		}
+	}
 
-    /**
-     * Check if there is any error while parsing the SQL and throw it.
-     */
-    public void checkForErrorAndThrow() {
-        if (error)
-            throw cause;
-    }
+	@Override
+	public boolean satisfiedBy(final PredicateContext context) throws PredicateExecutionException {
+		if (error || predicate == null)
+			return false;
+		try {
+			return predicate.satisfiedBy(context);
+		} catch (Exception ex) {
+			throw new PredicateExecutionException("Exception while executing SQL predicate", ex);
+		}
+	}
 
-    /**
-     * Check if there is any error while parsing the SQL.
-     * 
-     * @return true if and only if any error occurred while parsing the SQL.
-     */
-    public boolean hasError() {
-        return error;
-    }
-    
-    public String toString() {
-    	if (error)
-    		return "#ERROR#";
-    	return predicate.toString();
-    }
+	/**
+	 * Check if there is any error while parsing the SQL and throw it.
+	 */
+	public void checkForErrorAndThrow() {
+		if (error)
+			throw cause;
+	}
+
+	/**
+	 * Check if there is any error while parsing the SQL.
+	 * 
+	 * @return true if and only if any error occurred while parsing the SQL.
+	 */
+	public boolean hasError() {
+		return error;
+	}
+
+	public String toString() {
+		if (error)
+			return "#ERROR#";
+		return predicate.toString();
+	}
 }

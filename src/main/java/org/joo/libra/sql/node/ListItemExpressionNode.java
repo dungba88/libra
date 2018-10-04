@@ -9,9 +9,9 @@ import lombok.Data;
 
 @Data
 public class ListItemExpressionNode implements ExpressionNode {
-	
+
 	private List<ExpressionNode> innerNode = new ArrayList<>();
-	
+
 	@Override
 	public Predicate buildPredicate() {
 		return null;

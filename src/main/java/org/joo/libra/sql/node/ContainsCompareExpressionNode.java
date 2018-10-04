@@ -6,8 +6,8 @@ import org.joo.libra.text.ContainPredicate;
 
 public class ContainsCompareExpressionNode extends AbstractBinaryOpExpressionNode<HasValue<?>> {
 
-    @Override
-    public Predicate buildPredicate() {
-        return new ContainPredicate(getLeft(), getRight());
-    }
+	@Override
+	public Predicate buildPredicate() {
+		return new ContainPredicate(getLeft(), getRight());
+	}
 }

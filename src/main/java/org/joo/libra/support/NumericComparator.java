@@ -11,11 +11,11 @@ import java.math.BigDecimal;
  */
 public class NumericComparator {
 
-    private NumericComparator() {
+	private NumericComparator() {
 
-    }
+	}
 
-    public static int compare(final Number one, final Number other) {
-        return BigDecimal.valueOf(one.doubleValue()).compareTo(BigDecimal.valueOf(other.doubleValue()));
-    }
+	public static int compare(final Number one, final Number other) {
+		return BigDecimal.valueOf(one.doubleValue()).compareTo(BigDecimal.valueOf(other.doubleValue()));
+	}
 }

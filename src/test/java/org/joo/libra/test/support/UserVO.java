@@ -13,7 +13,7 @@ public class UserVO {
 	private String data;
 
 	private long time;
-	
+
 	@Data
 	public static class Foo {
 		private String name;
@@ -21,7 +21,7 @@ public class UserVO {
 		private Collection<String> collection;
 		private Collection<Integer> collection1;
 	}
-	
+
 	@Data
 	public static class Bar {
 		private Foo foo;

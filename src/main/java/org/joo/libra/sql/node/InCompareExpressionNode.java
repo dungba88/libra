@@ -6,8 +6,8 @@ import org.joo.libra.common.HasValue;
 
 public class InCompareExpressionNode extends AbstractBinaryOpExpressionNode<HasValue<?>> {
 
-    @Override
-    public Predicate buildPredicate() {
-        return new InPredicate(getLeft(), getRight());
-    }
+	@Override
+	public Predicate buildPredicate() {
+		return new InPredicate(getLeft(), getRight());
+	}
 }

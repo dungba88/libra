@@ -11,18 +11,18 @@ import org.joo.libra.support.PredicateExecutionException;
  */
 public class SimplePredicate implements CompositionPredicate {
 
-    private final boolean value;
+	private final boolean value;
 
-    public SimplePredicate(final boolean value) {
-        this.value = value;
-    }
+	public SimplePredicate(final boolean value) {
+		this.value = value;
+	}
 
-    @Override
-    public boolean satisfiedBy(final PredicateContext context) throws PredicateExecutionException {
-        return value;
-    }
-    
-    public String toString() {
-    	return value + "";
-    }
+	@Override
+	public boolean satisfiedBy(final PredicateContext context) throws PredicateExecutionException {
+		return value;
+	}
+
+	public String toString() {
+		return value + "";
+	}
 }
