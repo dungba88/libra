@@ -38,6 +38,9 @@ employments contains 'LEGO assistant' and name is 'Anh Dzung Bui'
 experiences >= 4 or (skills contains 'Java' and projects is not empty)
 avg(4, 5, 6) is 5
 ```
+
+More examples can be seen inside the [test cases](https://github.com/dungba88/libra/tree/master/src/test/java/org/joo/libra/test)
+
 ## install
 
 Libra can be easily installed with Maven:
