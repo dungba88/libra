@@ -241,6 +241,7 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 
 	private boolean isNumberNode(final Object node) {
 		return node instanceof NumberExpressionNode || node instanceof MathExpressionNode
+				|| node instanceof MathUnaryExpressionNode
 				|| node instanceof VariableExpressionNode;
 	}
 }
