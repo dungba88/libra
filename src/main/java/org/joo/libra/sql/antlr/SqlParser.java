@@ -24,7 +24,7 @@ public class SqlParser extends Parser {
 		GREATER_THAN=15, GREATER_THAN_EQUALS=16, LESS_THAN=17, LESS_THAN_EQUALS=18, 
 		EQUALS=19, NOT_EQUALS=20, DBL_EQUALS=21, PLUS=22, MINUS=23, TIMES=24, 
 		DIVIDE=25, MOD=26, POW=27, QUESTION=28, COLON=29, LPAREN=30, RPAREN=31, 
-		LBRACK=32, RBRACK=33, COMMA=34, STRING=35, INTEGER=36, DOUBLE=37, INDEX=38, 
+		LBRACE=32, RBRACE=33, COMMA=34, STRING=35, INTEGER=36, DOUBLE=37, INDEX=38, 
 		VARIABLE=39, WS=40;
 	public static final int
 		RULE_predicate = 0, RULE_expression = 1, RULE_term = 2, RULE_factor = 3, 
@@ -44,7 +44,7 @@ public class SqlParser extends Parser {
 		"CONTAINS", "IN", "MATCHES", "TRUE", "FALSE", "UNDEFINED", "NULL", "GREATER_THAN", 
 		"GREATER_THAN_EQUALS", "LESS_THAN", "LESS_THAN_EQUALS", "EQUALS", "NOT_EQUALS", 
 		"DBL_EQUALS", "PLUS", "MINUS", "TIMES", "DIVIDE", "MOD", "POW", "QUESTION", 
-		"COLON", "LPAREN", "RPAREN", "LBRACK", "RBRACK", "COMMA", "STRING", "INTEGER", 
+		"COLON", "LPAREN", "RPAREN", "LBRACE", "RBRACE", "COMMA", "STRING", "INTEGER", 
 		"DOUBLE", "INDEX", "VARIABLE", "WS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
@@ -268,7 +268,7 @@ public class SqlParser extends Parser {
 			case UNDEFINED:
 			case NULL:
 			case LPAREN:
-			case LBRACK:
+			case LBRACE:
 			case STRING:
 			case INTEGER:
 			case DOUBLE:
@@ -767,8 +767,8 @@ public class SqlParser extends Parser {
 	}
 	public static class WrapListExprContext extends FactorContext {
 		public ListContext item;
-		public TerminalNode LBRACK() { return getToken(SqlParser.LBRACK, 0); }
-		public TerminalNode RBRACK() { return getToken(SqlParser.RBRACK, 0); }
+		public TerminalNode LBRACE() { return getToken(SqlParser.LBRACE, 0); }
+		public TerminalNode RBRACE() { return getToken(SqlParser.RBRACE, 0); }
 		public ListContext list() {
 			return getRuleContext(ListContext.class,0);
 		}
@@ -967,11 +967,11 @@ public class SqlParser extends Parser {
 				_ctx = _localctx;
 				_prevctx = _localctx;
 				setState(113);
-				match(LBRACK);
+				match(LBRACE);
 				setState(114);
 				((WrapListExprContext)_localctx).item = list(0);
 				setState(115);
-				match(RBRACK);
+				match(RBRACE);
 				}
 				break;
 			}
