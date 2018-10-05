@@ -25,8 +25,8 @@ Libra supports the following syntax for SQL predicates:
 - Boolean literals: `true`, `false`
 - Other literals: `null`, `undefined`, `empty`
 - Variables: alphanumerics, `_`, `.` (to denote nested object) and `[`, `]` (to denote array index), must starts with alphabet characters.
-- List: `{1, 2, 3}`
-- Function: `functionName(arg1, arg2...)` It's also possible to configure custom function in predicateContext. Built-in functions: `sqrt`, `avg`, `sum`, `min`, `max`, `len`.
+- List: `{1, 2, 3}`. Empty list `{ }` is also supported. 
+- Function: `functionName(arg1, arg2...)` It's also possible to configure custom function in `PredicateContext`. Built-in functions: `sqrt`, `avg`, `sum`, `min`, `max`, `len`.
 
 ## example
 
