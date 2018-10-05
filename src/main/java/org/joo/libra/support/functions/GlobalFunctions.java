@@ -17,6 +17,7 @@ public class GlobalFunctions {
 		instance.functionMappings.put("min", new MinFunction());
 		instance.functionMappings.put("max", new MaxFunction());
 		instance.functionMappings.put("len", new LenFunction());
+		instance.functionMappings.put("rand", new RandFunction());
 	}
 
 	public static final GlobalFunctions getInstance() {

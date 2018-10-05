@@ -124,6 +124,8 @@ public class TestSqlSimple {
 		list.add(new Object[] { "max (5, 4, 6) is 4", false });
 		list.add(new Object[] { "max (5, 4, 6) is 6", true });
 
+		list.add(new Object[] { "rand (4, 5) >= 4 and rand (4, 5) <= 5", true });
+
 		list.add(new Object[] { "len ('name') is 4", true });
 		list.add(new Object[] { "len ({1, 2, 3}) is 3", true });
 		list.add(new Object[] { "len ('name') + 1 is 5", true });
