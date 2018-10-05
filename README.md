@@ -79,7 +79,7 @@ predicate.checkForErrorAndThrow();
 
 Some special cases or limitations are covered here:
 - Literals, if stand alone in their own branch, will be converted into predicate according to their types:
-  + String literals will be considered as `true` if and only they are was *not null* and *not empty*
+  + String & list literals will be considered as `true` if and only they are was *not null* and *not empty*
   + Number literals will be considered as `true` if and only they are was *not null* and *not zero*
   + `null` will always be considered as `false`
 - If literals are compared with any other type, the comparison will be as normal
