@@ -52,7 +52,8 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
 	@Override
 	public ExpressionNode visitWrapListExpr(final SqlParser.WrapListExprContext ctx) {
 		ListExpressionNode node = new ListExpressionNode();
-		node.setListItem((ListItemExpressionNode) visit(ctx.item));
+		if (ctx.item != null)
+			node.setListItem((ListItemExpressionNode) visit(ctx.item));
 		return node;
 	}
 

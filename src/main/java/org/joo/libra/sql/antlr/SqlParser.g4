@@ -62,6 +62,7 @@ factor
 	| left = factor op = MINUS right = factor # mathExpr
 	| left = factor op = MOD right = factor # mathExpr
 	| LBRACE item = list RBRACE # wrapListExpr
+	| LBRACE RBRACE # wrapListExpr
 ;
 
 list

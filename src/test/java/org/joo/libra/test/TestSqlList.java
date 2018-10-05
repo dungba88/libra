@@ -54,6 +54,8 @@ public class TestSqlList {
 		list.add(new Object[] { "1 in {name, 2, age}", false });
 
 		list.add(new Object[] { "1 in {1}", true });
+		list.add(new Object[] { "{1}", true });
+		list.add(new Object[] { "{}", false });
 
 		return list;
 	}
