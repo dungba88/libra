@@ -6,7 +6,7 @@
 **continous integration**
 
 [![Build Status](https://travis-ci.org/dungba88/libra.svg?branch=master)](https://travis-ci.org/dungba88/libra)
-[![Coverage Status](https://coveralls.io/repos/github/dungba88/libra/badge.svg?branch=master&maxAge=604800)](https://coveralls.io/github/dungba88/libra?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/dungba88/libra/badge.svg?branch=master&maxAge=86400)](https://coveralls.io/github/dungba88/libra?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b5162a68d84944299bd36ebdfd56987b)](https://www.codacy.com/app/dungba88/libra?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dungba88/libra&amp;utm_campaign=Badge_Grade)
 
 Libra is a Java package for creating and evaluating predicate. Java-based and SQL-like predicate are both supported. For SQL predicates, it is using ANTLR to parse the string against a predefined grammar. The Java-based predicates are implementation of Specification pattern and support numeric/text/collection related conditions.
@@ -26,7 +26,7 @@ Libra supports the following syntax for SQL predicates:
 - Other literals: `null`, `undefined`, `empty`
 - Variables: alphanumerics, `_`, `.` (to denote nested object) and `[`, `]` (to denote array index), must starts with alphabet characters.
 - List: `{1, 2, 3}`
-- Function: `functionName(arg1, arg2...)` It's also possible to configure custom function in predicateContext. Built-in functions: `sqrt`, `avg`.
+- Function: `functionName(arg1, arg2...)` It's also possible to configure custom function in predicateContext. Built-in functions: `sqrt`, `avg`, `sum`, `min`, `max`, `len`.
 
 ## example
 
