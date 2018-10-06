@@ -25,6 +25,8 @@ public class GlobalFunctions {
 	}
 
 	public MultiArgsFunction getRegisteredFunction(final String name) {
+		if (functionMappings == null)
+			return null;
 		return functionMappings.get(name);
 	}
 }

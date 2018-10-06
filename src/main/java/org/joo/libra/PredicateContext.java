@@ -25,26 +25,24 @@ public class PredicateContext {
 	@Getter
 	private Map<String, Object> cachedValues;
 
-	private Map<String, MultiArgsFunction> functionMappings = new HashMap<>();
+	private Map<String, MultiArgsFunction> functionMappings;
 
 	public PredicateContext(final Object context) {
 		this.context = context;
 		this.cachedValues = new HashMap<>();
 	}
 
+	public PredicateContext(final Object context, Map<String, MultiArgsFunction> functionMappings) {
+		this.context = context;
+		this.cachedValues = new HashMap<>();
+		this.functionMappings = functionMappings;
+	}
+
 	public boolean hasCachedValue(final String key) {
 		return cachedValues.containsKey(key);
 	}
 
-	public void registerFunction(final String name, final MultiArgsFunction function) {
-		functionMappings.put(name, function);
-	}
-
-	public void unregisterFunction(final String name) {
-		functionMappings.remove(name);
-	}
-
 	public MultiArgsFunction getRegisteredFunction(final String name) {
-		return functionMappings.get(name);
+		return functionMappings != null ? functionMappings.get(name) : null;
 	}
 }

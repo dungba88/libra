@@ -1,5 +1,8 @@
 package org.joo.libra.test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.joo.libra.PredicateContext;
 import org.joo.libra.common.SimpleHasValue;
 import org.joo.libra.sql.AntlrSqlPredicateParser;
@@ -15,6 +18,7 @@ import org.joo.libra.sql.node.MathExpressionNode;
 import org.joo.libra.sql.node.NumericCompareExpressionNode;
 import org.joo.libra.sql.node.ObjectExpressionNode;
 import org.joo.libra.support.exceptions.PredicateExecutionException;
+import org.joo.libra.support.functions.MultiArgsFunction;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -22,11 +26,16 @@ public class TestSqlMisc {
 	
 	@Test
 	public void testCustomFunction() {
-		PredicateContext context = new PredicateContext(null);
-		context.registerFunction("rand", (ctx, args) -> Math.random());
-		SqlPredicate predicate = new SqlPredicate("rand() >= 0 and rand() <= 1");
+		PredicateContext context = new PredicateContext(null, createCustomFunctionMappings());
+		SqlPredicate predicate = new SqlPredicate("crand() >= 0 and rand() <= 1");
 		predicate.checkForErrorAndThrow();
 		Assert.assertEquals(true, predicate.satisfiedBy(context));
+	}
+
+	private Map<String, MultiArgsFunction> createCustomFunctionMappings() {
+		Map<String, MultiArgsFunction> map = new HashMap<>();
+		map.put("crand", (ctx, args) -> Math.random());
+		return map;
 	}
 
 	@Test
