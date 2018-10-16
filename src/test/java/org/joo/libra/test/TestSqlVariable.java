@@ -34,7 +34,8 @@ public class TestSqlVariable {
 	public void testVariable() {
 		SqlPredicate predicate = new SqlPredicate(value);
 		if (predicate.hasError()) {
-			Assert.assertEquals(expected, null);
+			if (expected != null)
+				predicate.checkForErrorAndThrow();
 		} else {
 			try {
 				Assert.assertEquals(expected, predicate.satisfiedBy(new PredicateContext(context)));
@@ -83,6 +84,12 @@ public class TestSqlVariable {
 		list.add(new Object[] { "age <= 27", true, context });
 		list.add(new Object[] { "age >= 27", true, context });
 		list.add(new Object[] { "age = 27", true, context });
+		list.add(new Object[] { "age + 2", true, context });
+		list.add(new Object[] { "age - 27", false, context });
+		list.add(new Object[] { "noJobs", false, context });
+		list.add(new Object[] { "sqrt(age + 2)", true, context });
+		list.add(new Object[] { "sqrt(age) + 2", true, context });
+		list.add(new Object[] { "sqrt(age) - sqrt(27)", false, context });
 		list.add(new Object[] { "age + 2 = 27", false, context });
 		list.add(new Object[] { "age + 2 > 27", true, context });
 		list.add(new Object[] { "age + 2 > age", true, context });

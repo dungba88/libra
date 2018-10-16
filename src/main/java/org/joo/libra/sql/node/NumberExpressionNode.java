@@ -1,7 +1,7 @@
 package org.joo.libra.sql.node;
 
 import org.joo.libra.Predicate;
-import org.joo.libra.common.SimplePredicate;
+import org.joo.libra.common.SimpleLiteralPredicate;
 import org.joo.libra.support.NumericComparator;
 
 public class NumberExpressionNode extends ValueExpressionNode<Number> {
@@ -16,7 +16,7 @@ public class NumberExpressionNode extends ValueExpressionNode<Number> {
 
 	@Override
 	public Predicate buildPredicate() {
-		return new SimplePredicate(value != null && NumericComparator.compare(value, 0) != 0);
+		return new SimpleLiteralPredicate<Number>(value, value != null && NumericComparator.compare(value, 0) != 0);
 	}
 
 	public String toString() {

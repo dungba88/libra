@@ -6,7 +6,7 @@ import java.math.RoundingMode;
 import org.joo.libra.Predicate;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.common.HasValue;
-import org.joo.libra.common.SimplePredicate;
+import org.joo.libra.common.DerivedLiteralPredicate;
 import org.joo.libra.sql.antlr.SqlLexer;
 import org.joo.libra.support.NumericComparator;
 
@@ -16,8 +16,7 @@ public class MathExpressionNode extends AbstractBinaryOpExpressionNode<HasValue<
 
 	@Override
 	public Predicate buildPredicate() {
-		Number value = getValue(null);
-		return new SimplePredicate(NumericComparator.compare(value, 0) != 0);
+		return new DerivedLiteralPredicate<Number>(this, value -> NumericComparator.compare(value, 0) != 0);
 	}
 
 	@Override

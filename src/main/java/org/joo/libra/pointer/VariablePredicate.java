@@ -2,9 +2,11 @@ package org.joo.libra.pointer;
 
 import java.util.Collection;
 
+import org.joo.libra.LiteralPredicate;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.common.CompositionPredicate;
 import org.joo.libra.common.HasValue;
+import org.joo.libra.support.exceptions.PredicateExecutionException;
 
 /**
  * Represents an expression variable. The evaluation will be based on the
@@ -17,7 +19,7 @@ import org.joo.libra.common.HasValue;
  * @author griever
  *
  */
-public class VariablePredicate implements CompositionPredicate {
+public class VariablePredicate implements CompositionPredicate, LiteralPredicate<Object> {
 
 	private HasValue<Object> value;
 
@@ -27,7 +29,7 @@ public class VariablePredicate implements CompositionPredicate {
 
 	@Override
 	public boolean satisfiedBy(final PredicateContext context) {
-		Object rawValue = value.getValue(context);
+		Object rawValue = calculateLiteralValue(context);
 		if (rawValue == null)
 			return false;
 		if (rawValue instanceof String)
@@ -45,5 +47,10 @@ public class VariablePredicate implements CompositionPredicate {
 
 	public String toString() {
 		return "VAR(" + value + ")";
+	}
+
+	@Override
+	public Object calculateLiteralValue(PredicateContext context) throws PredicateExecutionException {
+		return value.getValue(context);
 	}
 }

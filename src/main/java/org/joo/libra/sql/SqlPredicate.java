@@ -1,5 +1,6 @@
 package org.joo.libra.sql;
 
+import org.joo.libra.LiteralPredicate;
 import org.joo.libra.Predicate;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.common.CompositionPredicate;
@@ -16,7 +17,7 @@ import lombok.NonNull;
  * @author griever
  *
  */
-public class SqlPredicate implements CompositionPredicate {
+public class SqlPredicate implements CompositionPredicate, LiteralPredicate<Object> {
 
 	private boolean error;
 
@@ -45,6 +46,13 @@ public class SqlPredicate implements CompositionPredicate {
 			error = true;
 			cause = new MalformedSyntaxException(ex);
 		}
+	}
+
+	@Override
+	public Object calculateLiteralValue(final PredicateContext context) throws PredicateExecutionException {
+		if (predicate != null && predicate instanceof LiteralPredicate)
+			return ((LiteralPredicate<?>) predicate).calculateLiteralValue(context);
+		return satisfiedBy(context);
 	}
 
 	@Override
