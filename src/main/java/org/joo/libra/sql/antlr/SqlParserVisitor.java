@@ -40,6 +40,13 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTermExpr(SqlParser.TermExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code listMatchingExpr}
+	 * labeled alternative in {@link SqlParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitListMatchingExpr(SqlParser.ListMatchingExprContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code orExpr}
 	 * labeled alternative in {@link SqlParser#expression}.
 	 * @param ctx the parse tree

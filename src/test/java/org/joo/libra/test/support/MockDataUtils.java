@@ -27,7 +27,7 @@ public class MockDataUtils {
 		person.setDemographic(new Demographic());
 		person.getDemographic().setGender("male");
 		person.setJobs(new String[] { "Oracle" });
-		person.setJobList(new ArrayList<>(Arrays.asList(new String[] { "Oracle" })));
+		person.setJobList(new ArrayList<>(Arrays.asList(new String[] { "Oracle", "Google" })));
 		return person;
 	}
 
@@ -39,7 +39,7 @@ public class MockDataUtils {
 		map.put("demographic", new HashMap<>());
 		((Map) map.get("demographic")).put("gender", "male");
 		map.put("jobs", new String[] { "Oracle" });
-		map.put("jobList", new ArrayList<>(Arrays.asList(new String[] { "Oracle" })));
+		map.put("jobList", new ArrayList<>(Arrays.asList(new String[] { "Oracle", "Google" })));
 		return map;
 	}
 

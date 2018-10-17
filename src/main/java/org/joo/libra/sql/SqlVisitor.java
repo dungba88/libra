@@ -17,6 +17,7 @@ import org.joo.libra.sql.node.InCompareExpressionNode;
 import org.joo.libra.sql.node.LexicalCompareExpressionNode;
 import org.joo.libra.sql.node.ListExpressionNode;
 import org.joo.libra.sql.node.ListItemExpressionNode;
+import org.joo.libra.sql.node.MatchingExpressionNode;
 import org.joo.libra.sql.node.MathExpressionNode;
 import org.joo.libra.sql.node.FunctionExpressionNode;
 import org.joo.libra.sql.node.NotExpressionNode;
@@ -29,6 +30,18 @@ import org.joo.libra.sql.node.VariableExpressionNode;
 import org.joo.libra.support.exceptions.MalformedSyntaxException;
 
 public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
+
+	@Override
+	public ExpressionNode visitListMatchingExpr(final SqlParser.ListMatchingExprContext ctx) {
+		MatchingExpressionNode node = new MatchingExpressionNode();
+		node.setOp(ctx.op.getType());
+		node.setCondition(visit(ctx.condition));
+		node.setIndexName(ctx.indexName.getText());
+		VariableExpressionNode listVariable = new VariableExpressionNode();
+		listVariable.setVariableName(ctx.listName.getText());
+		node.setList(listVariable);
+		return node;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override

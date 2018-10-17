@@ -3,6 +3,8 @@ package org.joo.libra;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.joo.libra.sql.ObjectUtils;
+import org.joo.libra.support.exceptions.PredicateValueException;
 import org.joo.libra.support.functions.MultiArgsFunction;
 
 import lombok.Getter;
@@ -17,7 +19,7 @@ import lombok.Getter;
  * @author griever
  *
  */
-public class PredicateContext {
+public class PredicateContext implements Cloneable {
 
 	@Getter
 	private Object context;
@@ -26,6 +28,8 @@ public class PredicateContext {
 	private Map<String, Object> cachedValues;
 
 	private Map<String, MultiArgsFunction> functionMappings;
+	
+	private Map<String, Object> tempVariables = new HashMap<>();
 
 	public PredicateContext(final Object context) {
 		this.context = context;
@@ -37,6 +41,25 @@ public class PredicateContext {
 		this.cachedValues = new HashMap<>();
 		this.functionMappings = functionMappings;
 	}
+	
+	public Object getVariableValue(final String name, final PredicateContext context) {
+		Object value = cachedValues.get(name);
+		if (value == null) {
+			value = getValueNoCache(name, context);
+			cachedValues.put(name, value);
+		}
+		return value;
+	}
+
+	private Object getValueNoCache(final String name, final PredicateContext context) {
+		if (tempVariables.containsKey(name))
+			return tempVariables.get(name);
+		try {
+			return ObjectUtils.getValue(context.getContext(), name);
+		} catch (ReflectiveOperationException e) {
+			throw new PredicateValueException(e);
+		}
+	}
 
 	public boolean hasCachedValue(final String key) {
 		return cachedValues.containsKey(key);
@@ -44,5 +67,18 @@ public class PredicateContext {
 
 	public MultiArgsFunction getRegisteredFunction(final String name) {
 		return functionMappings != null ? functionMappings.get(name) : null;
+	}
+	
+	public Object getTempVariable(String name) {
+		return tempVariables.get(name);
+	}
+	
+	public void setTempVariable(String name, Object value) {
+		tempVariables.put(name, value);
+	}
+
+	@Override
+	public PredicateContext clone() {
+		return new PredicateContext(context, functionMappings);
 	}
 }

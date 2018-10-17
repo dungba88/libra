@@ -47,6 +47,13 @@ public class SqlParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> impleme
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitListMatchingExpr(SqlParser.ListMatchingExprContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitOrExpr(SqlParser.OrExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
