@@ -13,6 +13,12 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	/**
+	 * Visit a parse tree produced by {@link SqlParser#dummy}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDummy(SqlParser.DummyContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code expressionExpr}
 	 * labeled alternative in {@link SqlParser#predicate}.
 	 * @param ctx the parse tree
