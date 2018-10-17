@@ -4,10 +4,8 @@
 /SqlLexerCommon.interp
 /SqlLexerCommon.java
 /SqlLexerCommon.tokens
-/SqlLexerCommon.g4
 /SqlParserCommon.interp
 /SqlParserCommon.java
 /SqlParserCommon.tokens
 /SqlParserCommonBaseVisitor.java
 /SqlParserCommonVisitor.java
-/SqlParserCommon.g4
