@@ -75,6 +75,13 @@ or throw the exception if any
 predicate.checkForErrorAndThrow();
 ```
 
+from `1.1.0` you can retrieve the raw value instead of letting Libra convert it to boolean
+```java
+PredicateContext context = new PredicateContext(anObject);
+SqlPredicate predicate = new SqlPredicate(predicateString);
+Object rawValue = predicate.calculateLiteralValue(context);
+```
+
 ## edge cases and limitations
 
 Some special cases or limitations are covered here:
