@@ -27,6 +27,21 @@ Libra supports the following syntax for SQL predicates:
 - Variables: alphanumerics, `_`, `.` (to denote nested object) and `[`, `]` (to denote array index), must starts with alphabet characters.
 - List: `{1, 2, 3}`. Empty list `{ }` is also supported. 
 - Function: `functionName(arg1, arg2...)` It's also possible to configure custom function in `PredicateContext`. Built-in functions: `sqrt`, `avg`, `sum`, `min`, `max`, `len`.
+- Stream matching: See below
+
+## stream matching
+
+Libra `1.1.0` supports stream-like matching, similar to `anyMatch`, `allMatch` and `noneMatch`. The syntax is:
+
+```
+ANY <indexVariableName> OF <listVariableName> SATISFIES <expression>
+ALL <indexVariableName> OF <listVariableName> SATISFIES <expression>
+NONE <indexVariableName> OF <listVariableName> SATISFIES <expression>
+```
+
+`listVariableName` is the name of the list variable you want to perform matching on. `indexVariableName` is the name of the temporary variable used in each loop. For example:
+
+`ANY job OF jobs satisfies job.salary > 1000` will try to find out if there is ANY element in `jobs` which its `salary` property is greater than 1000.
 
 ## example
 
