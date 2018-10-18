@@ -34,14 +34,14 @@ Libra supports the following syntax for SQL predicates:
 Libra `2.0.0` supports stream-like matching, similar to `anyMatch`, `allMatch` and `noneMatch`. The syntax is:
 
 ```
-ANY <indexVariableName> OF <listVariableName> SATISFIES <expression>
-ALL <indexVariableName> OF <listVariableName> SATISFIES <expression>
-NONE <indexVariableName> OF <listVariableName> SATISFIES <expression>
+ANY <indexVariableName> IN <listVariableName> SATISFIES <expression>
+ALL <indexVariableName> IN <listVariableName> SATISFIES <expression>
+NONE <indexVariableName> IN <listVariableName> SATISFIES <expression>
 ```
 
 `listVariableName` is the name of the list variable you want to perform matching on. `indexVariableName` is the name of the temporary variable used in each loop. For example:
 
-`ANY job OF jobs satisfies job.salary > 1000` will try to find out if there is ANY element in `jobs` which its `salary` property is greater than 1000.
+`ANY job IN jobs satisfies job.salary > 1000` will try to find out if there is ANY element in `jobs` which its `salary` property is greater than 1000.
 
 ## example
 
