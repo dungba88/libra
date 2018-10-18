@@ -24,7 +24,6 @@ public class PredicateContext implements Cloneable {
 	@Getter
 	private Object context;
 
-	@Getter
 	private Map<String, Object> cachedValues;
 
 	private Map<String, MultiArgsFunction> functionMappings;
