@@ -31,7 +31,7 @@ Libra supports the following syntax for SQL predicates:
 
 ## stream matching
 
-Libra `1.1.0` supports stream-like matching, similar to `anyMatch`, `allMatch` and `noneMatch`. The syntax is:
+Libra `2.0.0` supports stream-like matching, similar to `anyMatch`, `allMatch` and `noneMatch`. The syntax is:
 
 ```
 ANY <indexVariableName> OF <listVariableName> SATISFIES <expression>
@@ -90,7 +90,7 @@ or throw the exception if any
 predicate.checkForErrorAndThrow();
 ```
 
-from `1.1.0` you can retrieve the raw value instead of letting Libra convert it to boolean
+from `2.0.0` you can retrieve the raw value instead of letting Libra convert it to boolean
 ```java
 PredicateContext context = new PredicateContext(customer);
 SqlPredicate predicate = new SqlPredicate("customer.asset - customer.liability");
