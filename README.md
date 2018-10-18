@@ -39,9 +39,7 @@ ALL <indexVariableName> IN <listVariableName> SATISFIES <expression>
 NONE <indexVariableName> IN <listVariableName> SATISFIES <expression>
 ```
 
-`listVariableName` is the name of the list variable you want to perform matching on. `indexVariableName` is the name of the temporary variable used in each loop. For example:
-
-`ANY job IN jobs satisfies job.salary > 1000` will try to find out if there is ANY element in `jobs` which its `salary` property is greater than 1000.
+`listVariableName` is the name of the list variable you want to perform matching on. `indexVariableName` is the name of the temporary variable used in each loop. For example: `ANY job IN jobs satisfies job.salary > 1000` will try to find out if there is ANY element in `jobs` which its `salary` property is greater than 1000.
 
 ## example
 
