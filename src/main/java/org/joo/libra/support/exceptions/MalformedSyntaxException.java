@@ -2,7 +2,6 @@ package org.joo.libra.support.exceptions;
 
 /**
  * This exception will be thrown if any exception occurred while parsing
- * {@link org.joo.libra.sql.SQLPredicate}
  * 
  * @author griever
  *

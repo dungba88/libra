@@ -16,8 +16,6 @@ import org.joo.libra.PredicateContext;
  * 
  * @author griever
  *
- * @param <T>
- * @param <H>
  */
 public abstract class BinaryPredicate<T, H> implements CompositionPredicate {
 
