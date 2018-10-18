@@ -17,11 +17,11 @@ expression
 	| term # termExpr
 	| main = expression QUESTION left = factor COLON right = factor #
 	conditionalExpr
-	| op = ANY indexName = VARIABLE OF listName = VARIABLE SATISFIES condition =
+	| op = ANY indexName = VARIABLE IN listName = VARIABLE SATISFIES condition =
 	expression # listMatchingExpr
-	| op = NONE indexName = VARIABLE OF listName = VARIABLE SATISFIES condition =
+	| op = NONE indexName = VARIABLE IN listName = VARIABLE SATISFIES condition =
 	expression # listMatchingExpr
-	| op = ALL indexName = VARIABLE OF listName = VARIABLE SATISFIES condition =
+	| op = ALL indexName = VARIABLE IN listName = VARIABLE SATISFIES condition =
 	expression # listMatchingExpr
 ;
 

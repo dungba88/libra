@@ -97,17 +97,19 @@ public class TestSqlVariable {
 		list.add(new Object[] { "demographic.gender is 'male'", true, context });
 		list.add(new Object[] { "jobs[0] is 'Oracle'", context instanceof Map ? null : true, context });
 
-		list.add(new Object[] { "any job of jobs satisfies job is 'Oracle' and job is 'Paypal'", false, context });
-		list.add(new Object[] { "any job of jobs satisfies job is 'Oracle' or job is 'Paypal'", true, context });
-		list.add(new Object[] { "any job of jobs satisfies job is 'Oracle'", true, context });
-		list.add(new Object[] { "any job of jobs satisfies job is 'Paypal'", false, context });
-		list.add(new Object[] { "none job of jobs satisfies job is 'Oracle'", false, context });
-		list.add(new Object[] { "none job of jobs satisfies job is 'Paypal'", true, context });
-		list.add(new Object[] { "all job of jobs satisfies job is 'Oracle'", true, context });
-		list.add(new Object[] { "all job of jobList satisfies job is 'Oracle'", false, context });
-		list.add(new Object[] { "any job of noJobs satisfies (job is 'Oracle')", false, context });
-		list.add(new Object[] { "none job of noJobs satisfies job is 'Oracle'", true, context });
-		list.add(new Object[] { "all job of noJobs satisfies job is 'Oracle'", true, context });
+		list.add(new Object[] { "any job in jobs satisfies job is 'Oracle' and job is 'Paypal'", false, context });
+		list.add(new Object[] { "any job in jobs satisfies job is 'Oracle' or job is 'Paypal'", true, context });
+		list.add(new Object[] { "any job in jobs satisfies job is 'Oracle'", true, context });
+		list.add(new Object[] { "any job in jobs satisfies job is 'Paypal'", false, context });
+		list.add(new Object[] { "none job in jobs satisfies job is 'Oracle'", false, context });
+		list.add(new Object[] { "none job in jobs satisfies job is 'Paypal'", true, context });
+		list.add(new Object[] { "all job in jobs satisfies job is 'Oracle'", true, context });
+		list.add(new Object[] { "all job in jobList satisfies job is 'Oracle'", false, context });
+		list.add(new Object[] { "any job in noJobs satisfies (job is 'Oracle')", false, context });
+		list.add(new Object[] { "none job in noJobs satisfies job is 'Oracle'", true, context });
+		list.add(new Object[] { "all job in noJobs satisfies job is 'Oracle'", true, context });
+		list.add(new Object[] { "any job in jobs satisfies job in {'Oracle', 'Paypal'}", true, context });
+		list.add(new Object[] { "all job in jobs satisfies job in {'Oracle', 'Paypal'}", true, context });
 
 		list.add(new Object[] { "jobs contains 'Oracle'", true, context });
 		list.add(new Object[] { "jobList contains 'Oracle'", true, context });

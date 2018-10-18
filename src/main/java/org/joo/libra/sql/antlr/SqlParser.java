@@ -213,7 +213,7 @@ public class SqlParser extends Parser {
 		public Token indexName;
 		public Token listName;
 		public ExpressionContext condition;
-		public TerminalNode OF() { return getToken(SqlParser.OF, 0); }
+		public TerminalNode IN() { return getToken(SqlParser.IN, 0); }
 		public TerminalNode SATISFIES() { return getToken(SqlParser.SATISFIES, 0); }
 		public TerminalNode ANY() { return getToken(SqlParser.ANY, 0); }
 		public List<TerminalNode> VARIABLE() { return getTokens(SqlParser.VARIABLE); }
@@ -347,7 +347,7 @@ public class SqlParser extends Parser {
 				setState(21);
 				((ListMatchingExprContext)_localctx).indexName = match(VARIABLE);
 				setState(22);
-				match(OF);
+				match(IN);
 				setState(23);
 				((ListMatchingExprContext)_localctx).listName = match(VARIABLE);
 				setState(24);
@@ -366,7 +366,7 @@ public class SqlParser extends Parser {
 				setState(27);
 				((ListMatchingExprContext)_localctx).indexName = match(VARIABLE);
 				setState(28);
-				match(OF);
+				match(IN);
 				setState(29);
 				((ListMatchingExprContext)_localctx).listName = match(VARIABLE);
 				setState(30);
@@ -385,7 +385,7 @@ public class SqlParser extends Parser {
 				setState(33);
 				((ListMatchingExprContext)_localctx).indexName = match(VARIABLE);
 				setState(34);
-				match(OF);
+				match(IN);
 				setState(35);
 				((ListMatchingExprContext)_localctx).listName = match(VARIABLE);
 				setState(36);
@@ -1374,14 +1374,14 @@ public class SqlParser extends Parser {
 		"\2\2\2\u00d5\2\16\3\2\2\2\4\20\3\2\2\2\6(\3\2\2\2\br\3\2\2\2\n\u008f\3"+
 		"\2\2\2\f\u00a8\3\2\2\2\16\17\3\2\2\2\17\3\3\2\2\2\20\21\5\6\4\2\21\5\3"+
 		"\2\2\2\22\23\b\4\1\2\23\24\7\6\2\2\24)\5\6\4\n\25)\5\b\5\2\26\27\7\22"+
-		"\2\2\27\30\7/\2\2\30\31\7\25\2\2\31\32\7/\2\2\32\33\7\26\2\2\33)\5\6\4"+
-		"\5\34\35\7\23\2\2\35\36\7/\2\2\36\37\7\25\2\2\37 \7/\2\2 !\7\26\2\2!)"+
-		"\5\6\4\4\"#\7\24\2\2#$\7/\2\2$%\7\25\2\2%&\7/\2\2&\'\7\26\2\2\')\5\6\4"+
-		"\3(\22\3\2\2\2(\25\3\2\2\2(\26\3\2\2\2(\34\3\2\2\2(\"\3\2\2\2)8\3\2\2"+
-		"\2*+\f\t\2\2+,\7\4\2\2,\67\5\6\4\n-.\f\b\2\2./\7\5\2\2/\67\5\6\4\t\60"+
-		"\61\f\6\2\2\61\62\7$\2\2\62\63\5\n\6\2\63\64\7%\2\2\64\65\5\n\6\2\65\67"+
-		"\3\2\2\2\66*\3\2\2\2\66-\3\2\2\2\66\60\3\2\2\2\67:\3\2\2\28\66\3\2\2\2"+
-		"89\3\2\2\29\7\3\2\2\2:8\3\2\2\2;<\5\n\6\2<=\7\27\2\2=>\5\n\6\2>s\3\2\2"+
+		"\2\2\27\30\7/\2\2\30\31\7\f\2\2\31\32\7/\2\2\32\33\7\26\2\2\33)\5\6\4"+
+		"\5\34\35\7\23\2\2\35\36\7/\2\2\36\37\7\f\2\2\37 \7/\2\2 !\7\26\2\2!)\5"+
+		"\6\4\4\"#\7\24\2\2#$\7/\2\2$%\7\f\2\2%&\7/\2\2&\'\7\26\2\2\')\5\6\4\3"+
+		"(\22\3\2\2\2(\25\3\2\2\2(\26\3\2\2\2(\34\3\2\2\2(\"\3\2\2\2)8\3\2\2\2"+
+		"*+\f\t\2\2+,\7\4\2\2,\67\5\6\4\n-.\f\b\2\2./\7\5\2\2/\67\5\6\4\t\60\61"+
+		"\f\6\2\2\61\62\7$\2\2\62\63\5\n\6\2\63\64\7%\2\2\64\65\5\n\6\2\65\67\3"+
+		"\2\2\2\66*\3\2\2\2\66-\3\2\2\2\66\60\3\2\2\2\67:\3\2\2\28\66\3\2\2\28"+
+		"9\3\2\2\29\7\3\2\2\2:8\3\2\2\2;<\5\n\6\2<=\7\27\2\2=>\5\n\6\2>s\3\2\2"+
 		"\2?@\5\n\6\2@A\7\30\2\2AB\5\n\6\2Bs\3\2\2\2CD\5\n\6\2DE\7\31\2\2EF\5\n"+
 		"\6\2Fs\3\2\2\2GH\5\n\6\2HI\7\32\2\2IJ\5\n\6\2Js\3\2\2\2KL\5\n\6\2LM\7"+
 		"\33\2\2MN\5\n\6\2Ns\3\2\2\2OP\5\n\6\2PQ\7\35\2\2QR\5\n\6\2Rs\3\2\2\2S"+
