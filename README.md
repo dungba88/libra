@@ -73,8 +73,8 @@ Libra can be easily installed with Maven:
 By default, you can simply use `SqlPredicate` class for all the functionality, which supports `satisfiedBy` method to perform the evaluation. A `PredicateContext` needs to be passed to the method.
 
 ```java
-PredicateContext context = new PredicateContext(anObject);
-SqlPredicate predicate = new SqlPredicate(predicateString);
+PredicateContext context = new PredicateContext(customer);
+SqlPredicate predicate = new SqlPredicate("customer.age > 50 AND customer.isResidence is true");
 predicate.satisfiedBy(context);
 ```
 
@@ -92,8 +92,8 @@ predicate.checkForErrorAndThrow();
 
 from `1.1.0` you can retrieve the raw value instead of letting Libra convert it to boolean
 ```java
-PredicateContext context = new PredicateContext(anObject);
-SqlPredicate predicate = new SqlPredicate(predicateString);
+PredicateContext context = new PredicateContext(customer);
+SqlPredicate predicate = new SqlPredicate("customer.asset - customer.liability");
 Object rawValue = predicate.calculateLiteralValue(context);
 ```
 
