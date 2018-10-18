@@ -2,6 +2,7 @@ package org.joo.libra.common;
 
 import java.util.function.Function;
 
+import org.joo.libra.LiteralPredicate;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.support.exceptions.PredicateExecutionException;
 
@@ -11,7 +12,7 @@ import org.joo.libra.support.exceptions.PredicateExecutionException;
  * @author griever
  *
  */
-public class DerivedLiteralPredicate<T> implements CompositionPredicate {
+public class DerivedLiteralPredicate<T> implements CompositionPredicate, LiteralPredicate<T> {
 
 	private final HasValue<T> literalValue;
 	
@@ -22,6 +23,7 @@ public class DerivedLiteralPredicate<T> implements CompositionPredicate {
 		this.predicateFunction = predicateFunction;
 	}
 	
+	@Override
 	public T calculateLiteralValue(final PredicateContext context) throws PredicateExecutionException {
 		return literalValue.getValue(context);
 	}
