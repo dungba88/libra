@@ -148,4 +148,4 @@ The runtime evaluation is quite fast (2 millions ops/sec with Java object or 5 m
 
 ## license
 
-This library is released under MIT license. See [LICENSE](LICENSE)
+This library is distributed under MIT license. See [LICENSE](LICENSE)
