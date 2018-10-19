@@ -1,15 +1,12 @@
 # libra
-[![License](https://img.shields.io/github/license/dungba88/libra.svg?maxAge=2592000)](LICENSE)
-[![Maven Central](https://img.shields.io/maven-central/v/org.dungba/joo-libra.svg?maxAge=604800)](http://mvnrepository.com/artifact/org.dungba/joo-libra)
-[![Javadocs](http://javadoc.io/badge/org.dungba/joo-libra.svg)](http://javadoc.io/doc/org.dungba/joo-libra)
-
-**continous integration**
-
-[![Build Status](https://travis-ci.org/dungba88/libra.svg?branch=master)](https://travis-ci.org/dungba88/libra)
-[![Coverage Status](https://coveralls.io/repos/github/dungba88/libra/badge.svg?branch=master&maxAge=86400)](https://coveralls.io/github/dungba88/libra?branch=master)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b5162a68d84944299bd36ebdfd56987b)](https://www.codacy.com/app/dungba88/libra?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dungba88/libra&amp;utm_campaign=Badge_Grade)
 
 Libra is a Java package for creating and evaluating predicate. Java-based and SQL-like predicate are both supported. For SQL predicates, it is using ANTLR to parse the string against a predefined grammar. The Java-based predicates are implementation of Specification pattern and support numeric/text/collection related conditions.
+
+## build info
+[![Maven Central](https://img.shields.io/maven-central/v/org.dungba/joo-libra.svg?maxAge=604800)](http://mvnrepository.com/artifact/org.dungba/joo-libra)
+[![Javadocs](http://javadoc.io/badge/org.dungba/joo-libra.svg)](http://javadoc.io/doc/org.dungba/joo-libra)
+[![Build Status](https://travis-ci.org/dungba88/libra.svg?branch=master)](https://travis-ci.org/dungba88/libra)
+[![Coverage Status](https://coveralls.io/repos/github/dungba88/libra/badge.svg?branch=master&maxAge=86400)](https://coveralls.io/github/dungba88/libra?branch=master)
 
 ## grammar
 
@@ -149,3 +146,7 @@ SqlPredicate predicate = new SqlPredicate(predicateString, this::parseSql);
 It is of best interest to cache the parsed version of sql and if possible, try to load all of them at startup. If you keep the `SqlPredicate` objects, they will contain the parsed predicate to be reused.
 
 The runtime evaluation is quite fast (2 millions ops/sec with Java object or 5 millions ops/sec with `Map`). You can also consider using `Map` because it's significantly faster.
+
+## license
+
+This library is released under MIT license. See [LICENSE](LICENSE)
