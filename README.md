@@ -7,6 +7,47 @@
 
 Libra is a Java package for creating and evaluating predicate. Java-based and SQL-like predicate are both supported. For SQL predicates, it is using ANTLR to parse the string against a predefined grammar. The Java-based predicates are implementation of Specification pattern and support numeric/text/collection related conditions.
 
+## install
+
+Libra can be easily installed with Maven:
+
+```xml
+<dependency>
+    <groupId>org.dungba</groupId>
+    <artifactId>joo-libra</artifactId>
+    <version>1.0.3</version>
+</dependency>
+```
+
+## how to use
+
+By default, you can simply use `SqlPredicate` class for all the functionality, which supports `satisfiedBy` method to perform the evaluation. A `PredicateContext` needs to be passed to the method.
+
+```java
+PredicateContext context = new PredicateContext(customer);
+SqlPredicate predicate = new SqlPredicate("customer.age > 50 AND customer.isResidence is true");
+predicate.satisfiedBy(context);
+```
+
+You can optionally check for syntax errors:
+```java
+if (predicate.hasError()) {
+    predicate.getCause().printStackTrace();
+}
+```
+
+or throw the exception if any
+```java
+predicate.checkForErrorAndThrow();
+```
+
+from `2.0.0` you can retrieve the raw value instead of letting Libra convert it to boolean
+```java
+PredicateContext context = new PredicateContext(customer);
+SqlPredicate predicate = new SqlPredicate("customer.asset - customer.liability");
+Object rawValue = predicate.calculateLiteralValue(context);
+```
+
 ## grammar
 
 Libra supports the following syntax for SQL predicates:
@@ -49,47 +90,6 @@ avg(4, 5, 6) is 5
 ```
 
 More examples can be seen inside the [test cases](https://github.com/dungba88/libra/tree/master/src/test/java/org/joo/libra/test)
-
-## install
-
-Libra can be easily installed with Maven:
-
-```xml
-<dependency>
-    <groupId>org.dungba</groupId>
-    <artifactId>joo-libra</artifactId>
-    <version>1.0.3</version>
-</dependency>
-```
-
-## how to use
-
-By default, you can simply use `SqlPredicate` class for all the functionality, which supports `satisfiedBy` method to perform the evaluation. A `PredicateContext` needs to be passed to the method.
-
-```java
-PredicateContext context = new PredicateContext(customer);
-SqlPredicate predicate = new SqlPredicate("customer.age > 50 AND customer.isResidence is true");
-predicate.satisfiedBy(context);
-```
-
-You can optionally check for syntax errors:
-```java
-if (predicate.hasError()) {
-    predicate.getCause().printStackTrace();
-}
-```
-
-or throw the exception if any
-```java
-predicate.checkForErrorAndThrow();
-```
-
-from `2.0.0` you can retrieve the raw value instead of letting Libra convert it to boolean
-```java
-PredicateContext context = new PredicateContext(customer);
-SqlPredicate predicate = new SqlPredicate("customer.asset - customer.liability");
-Object rawValue = predicate.calculateLiteralValue(context);
-```
 
 ## edge cases and limitations
 
