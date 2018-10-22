@@ -15,7 +15,7 @@ Libra can be easily installed with Maven:
 <dependency>
     <groupId>org.dungba</groupId>
     <artifactId>joo-libra</artifactId>
-    <version>1.0.3</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
