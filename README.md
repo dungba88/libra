@@ -120,13 +120,13 @@ This will take more time to compile the SQL but will reduce evaluation time.
 
 ## extends
 
-The `SqlPredicate` class allows you to pass your own `SqlPredicateParser`:
+The `SqlPredicate` class allows you to use your own `SqlPredicateParser`:
 
 ```java
 SqlPredicate predicate = new SqlPredicate(predicateString, new MyPredicateParser());
 ```
 
-you can implement your own `SqlPredicateParser`, or extend the `AbstractAntlrSqlPredicateParser` to use your own grammar. For the former, the interface has only one method `public Predicate parse(String predicate) throws MalformedSyntaxException`, so you can even use lambda expression to construct it, like:
+you can implement `SqlPredicateParser`, or extend the `AbstractAntlrSqlPredicateParser` to use your own grammar. For the former, the interface has only one method `public Predicate parse(String predicate) throws MalformedSyntaxException`, so you can even use lambda expression to construct it, like:
 
 ```java
 SqlPredicate predicate = new SqlPredicate(predicateString, predicate -> {
@@ -142,7 +142,7 @@ SqlPredicate predicate = new SqlPredicate(predicateString, this::parseSql);
 
 ## performance considerations
 
-It is of best interest to cache the parsed version of sql and if possible, try to load all of them at startup. If you keep the `SqlPredicate` objects, they will contain the parsed predicate to be reused.
+It is better to cache the parsed version of sql and if possible, try to load all of them at startup. If you keep the `SqlPredicate` objects, they will contain the parsed predicate to be reused.
 
 The runtime evaluation is quite fast (2 millions ops/sec with Java object or 5 millions ops/sec with `Map`). You can also consider using `Map` because it's significantly faster.
 
