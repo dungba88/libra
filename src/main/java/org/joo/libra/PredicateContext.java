@@ -21,63 +21,72 @@ import lombok.Getter;
  */
 public class PredicateContext implements Cloneable {
 
-	@Getter
-	private Object context;
+    @Getter
+    private Object context;
 
-	private Map<String, Object> cachedValues;
+    private Map<String, Object> cachedValues;
 
-	private Map<String, MultiArgsFunction> functionMappings;
-	
-	private Map<String, Object> tempVariables = new HashMap<>();
+    private Map<String, MultiArgsFunction> functionMappings;
 
-	public PredicateContext(final Object context) {
-		this.context = context;
-		this.cachedValues = new HashMap<>();
-	}
+    private Map<String, Object> tempVariables = new HashMap<>();
 
-	public PredicateContext(final Object context, Map<String, MultiArgsFunction> functionMappings) {
-		this.context = context;
-		this.cachedValues = new HashMap<>();
-		this.functionMappings = functionMappings;
-	}
-	
-	public Object getVariableValue(final String name, final PredicateContext context) {
-		Object value = cachedValues.get(name);
-		if (value == null) {
-			value = getValueNoCache(name, context);
-			cachedValues.put(name, value);
-		}
-		return value;
-	}
+    public PredicateContext(final Object context) {
+        this.context = context;
+        this.cachedValues = new HashMap<>();
+    }
 
-	private Object getValueNoCache(final String name, final PredicateContext context) {
-		if (tempVariables.containsKey(name))
-			return tempVariables.get(name);
-		try {
-			return ObjectUtils.getValue(context.getContext(), name);
-		} catch (ReflectiveOperationException e) {
-			throw new PredicateValueException(e);
-		}
-	}
+    public PredicateContext(final Object context, Map<String, MultiArgsFunction> functionMappings) {
+        this.context = context;
+        this.cachedValues = new HashMap<>();
+        this.functionMappings = functionMappings;
+    }
 
-	public boolean hasCachedValue(final String key) {
-		return cachedValues.containsKey(key);
-	}
+    public Object getVariableValue(final String name, final PredicateContext context) {
+        Object value = cachedValues.get(name);
+        if (value == null) {
+            value = getValueNoCache(name, context);
+            cachedValues.put(name, value);
+        }
+        return value;
+    }
 
-	public MultiArgsFunction getRegisteredFunction(final String name) {
-		return functionMappings != null ? functionMappings.get(name) : null;
-	}
-	
-	public Object getTempVariable(String name) {
-		return tempVariables.get(name);
-	}
-	
-	public void setTempVariable(String name, Object value) {
-		tempVariables.put(name, value);
-	}
+    private Object getValueNoCache(final String name, final PredicateContext context) {
+        if (tempVariables.containsKey(name))
+            return tempVariables.get(name);
+        try {
+            if (!tempVariables.isEmpty()) {
+                Object value = ObjectUtils.getValue(tempVariables, name);
+                if (value != null)
+                    return value;
+            }
+        } catch (Exception e) {
+            // Nothing to do
+        }
+        try {
+            return ObjectUtils.getValue(context.getContext(), name);
+        } catch (ReflectiveOperationException e) {
+            throw new PredicateValueException(e);
+        }
+    }
 
-	@Override
-	public PredicateContext clone() {
-		return new PredicateContext(context, functionMappings);
-	}
+    public boolean hasCachedValue(final String key) {
+        return cachedValues.containsKey(key);
+    }
+
+    public MultiArgsFunction getRegisteredFunction(final String name) {
+        return functionMappings != null ? functionMappings.get(name) : null;
+    }
+
+    public Object getTempVariable(String name) {
+        return tempVariables.get(name);
+    }
+
+    public void setTempVariable(String name, Object value) {
+        tempVariables.put(name, value);
+    }
+
+    @Override
+    public PredicateContext clone() {
+        return new PredicateContext(context, functionMappings);
+    }
 }

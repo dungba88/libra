@@ -19,6 +19,8 @@ public class Person {
 	private String[] jobs;
 
 	private String[] noJobs = new String[0];
+	
+	private List<JobWithSalary> jobWithSalaries = new ArrayList<>();
 
 	private List<String> jobList;
 
