@@ -50,18 +50,17 @@ public class PredicateContext implements Cloneable {
         return value;
     }
 
-    private Object getValueNoCache(final String name, final PredicateContext context) {
+    public Object getTempVariableValue(String name, PredicateContext context2) {
         if (tempVariables.containsKey(name))
             return tempVariables.get(name);
         try {
-            if (!tempVariables.isEmpty()) {
-                Object value = ObjectUtils.getValue(tempVariables, name);
-                if (value != null)
-                    return value;
-            }
-        } catch (Exception e) {
-            // Nothing to do
+            return ObjectUtils.getValue(tempVariables, name);
+        } catch (ReflectiveOperationException e) {
+            throw new PredicateValueException(e);
         }
+    }
+
+    private Object getValueNoCache(final String name, final PredicateContext context) {
         try {
             return ObjectUtils.getValue(context.getContext(), name);
         } catch (ReflectiveOperationException e) {

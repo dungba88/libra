@@ -21,6 +21,7 @@ NULL:					('NULL' | 'null') ;
 ANY:					('ANY' | 'any') ;
 NONE:					('NONE' | 'none') ;
 ALL:					('ALL' | 'all') ;
+FILTER:					('WITH' | 'with') ;
 OF:						('OF' | 'of') ;
 SATISFIES:				('SATISFIES' | 'satisfies') ;
 
@@ -49,4 +50,5 @@ INTEGER:				'-'* Digit+ ;
 DOUBLE:					'-'* Digit+'.'Digit+ ;
 INDEX:					'[' Digit+ ']' ;
 VARIABLE:				Alpha+ (Alpha | Digit | INDEX)* ;
+TEMP_VAR:				'$' Alpha+ (Alpha | Digit | INDEX)* ;
 WS: 					(' ' | '\t')+ -> channel(HIDDEN) ;

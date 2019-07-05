@@ -97,23 +97,42 @@ public class TestSqlVariable {
         list.add(new Object[] { "demographic.gender is 'male'", true, context });
         list.add(new Object[] { "jobs[0] is 'Oracle'", context instanceof Map ? null : true, context });
 
-        list.add(new Object[] { "any job in jobWithSalaries satisfies job.salary >= 1000", true, context });
-        list.add(new Object[] { "any job in jobWithSalaries satisfies job.salary < 1000", true, context });
-        list.add(new Object[] { "any job in jobWithSalaries satisfies job.salary < 500", false, context });
+        list.add(new Object[] { "(with $item in {1, 2, 3} satisfies $item > 1) contains 2", true, context });
 
-        list.add(new Object[] { "any job in jobs satisfies job is 'Oracle' and job is 'Paypal'", false, context });
-        list.add(new Object[] { "any job in jobs satisfies job is 'Oracle' or job is 'Paypal'", true, context });
-        list.add(new Object[] { "any job in jobs satisfies job is 'Oracle'", true, context });
-        list.add(new Object[] { "any job in jobs satisfies job is 'Paypal'", false, context });
-        list.add(new Object[] { "none job in jobs satisfies job is 'Oracle'", false, context });
-        list.add(new Object[] { "none job in jobs satisfies job is 'Paypal'", true, context });
-        list.add(new Object[] { "all job in jobs satisfies job is 'Oracle'", true, context });
-        list.add(new Object[] { "all job in jobList satisfies job is 'Oracle'", false, context });
-        list.add(new Object[] { "any job in noJobs satisfies (job is 'Oracle')", false, context });
-        list.add(new Object[] { "none job in noJobs satisfies job is 'Oracle'", true, context });
-        list.add(new Object[] { "all job in noJobs satisfies job is 'Oracle'", true, context });
-        list.add(new Object[] { "any job in jobs satisfies job in {'Oracle', 'Paypal'}", true, context });
-        list.add(new Object[] { "all job in jobs satisfies job in {'Oracle', 'Paypal'}", true, context });
+        list.add(new Object[] { "with $job in jobWithSalaries satisfies $job.salary > 500", true, context });
+        list.add(new Object[] { "with $job in jobWithSalaries satisfies $job.salary < 0", false, context });
+
+        list.add(new Object[] {
+                "any $job in (with $theJob in jobWithSalaries satisfies $theJob.salary > 500) satisfies $job.salary >= 1000",
+                true, context });
+
+        list.add(new Object[] {
+                "any $salary in ($job.salary with $job in jobWithSalaries satisfies $job.salary > 500) satisfies $salary >= 1000",
+                true, context });
+
+        list.add(new Object[] { "sum($job.salary with $job in jobWithSalaries satisfies $job.salary > 500) == 1000",
+                true, context });
+
+        list.add(new Object[] { "any $item in {1, 2, 3} satisfies $item >= 1000", false, context });
+        list.add(new Object[] { "any $item in {1, 2, 3} satisfies $item == 2", true, context });
+
+        list.add(new Object[] { "any $job in jobWithSalaries satisfies $job.salary >= 1000", true, context });
+        list.add(new Object[] { "any $job in jobWithSalaries satisfies $job.salary < 1000", true, context });
+        list.add(new Object[] { "any $job in jobWithSalaries satisfies $job.salary < 500", false, context });
+
+        list.add(new Object[] { "any $job in jobs satisfies $job is 'Oracle' and $job is 'Paypal'", false, context });
+        list.add(new Object[] { "any $job in jobs satisfies $job is 'Oracle' or $job is 'Paypal'", true, context });
+        list.add(new Object[] { "any $job in jobs satisfies $job is 'Oracle'", true, context });
+        list.add(new Object[] { "any $job in jobs satisfies $job is 'Paypal'", false, context });
+        list.add(new Object[] { "none $job in jobs satisfies $job is 'Oracle'", false, context });
+        list.add(new Object[] { "none $job in jobs satisfies $job is 'Paypal'", true, context });
+        list.add(new Object[] { "all $job in jobs satisfies $job is 'Oracle'", true, context });
+        list.add(new Object[] { "all $job in jobList satisfies $job is 'Oracle'", false, context });
+        list.add(new Object[] { "any $job in noJobs satisfies (job is 'Oracle')", false, context });
+        list.add(new Object[] { "none $job in noJobs satisfies $job is 'Oracle'", true, context });
+        list.add(new Object[] { "all $job in noJobs satisfies $job is 'Oracle'", true, context });
+        list.add(new Object[] { "any $job in jobs satisfies $job in {'Oracle', 'Paypal'}", true, context });
+        list.add(new Object[] { "all $job in jobs satisfies $job in {'Oracle', 'Paypal'}", true, context });
 
         list.add(new Object[] { "jobs contains 'Oracle'", true, context });
         list.add(new Object[] { "jobList contains 'Oracle'", true, context });

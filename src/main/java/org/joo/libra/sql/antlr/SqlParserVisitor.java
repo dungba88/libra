@@ -54,6 +54,13 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitOrExpr(SqlParser.OrExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code filterMatching}
+	 * labeled alternative in {@link SqlParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFilterMatching(SqlParser.FilterMatchingContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code conditionalExpr}
 	 * labeled alternative in {@link SqlParser#expression}.
 	 * @param ctx the parse tree
@@ -180,6 +187,13 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitParenExpr(SqlParser.ParenExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code tempVarExpr}
+	 * labeled alternative in {@link SqlParser#factor}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTempVarExpr(SqlParser.TempVarExprContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code functionExpr}
 	 * labeled alternative in {@link SqlParser#factor}.
 	 * @param ctx the parse tree
@@ -194,10 +208,24 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitListFactorExpr(SqlParser.ListFactorExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code filterExpr}
+	 * labeled alternative in {@link SqlParser#list}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFilterExpr(SqlParser.FilterExprContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code listCommaExpr}
 	 * labeled alternative in {@link SqlParser#list}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitListCommaExpr(SqlParser.ListCommaExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code filterMatchingExpr}
+	 * labeled alternative in {@link SqlParser#filter}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFilterMatchingExpr(SqlParser.FilterMatchingExprContext ctx);
 }

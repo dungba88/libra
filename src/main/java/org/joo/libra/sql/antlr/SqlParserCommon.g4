@@ -17,12 +17,13 @@ expression
 	| term # termExpr
 	| main = expression QUESTION left = factor COLON right = factor #
 	conditionalExpr
-	| op = ANY indexName = VARIABLE IN listName = VARIABLE SATISFIES condition =
+	| op = ANY indexName = TEMP_VAR IN listName = factor SATISFIES condition =
 	expression # listMatchingExpr
-	| op = NONE indexName = VARIABLE IN listName = VARIABLE SATISFIES condition =
+	| op = NONE indexName = TEMP_VAR IN listName = factor SATISFIES condition =
 	expression # listMatchingExpr
-	| op = ALL indexName = VARIABLE IN listName = VARIABLE SATISFIES condition =
+	| op = ALL indexName = TEMP_VAR IN listName = factor SATISFIES condition =
 	expression # listMatchingExpr
+	| filter # filterMatching
 ;
 
 term
@@ -54,6 +55,7 @@ factor
 	| UNDEFINED # nullExpr
 	| NULL # nullExpr
 	| VARIABLE # variableExpr
+	| TEMP_VAR # tempVarExpr
 	| LPAREN expression RPAREN # parenExpr
 	| name = VARIABLE LPAREN inner = list RPAREN # functionExpr
 	| name = VARIABLE LPAREN RPAREN # functionExpr
@@ -71,4 +73,13 @@ list
 :
 	factor # listFactorExpr
 	| left = list COMMA right = list # listCommaExpr
+	| filter # filterExpr
+;
+
+filter
+:
+	FILTER indexName = TEMP_VAR IN listName = factor SATISFIES condition =
+	expression # filterMatchingExpr
+	| transform = factor FILTER indexName = TEMP_VAR IN listName = factor
+	SATISFIES condition = expression # filterMatchingExpr
 ;

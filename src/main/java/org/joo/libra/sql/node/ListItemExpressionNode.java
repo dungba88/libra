@@ -7,12 +7,13 @@ import java.util.stream.Collectors;
 
 import org.joo.libra.Predicate;
 import org.joo.libra.PredicateContext;
+import org.joo.libra.common.HasList;
 import org.joo.libra.common.HasValue;
 
 import lombok.Data;
 
 @Data
-public class ListItemExpressionNode implements ExpressionNode {
+public class ListItemExpressionNode implements ExpressionNode, HasList {
 
 	private List<ExpressionNode> innerNode = new ArrayList<>();
 
