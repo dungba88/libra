@@ -36,7 +36,7 @@ public class TestSqlComplex {
 	public static List<Object[]> data() {
 		List<Object[]> list = new ArrayList<Object[]>();
 
-		list.add(new Object[] { "'John' is 'John' and 1 == 1 and", null });
+		list.add(new Object[] { "'John' is 'John' and 1 == 1 and", true });
 		list.add(new Object[] { "'John' is 'John' and 1 == 1 and 0", false });
 		list.add(new Object[] { "'John' is 'John' and 1 == 1 and 1", true });
 		list.add(new Object[] { "'John' is 'John' or 1 == 1", true });

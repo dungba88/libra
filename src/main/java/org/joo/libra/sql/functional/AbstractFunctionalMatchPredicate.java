@@ -22,13 +22,12 @@ public abstract class AbstractFunctionalMatchPredicate implements Predicate {
 	@Override
 	public boolean satisfiedBy(PredicateContext context) throws PredicateExecutionException {
 		Object listValue = list.getValue(context);
-        PredicateContext cloneContext = context != null ? context.clone() : null;
 		if (listValue == null)
-			return satisfiesAsArray(new Object[0], cloneContext);
+			return satisfiesAsArray(new Object[0], context);
 		if (listValue instanceof Object[])
-			return satisfiesAsArray((Object[]) listValue, cloneContext);
+			return satisfiesAsArray((Object[]) listValue, context);
 		if (listValue instanceof Collection)
-			return satisfiesAsCollection((Collection<?>) listValue, cloneContext);
+			return satisfiesAsCollection((Collection<?>) listValue, context);
 		return false;
 	}
 

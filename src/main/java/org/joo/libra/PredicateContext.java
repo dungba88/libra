@@ -19,7 +19,7 @@ import lombok.Getter;
  * @author griever
  *
  */
-public class PredicateContext implements Cloneable {
+public class PredicateContext {
 
     @Getter
     private Object context;
@@ -82,10 +82,5 @@ public class PredicateContext implements Cloneable {
 
     public void setTempVariable(String name, Object value) {
         tempVariables.put(name, value);
-    }
-
-    @Override
-    public PredicateContext clone() {
-        return new PredicateContext(context, functionMappings);
     }
 }
