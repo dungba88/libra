@@ -8,7 +8,7 @@ import org.joo.libra.PredicateContext;
 import org.joo.libra.common.HasValue;
 import org.joo.libra.common.DerivedLiteralPredicate;
 import org.joo.libra.sql.antlr.SqlLexer;
-import org.joo.libra.support.NumericComparator;
+import org.joo.libra.support.GenericComparator;
 
 public class MathExpressionNode extends AbstractBinaryOpExpressionNode<HasValue<Number>> implements HasValue<Number> {
 
@@ -16,7 +16,7 @@ public class MathExpressionNode extends AbstractBinaryOpExpressionNode<HasValue<
 
 	@Override
 	public Predicate buildPredicate() {
-		return new DerivedLiteralPredicate<Number>(this, value -> NumericComparator.compare(value, 0) != 0);
+		return new DerivedLiteralPredicate<Number>(this, value -> GenericComparator.compareNumber(value, 0) != 0);
 	}
 
 	@Override

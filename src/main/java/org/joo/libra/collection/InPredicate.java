@@ -1,5 +1,6 @@
 package org.joo.libra.collection;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 import org.joo.libra.common.BinaryPredicate;
@@ -17,19 +18,19 @@ import org.joo.libra.support.ListUtils;
 @SuppressWarnings("rawtypes")
 public class InPredicate extends BinaryPredicate {
 
-	@SuppressWarnings("unchecked")
-	public InPredicate(final HasValue<?> one, final HasValue<?> other) {
-		super(one, other);
-	}
+    @SuppressWarnings("unchecked")
+    public InPredicate(final HasValue<?> one, final HasValue<?> other) {
+        super(one, other);
+    }
 
-	@Override
-	protected boolean doSatisifiedBy(final Object one, final Object other) {
-		if (one instanceof String && other instanceof String)
-			return other.toString().contains(one.toString());
-		if (other instanceof Collection<?>)
-			return ((Collection<?>) other).contains(one);
-		if (other instanceof Object[])
-			return ListUtils.contains((Object[]) other, one);
-		return false;
-	}
+    @Override
+    protected boolean doSatisifiedBy(final Object one, final Object other) {
+        if (one instanceof String && other instanceof String)
+            return other.toString().contains(one.toString());
+        if (other instanceof Collection<?>)
+            return ListUtils.contains((Collection<?>) other, one);
+        if (other instanceof Object[])
+            return ListUtils.contains(Arrays.asList((Object[]) other), one);
+        return false;
+    }
 }

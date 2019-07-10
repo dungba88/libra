@@ -2,7 +2,7 @@ package org.joo.libra.numeric;
 
 import org.joo.libra.common.BinaryPredicate;
 import org.joo.libra.common.HasValue;
-import org.joo.libra.support.NumericComparator;
+import org.joo.libra.support.GenericComparator;
 
 /**
  * Represents a numeric <code>less than or equals to</code> predicate
@@ -18,6 +18,6 @@ public class LessEqualPredicate extends BinaryPredicate<Number, Number> {
 
 	@Override
 	protected boolean doSatisifiedBy(final Number one, final Number other) {
-		return NumericComparator.compare(one, other) <= 0;
+		return GenericComparator.compareNumber(one, other) <= 0;
 	}
 }

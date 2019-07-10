@@ -97,6 +97,8 @@ public class TestSqlVariable {
         list.add(new Object[] { "demographic.gender is 'male'", true, context });
         list.add(new Object[] { "jobs[0] is 'Oracle'", context instanceof Map ? null : true, context });
 
+        list.add(new Object[] { "age IN {27.0, 28, 29}", true, context });
+
         list.add(new Object[] { "(with $item in {1, 2, 3} satisfies $item > 1) contains 2", true, context });
 
         list.add(new Object[] { "with $job in jobWithSalaries satisfies $job.salary > 500", true, context });

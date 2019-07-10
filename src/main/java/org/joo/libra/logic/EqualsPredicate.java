@@ -2,7 +2,7 @@ package org.joo.libra.logic;
 
 import org.joo.libra.common.BinaryPredicate;
 import org.joo.libra.common.HasValue;
-import org.joo.libra.support.NumericComparator;
+import org.joo.libra.support.GenericComparator;
 
 /**
  * Represents a 'equal' predicate. It is used to check if both objects are equal
@@ -24,9 +24,6 @@ public class EqualsPredicate extends BinaryPredicate {
 
 	@Override
 	protected boolean doSatisifiedBy(final Object one, final Object other) {
-		if (one instanceof Number && other instanceof Number) {
-			return NumericComparator.compare((Number) one, (Number) other) == 0;
-		}
-		return one.equals(other);
+		return GenericComparator.compare(one, other);
 	}
 }
