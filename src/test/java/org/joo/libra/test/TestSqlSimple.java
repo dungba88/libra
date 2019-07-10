@@ -138,6 +138,12 @@ public class TestSqlSimple {
         list.add(new Object[] { "len ('name') + 1 is 5", true });
         list.add(new Object[] { "len ({1, 2, 3}) + 1 is 4", true });
 
+        list.add(new Object[] { "concat('a', 'b') == 'ab'", true });
+
+        list.add(new Object[] { "'123232397, 9780810993136, 9780061914171' matches '(.*)[^a-zA-Z0-9]+97[^a-zA-Z0-9]+(.*)'", false });
+        list.add(new Object[] { "'123232397, 9780810993136, 9780061914171' matches '(.*)[^a-zA-Z0-9]+9780810993136[^a-zA-Z0-9]+(.*)'", true });
+        list.add(new Object[] { "'123232397, 9780810993136, 9780061914171' matches '(.*)(^|[^a-zA-Z0-9]+)123232397($|[^a-zA-Z0-9]+)(.*)'", true });
+
         return list;
     }
 }

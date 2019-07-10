@@ -18,6 +18,7 @@ public class GlobalFunctions {
 		instance.functionMappings.put("max", new MaxFunction());
 		instance.functionMappings.put("len", new LenFunction());
 		instance.functionMappings.put("rand", new RandFunction());
+        instance.functionMappings.put("concat", new ConcatFunction());
 	}
 
 	public static final GlobalFunctions getInstance() {
