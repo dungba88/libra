@@ -106,12 +106,12 @@ avg(4, 5, 6) is 5
 
 More examples can be seen inside the [test cases](https://github.com/dungba88/libra/tree/master/src/test/java/org/joo/libra/test)
 
-## edge cases and limitations
+## quirks and limitations
 
 Some special cases or limitations are covered here:
 - Literals, if stand alone in their own branch, will be converted into predicate according to their types:
-  + String & list literals will be considered as `true` if and only they are was *not null* and *not empty*
-  + Number literals will be considered as `true` if and only they are was *not null* and *not zero*
+  + String & list literals will be considered as `true` if and only they are *not null* and *not empty*
+  + Number literals will be considered as `true` if and only they are *not null* and *not zero*
   + `null` will always be considered as `false`
 - If literals are compared with any other type, the comparison will be as normal
   + `0 is false` will be evaluated as `false`, since `0` and `false` have different type
@@ -121,7 +121,6 @@ Some special cases or limitations are covered here:
   + Boolean variables will be considered as their own values
   + `null` variables will always be considered as `false`
 - When comparing number, they will be converted into `BigDecimal`, so `0.0`, `0` or `0L` are all equal
-- Limitations with `contains` expression: the type of the collection and that of the item must match. `grades contains 5` where items in `grades` are decimal number will be evaluated as `false` (Note: This is **no longer** the case with Libra `2.1.0`, `{1.0, 2, 3} contains 1` will return `true`)
 
 ## optimizers
 
