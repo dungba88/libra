@@ -8,7 +8,7 @@ public class GlobalFunctions extends Functions {
         instance = new GlobalFunctions();
         instance.addFunctions(new AggregateFunctions()) //
                 .addFunctions(new MathFunctions()) //
-                .addFunctions(new ListFunctions());
+                .addFunctions(new StringFunctions());
     }
 
     public static final GlobalFunctions getInstance() {
