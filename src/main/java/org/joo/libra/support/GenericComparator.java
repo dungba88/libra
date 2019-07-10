@@ -16,7 +16,37 @@ public class GenericComparator {
     }
 
     public static int compareNumber(final Number one, final Number other) {
-        return BigDecimal.valueOf(one.doubleValue()).compareTo(BigDecimal.valueOf(other.doubleValue()));
+        if (one instanceof Integer && other instanceof Integer)
+            return compareInteger(one.intValue(), other.intValue());
+        if (one instanceof Long || other instanceof Long)
+            return compareLong(one.longValue(), other.longValue());
+        if (one instanceof Double || other instanceof Double)
+            return compareDouble(one.doubleValue(), other.doubleValue());
+        return compareBigDecimal(one, other);
+    }
+
+    public static int compareBigDecimal(final Number one, final Number other) {
+        BigDecimal d1 = one instanceof BigDecimal ? (BigDecimal) one : BigDecimal.valueOf(one.doubleValue());
+        BigDecimal d2 = other instanceof BigDecimal ? (BigDecimal) other : BigDecimal.valueOf(other.doubleValue());
+        return d1.compareTo(d2);
+    }
+
+    public static int compareInteger(int d1, int d2) {
+        if (d1 == d2)
+            return 0;
+        return d1 > d2 ? 1 : -1;
+    }
+
+    public static int compareLong(long d1, long d2) {
+        if (d1 == d2)
+            return 0;
+        return d1 > d2 ? 1 : -1;
+    }
+
+    public static int compareDouble(double d1, double d2) {
+        if (d1 == d2)
+            return 0;
+        return d1 > d2 ? 1 : -1;
     }
 
     public static boolean compare(final Object one, final Object other) {
