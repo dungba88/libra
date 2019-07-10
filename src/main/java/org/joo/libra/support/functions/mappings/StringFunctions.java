@@ -16,4 +16,8 @@ public class StringFunctions extends Functions {
     public static final StringFunctions getInstance() {
         return instance;
     }
+
+    private StringFunctions() {
+        // Nothing to do here
+    }
 }

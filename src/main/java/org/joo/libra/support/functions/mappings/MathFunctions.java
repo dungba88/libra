@@ -16,4 +16,8 @@ public class MathFunctions extends Functions {
     public static final MathFunctions getInstance() {
         return instance;
     }
+
+    private MathFunctions() {
+        // Nothing to do here
+    }
 }

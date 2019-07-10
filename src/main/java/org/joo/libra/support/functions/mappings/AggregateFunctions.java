@@ -20,4 +20,8 @@ public class AggregateFunctions extends Functions {
     public static final AggregateFunctions getInstance() {
         return instance;
     }
+
+    private AggregateFunctions() {
+        // Nothing to do here
+    }
 }
