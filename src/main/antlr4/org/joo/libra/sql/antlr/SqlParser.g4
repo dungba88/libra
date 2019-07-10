@@ -1,8 +1,8 @@
 parser grammar SqlParser;
 
-@header {
-package org.joo.libra.sql.antlr;
-}
+//@header {
+//package org.joo.libra.sql.antlr;
+//}
 
 options {
 	tokenVocab = SqlLexer;
