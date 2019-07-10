@@ -98,6 +98,7 @@ public class TestSqlVariable {
         list.add(new Object[] { "jobs[0] is 'Oracle'", context instanceof Map ? null : true, context });
 
         list.add(new Object[] { "concat('a', age) == 'a27'", true, context });
+        list.add(new Object[] { "'a' + age == 'a27'", true, context });
 
         list.add(new Object[] { "age IN {27.0, 28, 29}", true, context });
 

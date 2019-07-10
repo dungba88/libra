@@ -5,6 +5,7 @@ import java.text.ParseException;
 
 import org.joo.libra.common.HasList;
 import org.joo.libra.common.HasValue;
+import org.joo.libra.sql.antlr.SqlLexer;
 import org.joo.libra.sql.antlr.SqlParser;
 import org.joo.libra.sql.antlr.SqlParserBaseVisitor;
 import org.joo.libra.sql.node.AndExpressionNode;
@@ -27,6 +28,7 @@ import org.joo.libra.sql.node.NumberExpressionNode;
 import org.joo.libra.sql.node.NumericCompareExpressionNode;
 import org.joo.libra.sql.node.ObjectExpressionNode;
 import org.joo.libra.sql.node.OrExpressionNode;
+import org.joo.libra.sql.node.StringConcatExpressionNode;
 import org.joo.libra.sql.node.StringExpressionNode;
 import org.joo.libra.sql.node.TempVariableExpressionNode;
 import org.joo.libra.sql.node.VariableExpressionNode;
@@ -264,6 +266,13 @@ public class SqlVisitor extends SqlParserBaseVisitor<ExpressionNode> {
         node.setOp(ctx.op.getType());
 
         if (!isNumberNode(node.getLeft()) || !isNumberNode(node.getRight())) {
+            if (ctx.op.getType() == SqlLexer.PLUS && (isStringNode(node.getLeft()) || isStringNode(node.getRight()))) {
+                StringConcatExpressionNode concatNode = new StringConcatExpressionNode();
+                concatNode.setLeft((HasValue<String>) visit(ctx.left));
+                concatNode.setRight((HasValue<String>) visit(ctx.right));
+                return concatNode;
+            }
+
             throw new MalformedSyntaxException(
                     "Malformed syntax at math node (" + ctx.op.getText() + "), number node expected");
         }
