@@ -18,10 +18,12 @@ public class GenericComparator {
     public static int compareNumber(final Number one, final Number other) {
         if (one instanceof Integer && other instanceof Integer)
             return compareInteger(one.intValue(), other.intValue());
-        if (one instanceof Long || other instanceof Long)
-            return compareLong(one.longValue(), other.longValue());
+        if (one instanceof BigDecimal || other instanceof BigDecimal)
+            return compareBigDecimal(one, other);
         if (one instanceof Double || other instanceof Double)
             return compareDouble(one.doubleValue(), other.doubleValue());
+        if (one instanceof Long || other instanceof Long)
+            return compareLong(one.longValue(), other.longValue());
         return compareBigDecimal(one, other);
     }
 
