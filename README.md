@@ -121,7 +121,7 @@ Some special cases or limitations are covered here:
   + Boolean variables will be considered as their own values
   + `null` variables will always be considered as `false`
 - When comparing number, they will be converted into `BigDecimal`, so `0.0`, `0` or `0L` are all equal
-- Limitations with `contains` expression: the type of the collection and that of the item must match. `grades contains 5` where items in `grades` are decimal number will be evaluated as `false`
+- Limitations with `contains` expression: the type of the collection and that of the item must match. `grades contains 5` where items in `grades` are decimal number will be evaluated as `false` (Note: This is **no longer** the case with Libra `2.1.0`, `{1.0, 2, 3} contains 1` will return `true`)
 
 ## optimizers
 
