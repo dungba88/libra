@@ -5,8 +5,8 @@ import org.joo.libra.PredicateContext;
 import org.joo.libra.common.HasList;
 import org.joo.libra.common.HasValue;
 import org.joo.libra.pointer.VariablePredicate;
-import org.joo.libra.support.functions.GlobalFunctions;
 import org.joo.libra.support.functions.MultiArgsFunction;
+import org.joo.libra.support.functions.mappings.GlobalFunctions;
 
 import lombok.Data;
 
