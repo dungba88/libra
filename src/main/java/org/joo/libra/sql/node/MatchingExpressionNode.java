@@ -2,10 +2,10 @@ package org.joo.libra.sql.node;
 
 import org.joo.libra.Predicate;
 import org.joo.libra.common.HasValue;
+import org.joo.libra.functional.AllMatchPredicate;
+import org.joo.libra.functional.AnyMatchPredicate;
+import org.joo.libra.functional.NoneMatchPredicate;
 import org.joo.libra.sql.antlr.SqlLexer;
-import org.joo.libra.sql.functional.AllMatchPredicate;
-import org.joo.libra.sql.functional.AnyMatchPredicate;
-import org.joo.libra.sql.functional.NoneMatchPredicate;
 
 import lombok.Data;
 

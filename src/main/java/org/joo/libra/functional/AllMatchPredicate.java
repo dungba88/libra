@@ -1,4 +1,4 @@
-package org.joo.libra.sql.functional;
+package org.joo.libra.functional;
 
 import java.util.Arrays;
 import java.util.Collection;

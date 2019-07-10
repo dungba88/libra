@@ -6,7 +6,7 @@ import org.joo.libra.Predicate;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.common.HasList;
 import org.joo.libra.common.HasValue;
-import org.joo.libra.sql.functional.FilterMatchPredicate;
+import org.joo.libra.functional.FilterMatchPredicate;
 
 import lombok.Data;
 
