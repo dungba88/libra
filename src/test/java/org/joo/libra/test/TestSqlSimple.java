@@ -90,6 +90,8 @@ public class TestSqlSimple {
 
         list.add(new Object[] { "1 == 1.0", true });
         list.add(new Object[] { "1 IN {1.0, 2, 3}", true });
+        list.add(new Object[] { "NOT {1.0, 2, 3} CONTAINS 4", true });
+        list.add(new Object[] { "NOT {1.0, 2, 3} CONTAINS 1.0", false });
         list.add(new Object[] { "{1.0, 2, 3} contains 1", true });
         list.add(new Object[] { "'123' contains 1", true });
         
