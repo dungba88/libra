@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.dungba</groupId>
 	<artifactId>joo-libra</artifactId>
-	<version>2.1.0</version>
+	<version>2.1.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>Libra</name>
@@ -23,7 +21,7 @@
 	<scm>
 		<url>https://github.com/dungba88/libra.git</url>
 		<developerConnection>scm:git:[fetch=]https://github.com/dungba88/libra.git</developerConnection>
-		<tag>joo-libra-2.1.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<dependencies>
