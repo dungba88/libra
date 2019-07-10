@@ -65,6 +65,7 @@ Libra supports the following syntax for SQL predicates:
 - List: `{1, 2, 3}`. Empty list `{ }` is also supported. 
 - Function: `functionName(arg1, arg2...)` It's also possible to configure custom function in `PredicateContext`. Built-in functions: `sqrt`, `avg`, `sum`, `min`, `max`, `len`.
 - Stream matching: See below
+- Subset filtering: See below
 
 **stream matching**
 
@@ -76,7 +77,21 @@ ALL <indexVariableName> IN <listVariableName> SATISFIES <expression>
 NONE <indexVariableName> IN <listVariableName> SATISFIES <expression>
 ```
 
-`listVariableName` is the name of the list variable you want to perform matching on. `indexVariableName` is the name of the temporary variable used in each loop. For example: `ANY job IN jobs satisfies job.salary > 1000` will try to find out if there is ANY element in `jobs` which its `salary` property is greater than 1000.
+`listVariableName` is the name of the list variable you want to perform matching on. `indexVariableName` is the name of the temporary variable used in each loop. For example: `ANY $job IN jobs satisfies $job.salary > 1000` will try to find out if there is ANY element in `jobs` which its `salary` property is greater than 1000. Starting from Libra `2.1.0` the temporary variable name must be started with `$`.
+
+**subset filtering**
+
+Libra `2.1.0` supports subset filtering from list:
+
+```
+WITH <indexVariableName> IN <listVariableName> SATISFIES <expression>
+```
+
+For example `WITH $job IN jobs satisfies $job.salary > 1000` will returns a list of jobs which the `salary` attribute is greater than 1000.
+
+You can also transform the returned list element using transformation expression:
+
+For example: `$job.salary WITH $job IN jobs satisfies $job.salary > 1000` will returns a list of *salary* that is greater than 1000 from the job list.
 
 **examples**
 
