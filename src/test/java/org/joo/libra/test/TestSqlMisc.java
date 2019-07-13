@@ -3,6 +3,7 @@ package org.joo.libra.test;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.joo.libra.Predicate;
 import org.joo.libra.PredicateContext;
 import org.joo.libra.common.SimpleHasValue;
 import org.joo.libra.sql.AntlrSqlPredicateParser;
@@ -23,65 +24,79 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class TestSqlMisc {
-	
-	@Test
-	public void testCustomFunction() {
-		PredicateContext context = new PredicateContext(null, createCustomFunctionMappings());
-		SqlPredicate predicate = new SqlPredicate("crand() >= 0 and rand() <= 1");
-		predicate.checkForErrorAndThrow();
-		Assert.assertEquals(true, predicate.satisfiedBy(context));
-	}
 
-	private Map<String, MultiArgsFunction> createCustomFunctionMappings() {
-		Map<String, MultiArgsFunction> map = new HashMap<>();
-		map.put("crand", (ctx, args) -> Math.random());
-		return map;
-	}
+    @Test
+    public void testCustomFunction() {
+        PredicateContext context = new PredicateContext(null, createCustomFunctionMappings());
+        SqlPredicate predicate = new SqlPredicate("crand() >= 0 and rand() <= 1");
+        predicate.checkForErrorAndThrow();
+        Assert.assertEquals(true, predicate.satisfiedBy(context));
+    }
 
-	@Test
-	public void test() {
-		AntlrSqlPredicateParser parser = new AntlrSqlPredicateParser() {
+    private Map<String, MultiArgsFunction> createCustomFunctionMappings() {
+        Map<String, MultiArgsFunction> map = new HashMap<>();
+        map.put("crand", (ctx, args) -> Math.random());
+        return map;
+    }
 
-			protected ExpressionNode doParse(SqlParser parser) {
-				SqlParserBaseVisitor<ExpressionNode> visitor = new SqlParserBaseVisitor<>();
-				visitor.visit(parser.predicate());
-				return new BooleanExpressionNode(false);
-			}
-		};
+    @Test
+    public void testToString() {
+        Predicate predicate = new SqlPredicate("ANY $item IN items SATISFIES $item.qty > 1000");
+        System.out.println(predicate.toString());
+        predicate = new SqlPredicate("NONE $item IN items SATISFIES $item.qty > 1000");
+        System.out.println(predicate.toString());
+        predicate = new SqlPredicate("ALL $item IN items SATISFIES $item.qty > 1000");
+        System.out.println(predicate.toString());
+        predicate = new SqlPredicate("WITH $item IN items SATISFIES $item.qty > 1000");
+        System.out.println(predicate.toString());
+        predicate = new SqlPredicate("$item.qty WITH $item IN items SATISFIES $item.qty > 1000");
+        System.out.println(predicate.toString());
+    }
 
-		String predicateStr = "(1 > 2 + 3) and (not name is empty) or age contains null and employed is false or employed is not false and (name matches 'name')";
-		SqlPredicate predicate = new SqlPredicate(predicateStr, parser);
-		predicate.checkForErrorAndThrow();
-		try {
-			Assert.assertFalse(predicate.satisfiedBy(null));
-		} catch (PredicateExecutionException e) {
-			Assert.fail(e.getMessage());
-		}
+    @Test
+    public void test() {
+        AntlrSqlPredicateParser parser = new AntlrSqlPredicateParser() {
 
-		AbstractBinaryOpExpressionNode<?> node = new GenericCompareExpressionNode();
-		node.setOp(-1);
-		Assert.assertNull(node.buildPredicate());
+            protected ExpressionNode doParse(SqlParser parser) {
+                SqlParserBaseVisitor<ExpressionNode> visitor = new SqlParserBaseVisitor<>();
+                visitor.visit(parser.predicate());
+                return new BooleanExpressionNode(false);
+            }
+        };
 
-		node = new NumericCompareExpressionNode();
-		node.setOp(-1);
-		Assert.assertNull(node.buildPredicate());
+        String predicateStr = "(1 > 2 + 3) and (not name is empty) or age contains null and employed is false or employed is not false and (name matches 'name')";
+        SqlPredicate predicate = new SqlPredicate(predicateStr, parser);
+        predicate.checkForErrorAndThrow();
+        try {
+            Assert.assertFalse(predicate.satisfiedBy(null));
+        } catch (PredicateExecutionException e) {
+            Assert.fail(e.getMessage());
+        }
 
-		node = new LexicalCompareExpressionNode();
-		node.setOp(-1);
-		Assert.assertNull(node.buildPredicate());
+        AbstractBinaryOpExpressionNode<?> node = new GenericCompareExpressionNode();
+        node.setOp(-1);
+        Assert.assertNull(node.buildPredicate());
 
-		MathExpressionNode mathNode = new MathExpressionNode();
-		mathNode.setLeft(new SimpleHasValue<Number>(1));
-		mathNode.setRight(new SimpleHasValue<Number>(2));
-		mathNode.setOp(-1);
-		Assert.assertNull(mathNode.getValue(null));
+        node = new NumericCompareExpressionNode();
+        node.setOp(-1);
+        Assert.assertNull(node.buildPredicate());
 
-		ObjectExpressionNode objNode = new ObjectExpressionNode();
-		objNode.setValue(new Object());
-		try {
-			Assert.assertTrue(objNode.buildPredicate().satisfiedBy(null));
-		} catch (PredicateExecutionException e) {
-			Assert.fail(e.getMessage());
-		}
-	}
+        node = new LexicalCompareExpressionNode();
+        node.setOp(-1);
+        Assert.assertNull(node.buildPredicate());
+
+        MathExpressionNode mathNode = new MathExpressionNode();
+        mathNode.setLeft(new SimpleHasValue<Number>(1));
+        mathNode.setRight(new SimpleHasValue<Number>(2));
+        mathNode.setOp(-1);
+        Assert.assertNull(mathNode.getValue(null));
+
+        ObjectExpressionNode objNode = new ObjectExpressionNode();
+        objNode.setValue(new Object());
+        try {
+            Assert.assertTrue(objNode.buildPredicate().satisfiedBy(null));
+        } catch (PredicateExecutionException e) {
+            Assert.fail(e.getMessage());
+        }
+    }
 }

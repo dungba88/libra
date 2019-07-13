@@ -47,4 +47,10 @@ public class FilterMatchPredicate extends AnyMatchPredicate implements HasValue<
             return getWithCollection((Collection<?>) listValue, context);
         return Collections.emptyList();
     }
+
+    @Override
+    public String toString() {
+        return "FilterMatch(list = " + list + ", item = " + indexName + ", condition = " + conditionPredicate
+                + ", transform = " + transform + ")";
+    }
 }
