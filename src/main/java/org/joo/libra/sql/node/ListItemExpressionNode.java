@@ -15,18 +15,22 @@ import lombok.Data;
 @Data
 public class ListItemExpressionNode implements ExpressionNode, HasList {
 
-	private List<ExpressionNode> innerNode = new ArrayList<>();
+    private List<ExpressionNode> innerNode = new ArrayList<>();
 
-	@Override
-	public Predicate buildPredicate() {
-		return null;
-	}
+    @Override
+    public Predicate buildPredicate() {
+        return null;
+    }
 
-	public Collection<?> getValue(final PredicateContext context) {
-		return innerNode.stream().map(node -> ((HasValue<?>) node).getValue(context)).collect(Collectors.toList());
-	}
+    public Collection<?> getValue(final PredicateContext context) {
+        return innerNode.stream().map(node -> ((HasValue<?>) node).getValue(context)).collect(Collectors.toList());
+    }
 
-	public Object[] getValueAsArray(final PredicateContext context) {
-		return innerNode.stream().map(node -> ((HasValue<?>) node).getValue(context)).toArray();
-	}
+    public Object[] getValueAsArray(final PredicateContext context) {
+        return innerNode.stream().map(node -> ((HasValue<?>) node).getValue(context)).toArray();
+    }
+
+    public String toString() {
+        return "LIST( " + innerNode + " )";
+    }
 }
