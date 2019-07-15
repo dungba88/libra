@@ -3,7 +3,7 @@ package org.joo.libra;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.joo.libra.support.ObjectUtils;
+import org.joo.libra.support.DefaultVariableEvaluator;
 import org.joo.libra.support.VariableEvaluator;
 import org.joo.libra.support.exceptions.PredicateValueException;
 import org.joo.libra.support.functions.MultiArgsFunction;
@@ -31,7 +31,7 @@ public class PredicateContext {
 
     private Map<String, Object> tempVariables = new HashMap<>();
 
-    private VariableEvaluator evaluator = ObjectUtils::getValue;
+    private VariableEvaluator evaluator = new DefaultVariableEvaluator();
 
     public PredicateContext(final Object context) {
         this.context = context;
