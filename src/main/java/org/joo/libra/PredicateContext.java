@@ -3,7 +3,8 @@ package org.joo.libra;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.joo.libra.sql.ObjectUtils;
+import org.joo.libra.support.ObjectUtils;
+import org.joo.libra.support.VariableEvaluator;
 import org.joo.libra.support.exceptions.PredicateValueException;
 import org.joo.libra.support.functions.MultiArgsFunction;
 
@@ -30,6 +31,8 @@ public class PredicateContext {
 
     private Map<String, Object> tempVariables = new HashMap<>();
 
+    private VariableEvaluator evaluator = ObjectUtils::getValue;
+
     public PredicateContext(final Object context) {
         this.context = context;
         this.cachedValues = new HashMap<>();
@@ -41,6 +44,14 @@ public class PredicateContext {
         this.functionMappings = functionMappings;
     }
 
+    public PredicateContext(final Object context, VariableEvaluator evaluator,
+            Map<String, MultiArgsFunction> functionMappings) {
+        this.context = context;
+        this.cachedValues = new HashMap<>();
+        this.functionMappings = functionMappings;
+        this.evaluator = evaluator;
+    }
+
     public Object getVariableValue(final String name, final PredicateContext context) {
         Object value = cachedValues.get(name);
         if (value == null) {
@@ -50,20 +61,20 @@ public class PredicateContext {
         return value;
     }
 
-    public Object getTempVariableValue(String name, PredicateContext context2) {
+    public Object getTempVariableValue(String name) {
         if (tempVariables.containsKey(name))
             return tempVariables.get(name);
         try {
-            return ObjectUtils.getValue(tempVariables, name);
-        } catch (ReflectiveOperationException e) {
+            return evaluator.evaluate(tempVariables, name);
+        } catch (Exception e) {
             throw new PredicateValueException(e);
         }
     }
 
     private Object getValueNoCache(final String name, final PredicateContext context) {
         try {
-            return ObjectUtils.getValue(context.getContext(), name);
-        } catch (ReflectiveOperationException e) {
+            return evaluator.evaluate(context.getContext(), name);
+        } catch (Exception e) {
             throw new PredicateValueException(e);
         }
     }

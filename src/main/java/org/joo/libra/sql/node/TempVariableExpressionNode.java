@@ -16,7 +16,7 @@ public class TempVariableExpressionNode implements ExpressionNode, HasValue<Obje
     public Object getValue(final PredicateContext context) {
         if (context == null)
             return null;
-        return context.getTempVariableValue(variableName, context);
+        return context.getTempVariableValue(variableName);
     }
 
     @Override

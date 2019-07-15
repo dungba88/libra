@@ -1,4 +1,4 @@
-package org.joo.libra.sql;
+package org.joo.libra.support;
 
 import org.apache.commons.beanutils.PropertyUtils;
 
