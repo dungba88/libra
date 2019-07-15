@@ -1,4 +1,4 @@
-package org.joo.libra.support;
+package org.joo.libra.support.eval;
 
 public interface VariableEvaluator {
 
