@@ -41,7 +41,7 @@ public class CompiledJavaEvaluator<T> implements VariableEvaluator {
             ee.setExpressionType(Object.class);
 
             // And now we "cook" (scan, parse, compile and load) the fabulous expression.
-            String expression = builder.build("obj", variableName);
+            String expression = builder.build(obj, "obj", variableName);
             ee.cook(expression);
 
             cachedEvaluator.get().put(variableName, ee);

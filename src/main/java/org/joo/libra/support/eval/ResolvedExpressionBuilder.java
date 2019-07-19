@@ -12,13 +12,13 @@ public class ResolvedExpressionBuilder<T> implements ExpressionBuilder {
     }
 
     @Override
-    public String build(String root, String variableName) throws Exception {
+    public String build(Object obj, String root, String variableName) throws Exception {
         if (Map.class.isAssignableFrom(type))
             return root + buildWithMap(variableName);
-        return root + buildWithPojo(variableName);
+        return root + buildWithPojo(obj, variableName);
     }
 
-    private String buildWithPojo(String variableName) throws SecurityException, NoSuchMethodException {
+    private String buildWithPojo(Object obj, String variableName) throws SecurityException, NoSuchMethodException {
         StringBuilder sb = new StringBuilder();
         Class<?> currentType = type;
         String[] frags = variableName.split("\\.");
@@ -31,53 +31,36 @@ public class ResolvedExpressionBuilder<T> implements ExpressionBuilder {
 
             String capitalized = capitalize(frag);
 
-            Class<?> tmp;
-            try {
-                tmp = currentType.getDeclaredField(frag).getType();
-            } catch (NoSuchFieldException e) {
-                tmp = tryWithGetter(currentType, capitalized);
-            }
-            String indexedPart = extractIndexedPart(tmp, oldFrag, indexed);
-
-            String methodPrefix = "get";
-
-            if (Boolean.class.isAssignableFrom(tmp) || boolean.class.isAssignableFrom(tmp)) {
-                methodPrefix = getPrefixForBoolean(currentType, capitalized);
-            }
-
-            sb.append("." + methodPrefix + capitalized + "()");
-
-            if (indexedPart != null)
-                sb.append(indexedPart);
+            Method method = tryWithGetter(currentType, capitalized);
+            Class<?> tmp = method.getReturnType();
+            sb.append("." + method.getName() + "()");
 
             currentType = tmp;
+
+            if (indexed != -1) {
+                boolean isArray = Object[].class.isAssignableFrom(currentType);
+                String indexedPart = extractIndexedPart(isArray, oldFrag, indexed);
+                sb.append(indexedPart);
+                if (isArray) {
+                    currentType = currentType.getComponentType();
+                }
+            }
         }
         return sb.toString();
     }
 
-    private Class<?> tryWithGetter(Class<?> currentType, String capitalized)
-            throws NoSuchMethodException, SecurityException {
-        Method method = currentType.getMethod("get" + capitalized);
-        return method.getReturnType();
-    }
-
-    private String getPrefixForBoolean(Class<?> currentType, String capitalized) {
+    private Method tryWithGetter(Class<?> currentType, String capitalized)
+            throws SecurityException, NoSuchMethodException {
         try {
-            currentType.getMethod("is" + capitalized);
-            return "is";
-        } catch (NoSuchMethodException | SecurityException e) {
-            return "get";
+            return currentType.getMethod("get" + capitalized);
+        } catch (NoSuchMethodException e) {
+            return currentType.getMethod("is" + capitalized);
         }
     }
 
-    protected String extractIndexedPart(Class<?> currentType, String oldFrag, int indexed) {
-        String indexedPart = null;
-        if (indexed != -1) {
-            boolean isArray = Object[].class.isAssignableFrom(currentType);
-            indexedPart = isArray ? oldFrag.substring(indexed)
-                    : ".get(" + oldFrag.substring(indexed + 1, oldFrag.length() - 1) + ")";
-        }
-        return indexedPart;
+    protected String extractIndexedPart(boolean isArray, String oldFrag, int indexed) {
+        return isArray ? oldFrag.substring(indexed)
+                : ".get(" + oldFrag.substring(indexed + 1, oldFrag.length() - 1) + ")";
     }
 
     protected String capitalize(String frag) {

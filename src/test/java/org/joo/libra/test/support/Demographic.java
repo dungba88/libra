@@ -2,7 +2,7 @@ package org.joo.libra.test.support;
 
 public class Demographic {
 
-	public String gender;
+	private String gender;
 
 	public String getGender() {
 		return gender;
@@ -10,5 +10,9 @@ public class Demographic {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+	
+	public boolean isFemale() {
+	    return "female".equals(gender);
 	}
 }
