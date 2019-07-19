@@ -15,8 +15,6 @@ public class ResolvedExpressionBuilder<T> implements ExpressionBuilder {
 
     @Override
     public String build(Object obj, String root, String variableName) throws Exception {
-        if (Map.class.isAssignableFrom(type))
-            return root + buildWithMap(variableName);
         return root + buildWithPojo(obj, variableName);
     }
 
@@ -25,6 +23,10 @@ public class ResolvedExpressionBuilder<T> implements ExpressionBuilder {
         Class<?> currentType = type;
         String[] frags = variableName.split("\\.");
         for (String frag : frags) {
+            if (Map.class.isAssignableFrom(currentType)) {
+                throw new UnsupportedOperationException("Map is not supported, but found on: " + frag);
+            }
+
             String oldFrag = frag;
             int indexed = frag.indexOf('[');
             if (indexed != -1) {
@@ -56,7 +58,9 @@ public class ResolvedExpressionBuilder<T> implements ExpressionBuilder {
     private Class<?> determineItemTypeForList(Method method) {
         Itemtype itemType = method.getAnnotation(Itemtype.class);
         if (itemType == null)
-            throw new IllegalArgumentException("Getter method which returns non-array collection must be annotated with @ItemType: " + method.getName());
+            throw new IllegalArgumentException(
+                    "Getter method which returns non-array collection must be annotated with @ItemType: "
+                            + method.getName());
         return itemType.value();
     }
 
@@ -76,14 +80,5 @@ public class ResolvedExpressionBuilder<T> implements ExpressionBuilder {
 
     protected String capitalize(String frag) {
         return frag.substring(0, 1).toUpperCase() + frag.substring(1);
-    }
-
-    private String buildWithMap(String variableName) {
-        StringBuilder sb = new StringBuilder();
-        String[] frags = variableName.split("\\.");
-        for (String frag : frags) {
-            sb.append(".get(\"" + frag + "\")");
-        }
-        return sb.toString();
     }
 }

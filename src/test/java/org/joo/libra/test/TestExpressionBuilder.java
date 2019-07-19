@@ -1,7 +1,5 @@
 package org.joo.libra.test;
 
-import java.util.Map;
-
 import org.joo.libra.support.eval.ExpressionBuilder;
 import org.joo.libra.support.eval.ResolvedExpressionBuilder;
 import org.joo.libra.test.support.MockDataUtils;
@@ -10,12 +8,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class TestExpressionBuilder {
-
-    @Test
-    public void testResolveMap() throws Exception {
-        ExpressionBuilder builder = new ResolvedExpressionBuilder<>(Map.class);
-        Assert.assertEquals("obj.get(\"x\").get(\"y\")", builder.build(null, "obj", "x.y"));
-    }
 
     @Test
     public void testResolvePojo() throws Exception {
