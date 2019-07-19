@@ -12,7 +12,7 @@ public class CompiledJavaEvaluator<T> implements VariableEvaluator {
     private ExpressionBuilder builder;
 
     public CompiledJavaEvaluator(Class<T> type) {
-        this(type, new DefaultExpressionBuilder());
+        this(type, new ResolvedExpressionBuilder<>(type));
     }
 
     public CompiledJavaEvaluator(Class<T> type, ExpressionBuilder builder) {
@@ -41,7 +41,8 @@ public class CompiledJavaEvaluator<T> implements VariableEvaluator {
             ee.setExpressionType(Object.class);
 
             // And now we "cook" (scan, parse, compile and load) the fabulous expression.
-            ee.cook(builder.build("obj", variableName));
+            String expression = builder.build("obj", variableName);
+            ee.cook(expression);
 
             cachedEvaluator.get().put(variableName, ee);
         }
