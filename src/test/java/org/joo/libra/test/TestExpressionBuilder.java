@@ -29,6 +29,7 @@ public class TestExpressionBuilder {
         Assert.assertEquals("obj.getJobs()[0]", builder.build(person, "obj", "jobs[0]"));
         Assert.assertEquals("obj.getJobList().get(0)", builder.build(person, "obj", "jobList[0]"));
         Assert.assertEquals("obj.getJobWithSalariesArr()[0].getSalary()", builder.build(person, "obj", "jobWithSalariesArr[0].salary"));
+        Assert.assertEquals("obj.getJobWithSalaries().get(0).getSalary()", builder.build(person, "obj", "jobWithSalaries[0].salary"));
         Assert.assertEquals("obj.isFemale()", builder.build(person, "obj", "female"));
     }
 }

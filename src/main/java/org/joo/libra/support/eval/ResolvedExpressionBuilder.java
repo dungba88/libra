@@ -3,6 +3,8 @@ package org.joo.libra.support.eval;
 import java.lang.reflect.Method;
 import java.util.Map;
 
+import org.joo.libra.support.annotations.Itemtype;
+
 public class ResolvedExpressionBuilder<T> implements ExpressionBuilder {
 
     private Class<T> type;
@@ -43,10 +45,19 @@ public class ResolvedExpressionBuilder<T> implements ExpressionBuilder {
                 sb.append(indexedPart);
                 if (isArray) {
                     currentType = currentType.getComponentType();
+                } else {
+                    currentType = determineItemTypeForList(method);
                 }
             }
         }
         return sb.toString();
+    }
+
+    private Class<?> determineItemTypeForList(Method method) {
+        Itemtype itemType = method.getAnnotation(Itemtype.class);
+        if (itemType == null)
+            throw new IllegalArgumentException("Getter method which returns non-array collection must be annotated with @ItemType: " + method.getName());
+        return itemType.value();
     }
 
     private Method tryWithGetter(Class<?> currentType, String capitalized)
