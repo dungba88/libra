@@ -8,25 +8,25 @@ import lombok.Data;
 @Data
 public class Person {
 
-	private String name;
+	public String name;
 
-	private long age;
+	public long age;
 
-	private int salary = 0;
+	public int salary = 0;
 
-	private Demographic demographic;
+	public Demographic demographic;
 
-	private String[] jobs;
+	public String[] jobs;
 
-	private String[] noJobs = new String[0];
+	public String[] noJobs = new String[0];
 	
-	private List<JobWithSalary> jobWithSalaries = new ArrayList<>();
+	public List<JobWithSalary> jobWithSalaries = new ArrayList<>();
 
-	private List<String> jobList;
+	public List<String> jobList;
 
-	private List<String> noJobList = new ArrayList<>();
+	public List<String> noJobList = new ArrayList<>();
 
-	private boolean female;
+	public boolean female;
 
-	private String data;
+	public String data;
 }

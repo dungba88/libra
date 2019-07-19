@@ -22,6 +22,8 @@ import lombok.Getter;
  */
 public class PredicateContext {
 
+    private static final VariableEvaluator DEFAULT_EVALUATOR = new DefaultVariableEvaluator();
+
     @Getter
     private Object context;
 
@@ -31,7 +33,7 @@ public class PredicateContext {
 
     private Map<String, Object> tempVariables = new HashMap<>();
 
-    private VariableEvaluator evaluator = new DefaultVariableEvaluator();
+    private VariableEvaluator evaluator = DEFAULT_EVALUATOR;
 
     public PredicateContext(final Object context) {
         this.context = context;
@@ -65,7 +67,7 @@ public class PredicateContext {
         if (tempVariables.containsKey(name))
             return tempVariables.get(name);
         try {
-            return evaluator.evaluate(tempVariables, name);
+            return DEFAULT_EVALUATOR.evaluate(tempVariables, name);
         } catch (Exception e) {
             throw new PredicateValueException(e);
         }
