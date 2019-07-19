@@ -6,11 +6,18 @@ import java.util.Map;
 import org.codehaus.janino.ExpressionEvaluator;
 
 public class CompiledJavaEvaluator<T> implements VariableEvaluator {
-    
+
     private Class<T> type;
 
+    private ExpressionBuilder builder;
+
     public CompiledJavaEvaluator(Class<T> type) {
+        this(type, new DefaultExpressionBuilder());
+    }
+
+    public CompiledJavaEvaluator(Class<T> type, ExpressionBuilder builder) {
         this.type = type;
+        this.builder = builder;
     }
 
     private ThreadLocal<Map<String, ExpressionEvaluator>> cachedEvaluator = new ThreadLocal<Map<String, ExpressionEvaluator>>() {
@@ -34,7 +41,8 @@ public class CompiledJavaEvaluator<T> implements VariableEvaluator {
             ee.setExpressionType(Object.class);
 
             // And now we "cook" (scan, parse, compile and load) the fabulous expression.
-            ee.cook("obj." + variableName);
+            ee.cook(builder.build("obj", variableName));
+
             cachedEvaluator.get().put(variableName, ee);
         }
 
