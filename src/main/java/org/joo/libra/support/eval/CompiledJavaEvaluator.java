@@ -34,13 +34,10 @@ public class CompiledJavaEvaluator<T> implements VariableEvaluator {
         if (ee == null) {
             ee = new ExpressionEvaluator();
 
-            // The expression will have two "int" parameters: "a" and "b".
             ee.setParameters(new String[] { "obj" }, new Class[] { type });
 
-            // And the expression (i.e. "result") type is also "int".
             ee.setExpressionType(Object.class);
 
-            // And now we "cook" (scan, parse, compile and load) the fabulous expression.
             String expression = builder.build(obj, "obj", variableName);
             ee.cook(expression);
 
