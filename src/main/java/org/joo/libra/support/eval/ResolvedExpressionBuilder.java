@@ -27,25 +27,19 @@ public class ResolvedExpressionBuilder<T> implements ExpressionBuilder {
                 throw new UnsupportedOperationException("Map is not supported, but found on: " + frag);
             }
 
-            String fieldName = frag;
-            int indexed = fieldName.indexOf('[');
-            if (indexed != -1) {
-                fieldName = fieldName.substring(0, indexed);
-            }
-
+            int indexed = frag.indexOf('[');
+            
+            String fieldName = indexed == -1 ? frag : frag.substring(0, indexed);
             Method method = tryWithGetter(currentType, fieldName);
             currentType = method.getReturnType();
             sb.append("." + method.getName() + "()");
 
             if (indexed != -1) {
                 boolean isArray = Object[].class.isAssignableFrom(currentType);
-                String indexedPart = extractIndexedPart(isArray, frag, indexed);
-                sb.append(indexedPart);
-                if (isArray) {
-                    currentType = currentType.getComponentType();
-                } else {
-                    currentType = determineItemTypeForList(method);
-                }
+
+                sb.append(extractIndexedPart(isArray, frag, indexed));
+
+                currentType = isArray ? currentType.getComponentType() : determineItemTypeForList(method);
             }
         }
         return sb.toString();
@@ -70,12 +64,12 @@ public class ResolvedExpressionBuilder<T> implements ExpressionBuilder {
         }
     }
 
-    protected String extractIndexedPart(boolean isArray, String oldFrag, int indexed) {
+    private String extractIndexedPart(boolean isArray, String oldFrag, int indexed) {
         return isArray ? oldFrag.substring(indexed)
                 : ".get(" + oldFrag.substring(indexed + 1, oldFrag.length() - 1) + ")";
     }
 
-    protected String capitalize(String frag) {
+    private String capitalize(String frag) {
         return frag.substring(0, 1).toUpperCase() + frag.substring(1);
     }
 }
