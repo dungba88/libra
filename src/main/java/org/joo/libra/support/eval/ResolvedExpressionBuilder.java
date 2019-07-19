@@ -31,8 +31,9 @@ public class ResolvedExpressionBuilder<T> implements ExpressionBuilder {
             
             String fieldName = indexed == -1 ? frag : frag.substring(0, indexed);
             Method method = tryWithGetter(currentType, fieldName);
-            currentType = method.getReturnType();
             sb.append("." + method.getName() + "()");
+
+            currentType = method.getReturnType();
 
             if (indexed != -1) {
                 boolean isArray = Object[].class.isAssignableFrom(currentType);
