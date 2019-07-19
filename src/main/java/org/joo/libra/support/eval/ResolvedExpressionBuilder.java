@@ -27,23 +27,19 @@ public class ResolvedExpressionBuilder<T> implements ExpressionBuilder {
                 throw new UnsupportedOperationException("Map is not supported, but found on: " + frag);
             }
 
-            String oldFrag = frag;
-            int indexed = frag.indexOf('[');
+            String fieldName = frag;
+            int indexed = fieldName.indexOf('[');
             if (indexed != -1) {
-                frag = frag.substring(0, indexed);
+                fieldName = fieldName.substring(0, indexed);
             }
 
-            String capitalized = capitalize(frag);
-
-            Method method = tryWithGetter(currentType, capitalized);
-            Class<?> tmp = method.getReturnType();
+            Method method = tryWithGetter(currentType, fieldName);
+            currentType = method.getReturnType();
             sb.append("." + method.getName() + "()");
-
-            currentType = tmp;
 
             if (indexed != -1) {
                 boolean isArray = Object[].class.isAssignableFrom(currentType);
-                String indexedPart = extractIndexedPart(isArray, oldFrag, indexed);
+                String indexedPart = extractIndexedPart(isArray, frag, indexed);
                 sb.append(indexedPart);
                 if (isArray) {
                     currentType = currentType.getComponentType();
@@ -57,15 +53,16 @@ public class ResolvedExpressionBuilder<T> implements ExpressionBuilder {
 
     private Class<?> determineItemTypeForList(Method method) {
         Itemtype itemType = method.getAnnotation(Itemtype.class);
-        if (itemType == null)
+        if (itemType == null) {
             throw new IllegalArgumentException(
                     "Getter method which returns non-array collection must be annotated with @ItemType: "
                             + method.getName());
+        }
         return itemType.value();
     }
 
-    private Method tryWithGetter(Class<?> currentType, String capitalized)
-            throws SecurityException, NoSuchMethodException {
+    private Method tryWithGetter(Class<?> currentType, String frag) throws SecurityException, NoSuchMethodException {
+        String capitalized = capitalize(frag);
         try {
             return currentType.getMethod("get" + capitalized);
         } catch (NoSuchMethodException e) {
