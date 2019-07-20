@@ -3,8 +3,8 @@ package org.joo.libra;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.joo.libra.support.eval.DefaultVariableEvaluator;
 import org.joo.libra.support.eval.VariableEvaluator;
+import org.joo.libra.support.eval.impl.DefaultVariableEvaluator;
 import org.joo.libra.support.exceptions.PredicateValueException;
 import org.joo.libra.support.functions.MultiArgsFunction;
 

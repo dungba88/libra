@@ -1,7 +1,7 @@
 package org.joo.libra.test;
 
 import org.joo.libra.support.eval.ExpressionBuilder;
-import org.joo.libra.support.eval.ResolvedExpressionBuilder;
+import org.joo.libra.support.eval.impl.ResolvedExpressionBuilder;
 import org.joo.libra.test.support.MockDataUtils;
 import org.joo.libra.test.support.Person;
 import org.junit.Assert;

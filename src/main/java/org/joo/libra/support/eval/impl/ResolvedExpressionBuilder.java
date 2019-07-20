@@ -1,9 +1,10 @@
-package org.joo.libra.support.eval;
+package org.joo.libra.support.eval.impl;
 
 import java.lang.reflect.Method;
 import java.util.Map;
 
 import org.joo.libra.support.annotations.Itemtype;
+import org.joo.libra.support.eval.ExpressionBuilder;
 
 public class ResolvedExpressionBuilder<T> implements ExpressionBuilder {
 

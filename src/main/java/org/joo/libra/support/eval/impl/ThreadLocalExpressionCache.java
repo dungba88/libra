@@ -1,9 +1,10 @@
-package org.joo.libra.support.eval;
+package org.joo.libra.support.eval.impl;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.codehaus.janino.ExpressionEvaluator;
+import org.joo.libra.support.eval.ExpressionEvaluatorCache;
 
 public class ThreadLocalExpressionCache implements ExpressionEvaluatorCache {
 

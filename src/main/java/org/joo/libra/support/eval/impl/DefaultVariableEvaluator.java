@@ -1,6 +1,7 @@
-package org.joo.libra.support.eval;
+package org.joo.libra.support.eval.impl;
 
 import org.joo.libra.support.ObjectUtils;
+import org.joo.libra.support.eval.VariableEvaluator;
 
 public class DefaultVariableEvaluator implements VariableEvaluator {
 

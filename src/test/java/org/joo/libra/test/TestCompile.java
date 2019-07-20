@@ -1,8 +1,8 @@
 package org.joo.libra.test;
 
 import org.joo.libra.support.ObjectUtils;
-import org.joo.libra.support.eval.CompiledJavaEvaluator;
 import org.joo.libra.support.eval.VariableEvaluator;
+import org.joo.libra.support.eval.impl.CompiledJavaEvaluator;
 import org.joo.libra.test.support.MockDataUtils;
 import org.joo.libra.test.support.Person;
 import org.junit.Assert;

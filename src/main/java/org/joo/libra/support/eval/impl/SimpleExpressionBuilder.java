@@ -1,4 +1,6 @@
-package org.joo.libra.support.eval;
+package org.joo.libra.support.eval.impl;
+
+import org.joo.libra.support.eval.ExpressionBuilder;
 
 public class SimpleExpressionBuilder implements ExpressionBuilder {
 
