@@ -1,35 +1,26 @@
 package org.joo.libra.support.eval;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.codehaus.janino.ExpressionEvaluator;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class CompiledJavaEvaluator<T> implements VariableEvaluator {
 
     private Class<T> type;
 
     private ExpressionBuilder builder;
 
+    private ExpressionEvaluatorCache cache;
+
     public CompiledJavaEvaluator(Class<T> type) {
-        this(type, new ResolvedExpressionBuilder<>(type));
+        this(type, new ResolvedExpressionBuilder<>(type), new ThreadLocalExpressionCache());
     }
-
-    public CompiledJavaEvaluator(Class<T> type, ExpressionBuilder builder) {
-        this.type = type;
-        this.builder = builder;
-    }
-
-    private ThreadLocal<Map<String, ExpressionEvaluator>> cachedEvaluator = new ThreadLocal<Map<String, ExpressionEvaluator>>() {
-        protected Map<String, ExpressionEvaluator> initialValue() {
-            return new HashMap<>();
-        }
-    };
 
     @Override
     public Object evaluate(Object obj, String variableName) throws Exception {
 
-        ExpressionEvaluator ee = cachedEvaluator.get().get(variableName);
+        ExpressionEvaluator ee = cache.get(variableName);
 
         if (ee == null) {
             ee = new ExpressionEvaluator();
@@ -41,7 +32,7 @@ public class CompiledJavaEvaluator<T> implements VariableEvaluator {
             String expression = builder.build(obj, "obj", variableName);
             ee.cook(expression);
 
-            cachedEvaluator.get().put(variableName, ee);
+            cache.put(variableName, ee);
         }
 
         // Eventually we evaluate the expression - and that goes super-fast.
