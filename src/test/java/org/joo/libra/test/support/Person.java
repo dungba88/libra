@@ -3,8 +3,6 @@ package org.joo.libra.test.support;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.joo.libra.support.annotations.Itemtype;
-
 import lombok.Data;
 
 @Data
@@ -34,12 +32,10 @@ public class Person {
 
 	private String data;
 	
-	@Itemtype(String.class)
 	public List<String> getJobList() {
 	    return jobList;
 	}
 
-    @Itemtype(JobWithSalary.class)
     public List<JobWithSalary> getJobWithSalaries() {
         return jobWithSalaries;
     }

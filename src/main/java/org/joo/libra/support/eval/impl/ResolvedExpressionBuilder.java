@@ -1,9 +1,9 @@
 package org.joo.libra.support.eval.impl;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
 import java.util.Map;
 
-import org.joo.libra.support.annotations.Itemtype;
 import org.joo.libra.support.eval.ExpressionBuilder;
 
 public class ResolvedExpressionBuilder<T> implements ExpressionBuilder {
@@ -19,7 +19,7 @@ public class ResolvedExpressionBuilder<T> implements ExpressionBuilder {
         return root + buildWithPojo(obj, variableName);
     }
 
-    private String buildWithPojo(Object obj, String variableName) throws SecurityException, NoSuchMethodException {
+    private String buildWithPojo(Object obj, String variableName) throws Exception {
         StringBuilder sb = new StringBuilder();
         Class<?> currentType = type;
         String[] frags = variableName.split("\\.");
@@ -29,11 +29,12 @@ public class ResolvedExpressionBuilder<T> implements ExpressionBuilder {
             }
 
             int indexed = frag.indexOf('[');
-            
+
             String fieldName = indexed == -1 ? frag : frag.substring(0, indexed);
             Method method = tryWithGetter(currentType, fieldName);
             sb.append("." + method.getName() + "()");
 
+            Class<?> parentType = currentType;
             currentType = method.getReturnType();
 
             if (indexed != -1) {
@@ -41,20 +42,17 @@ public class ResolvedExpressionBuilder<T> implements ExpressionBuilder {
 
                 sb.append(extractIndexedPart(isArray, frag, indexed));
 
-                currentType = isArray ? currentType.getComponentType() : determineItemTypeForList(method);
+                currentType = isArray ? currentType.getComponentType()
+                        : determineItemTypeForList(parentType, fieldName);
             }
         }
         return sb.toString();
     }
 
-    private Class<?> determineItemTypeForList(Method method) {
-        Itemtype itemType = method.getAnnotation(Itemtype.class);
-        if (itemType == null) {
-            throw new IllegalArgumentException(
-                    "Getter method which returns non-array collection must be annotated with @ItemType: "
-                            + method.getName());
-        }
-        return itemType.value();
+    private Class<?> determineItemTypeForList(Class<?> currentType, String fieldName)
+            throws NoSuchFieldException, SecurityException, ClassNotFoundException {
+        ParameterizedType type = (ParameterizedType) currentType.getDeclaredField(fieldName).getGenericType();
+        return Class.forName(type.getActualTypeArguments()[0].getTypeName());
     }
 
     private Method tryWithGetter(Class<?> currentType, String frag) throws SecurityException, NoSuchMethodException {
