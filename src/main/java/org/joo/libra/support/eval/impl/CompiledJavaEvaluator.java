@@ -15,7 +15,7 @@ public class CompiledJavaEvaluator implements VariableEvaluator {
     private ExpressionEvaluatorCache cache;
 
     public CompiledJavaEvaluator() {
-        this(new ResolvedExpressionBuilder(), new ThreadLocalExpressionCache());
+        this(new ResolvedExpressionBuilder(), new HashMapExpressionCache());
     }
 
     @Override
