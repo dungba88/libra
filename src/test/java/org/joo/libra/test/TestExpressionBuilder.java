@@ -12,7 +12,7 @@ public class TestExpressionBuilder {
     @Test
     public void testResolvePojo() throws Exception {
         Person person = MockDataUtils.mockPerson();
-        ExpressionBuilder builder = new ResolvedExpressionBuilder<>(Person.class);
+        ExpressionBuilder builder = new ResolvedExpressionBuilder();
         Assert.assertEquals("obj.getName()", builder.build(person, "obj", "name"));
         Assert.assertEquals("obj.getSalary()", builder.build(person, "obj", "salary"));
         Assert.assertEquals("obj.getDemographic()", builder.build(person, "obj", "demographic"));

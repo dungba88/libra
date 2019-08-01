@@ -8,16 +8,14 @@ import org.joo.libra.support.eval.VariableEvaluator;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class CompiledJavaEvaluator<T> implements VariableEvaluator {
-
-    private Class<T> type;
+public class CompiledJavaEvaluator implements VariableEvaluator {
 
     private ExpressionBuilder builder;
 
     private ExpressionEvaluatorCache cache;
 
-    public CompiledJavaEvaluator(Class<T> type) {
-        this(type, new ResolvedExpressionBuilder<>(type), new ThreadLocalExpressionCache());
+    public CompiledJavaEvaluator() {
+        this(new ResolvedExpressionBuilder(), new ThreadLocalExpressionCache());
     }
 
     @Override
@@ -28,7 +26,7 @@ public class CompiledJavaEvaluator<T> implements VariableEvaluator {
         if (ee == null) {
             ee = new ExpressionEvaluator();
 
-            ee.setParameters(new String[] { "obj" }, new Class[] { type });
+            ee.setParameters(new String[] { "obj" }, new Class[] { obj.getClass() });
 
             ee.setExpressionType(Object.class);
 

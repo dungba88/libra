@@ -6,13 +6,7 @@ import java.util.Map;
 
 import org.joo.libra.support.eval.ExpressionBuilder;
 
-public class ResolvedExpressionBuilder<T> implements ExpressionBuilder {
-
-    private Class<T> type;
-
-    public ResolvedExpressionBuilder(Class<T> type) {
-        this.type = type;
-    }
+public class ResolvedExpressionBuilder implements ExpressionBuilder {
 
     @Override
     public String build(Object obj, String root, String variableName) throws Exception {
@@ -21,7 +15,7 @@ public class ResolvedExpressionBuilder<T> implements ExpressionBuilder {
 
     private String buildWithPojo(Object obj, String variableName) throws Exception {
         StringBuilder sb = new StringBuilder();
-        Class<?> currentType = type;
+        Class<?> currentType = obj.getClass();
         String[] frags = variableName.split("\\.");
         for (String frag : frags) {
             if (Map.class.isAssignableFrom(currentType)) {

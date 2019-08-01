@@ -13,7 +13,7 @@ public class TestCompile {
     @Test
     public void testCompile() throws Exception {
         Person p = MockDataUtils.mockPerson();
-        VariableEvaluator evaluator = new CompiledJavaEvaluator<Person>(Person.class);
+        VariableEvaluator evaluator = new CompiledJavaEvaluator();
         Assert.assertEquals(27L, evaluator.evaluate(p, "age"));
         Assert.assertEquals("John", evaluator.evaluate(p, "name"));
         Assert.assertEquals("male", evaluator.evaluate(p, "demographic.gender"));
@@ -23,7 +23,7 @@ public class TestCompile {
     @Test
     public void testPerfCompiled() throws Exception {
         Person p = MockDataUtils.mockPerson();
-        VariableEvaluator evaluator = new CompiledJavaEvaluator<Person>(Person.class);
+        VariableEvaluator evaluator = new CompiledJavaEvaluator();
         Assert.assertEquals("male", evaluator.evaluate(p, "demographic.gender"));
 
         int total = 1000000;
