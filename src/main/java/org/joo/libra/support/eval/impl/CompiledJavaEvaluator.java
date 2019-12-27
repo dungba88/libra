@@ -22,7 +22,7 @@ public class CompiledJavaEvaluator implements VariableEvaluator {
     @Override
     public Object evaluate(Object obj, String variableName) throws Exception {
 
-        EvaluationKey key = new EvaluationKey(obj.getClass().getName(), variableName);
+        EvaluationKey key = new EvaluationKey(obj.getClass(), variableName);
         ExpressionEvaluator ee = cache.get(key);
 
         if (ee == null) {

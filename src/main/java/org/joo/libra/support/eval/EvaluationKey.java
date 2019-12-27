@@ -9,13 +9,13 @@ import lombok.Getter;
 @AllArgsConstructor
 public class EvaluationKey {
 
-    private String className;
+    private Class<?> clazz;
 
     private String variableName;
 
     @Override
     public int hashCode() {
-        return Objects.hash(className, variableName);
+        return Objects.hash(clazz, variableName);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class EvaluationKey {
             return false;
         }
         EvaluationKey that = (EvaluationKey) o;
-        return Objects.equals(className, that.className)
-                && Objects.equals(className, that.className);
+        return Objects.equals(clazz, that.clazz)
+                && Objects.equals(variableName, that.variableName);
     }
 }
