@@ -4,7 +4,7 @@ import org.codehaus.janino.ExpressionEvaluator;
 
 public interface ExpressionEvaluatorCache {
 
-    public ExpressionEvaluator get(String variableName);
-    
-    public void put(String variableName, ExpressionEvaluator evaluator);
+    public ExpressionEvaluator get(EvaluationKey key);
+
+    public void put(EvaluationKey key, ExpressionEvaluator evaluator);
 }

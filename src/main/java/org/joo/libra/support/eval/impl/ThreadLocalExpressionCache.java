@@ -1,26 +1,23 @@
 package org.joo.libra.support.eval.impl;
 
+import org.codehaus.janino.ExpressionEvaluator;
+import org.joo.libra.support.eval.EvaluationKey;
+import org.joo.libra.support.eval.ExpressionEvaluatorCache;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import org.codehaus.janino.ExpressionEvaluator;
-import org.joo.libra.support.eval.ExpressionEvaluatorCache;
-
 public class ThreadLocalExpressionCache implements ExpressionEvaluatorCache {
 
-    private ThreadLocal<Map<String, ExpressionEvaluator>> cache = new ThreadLocal<Map<String, ExpressionEvaluator>>() {
-        protected Map<String, ExpressionEvaluator> initialValue() {
-            return new HashMap<>();
-        }
-    };
+    private ThreadLocal<Map<EvaluationKey, ExpressionEvaluator>> cache = ThreadLocal.withInitial(() -> new HashMap<>());
 
     @Override
-    public ExpressionEvaluator get(String variableName) {
+    public ExpressionEvaluator get(EvaluationKey variableName) {
         return cache.get().get(variableName);
     }
 
     @Override
-    public void put(String variableName, ExpressionEvaluator evaluator) {
+    public void put(EvaluationKey variableName, ExpressionEvaluator evaluator) {
         cache.get().put(variableName, evaluator);
     }
 }

@@ -1,6 +1,7 @@
 package org.joo.libra.support.eval.impl;
 
 import org.codehaus.janino.ExpressionEvaluator;
+import org.joo.libra.support.eval.EvaluationKey;
 import org.joo.libra.support.eval.ExpressionBuilder;
 import org.joo.libra.support.eval.ExpressionEvaluatorCache;
 import org.joo.libra.support.eval.VariableEvaluator;
@@ -21,7 +22,8 @@ public class CompiledJavaEvaluator implements VariableEvaluator {
     @Override
     public Object evaluate(Object obj, String variableName) throws Exception {
 
-        ExpressionEvaluator ee = cache.get(variableName);
+        EvaluationKey key = new EvaluationKey(obj.getClass().getName(), variableName);
+        ExpressionEvaluator ee = cache.get(key);
 
         if (ee == null) {
             ee = new ExpressionEvaluator();
@@ -33,7 +35,7 @@ public class CompiledJavaEvaluator implements VariableEvaluator {
             String expression = builder.build(obj, "obj", variableName);
             ee.cook(expression);
 
-            cache.put(variableName, ee);
+            cache.put(key, ee);
         }
 
         // Eventually we evaluate the expression - and that goes super-fast.

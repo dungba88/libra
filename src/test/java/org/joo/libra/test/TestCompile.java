@@ -3,6 +3,7 @@ package org.joo.libra.test;
 import org.joo.libra.support.ObjectUtils;
 import org.joo.libra.support.eval.VariableEvaluator;
 import org.joo.libra.support.eval.impl.CompiledJavaEvaluator;
+import org.joo.libra.test.support.AnotherPerson;
 import org.joo.libra.test.support.MockDataUtils;
 import org.joo.libra.test.support.Person;
 import org.junit.Assert;
@@ -18,6 +19,16 @@ public class TestCompile {
         Assert.assertEquals("John", evaluator.evaluate(p, "name"));
         Assert.assertEquals("male", evaluator.evaluate(p, "demographic.gender"));
         Assert.assertEquals("Oracle", evaluator.evaluate(p, "jobs[0]"));
+    }
+
+    @Test
+    public void testCompileWithTwoClasses() throws Exception {
+        Person p = MockDataUtils.mockPerson();
+        AnotherPerson p2 = new AnotherPerson();
+        p2.setAge("123");
+        VariableEvaluator evaluator = new CompiledJavaEvaluator();
+        Assert.assertEquals(27L, evaluator.evaluate(p, "age"));
+        Assert.assertEquals("123", evaluator.evaluate(p2, "age"));
     }
 
     @Test
